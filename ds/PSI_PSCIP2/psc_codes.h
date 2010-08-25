@@ -76,7 +76,7 @@
 
 static const unsigned long communication_delay = 10000;	//used in serial communication mainly
 
-static int psc_write_only_addresses[] = {
+static const int psc_write_only_addresses[] = {
 	0x02,
 	0x20,
 	0x21,
@@ -85,7 +85,8 @@ static int psc_write_only_addresses[] = {
 	0x40
 	};
 
-static char psc_alba_errmsg[][PSCIP_SIZE_MSG] = {
+static const int PSC_ALBA_ERRMSG_NUM = 178;
+static const char psc_alba_errmsg[2*PSC_ALBA_ERRMSG_NUM][PSCIP_SIZE_MSG] = {
 
 	/* General return codes - 0x0 to 0xf */
 
@@ -294,12 +295,13 @@ static char psc_alba_errmsg[][PSCIP_SIZE_MSG] = {
 	"Test error 13","0xfc",
 	"Test error 14","0xfd",
 	"Test error 15","0xfe",
-	"Test error 16","0xff"
+	"Test error 16","0xff",
+
 };
 
 
 #define PSC_KEMPOWER_ERRMSG 36
-static char psc_kempower_errmsg[][PSCIP_SIZE_MSG] = {
+static const char psc_kempower_errmsg[][PSCIP_SIZE_MSG] = {
 	"No disorders", "0x0",
 	"Device state error", "0x1",
 	"Device supervisor disabled", "0x2",
@@ -340,7 +342,7 @@ static char psc_kempower_errmsg[][PSCIP_SIZE_MSG] = {
 };
 
 
-static char psc_diamond_errmsg[][PSCIP_SIZE_MSG] = {
+static const char psc_diamond_errmsg[][PSCIP_SIZE_MSG] = {
 	"No disorders","0x0",
 	"Device state error","0x1",
 	"Device supervisor disabled","0x2",
@@ -419,7 +421,7 @@ static char psc_diamond_errmsg[][PSCIP_SIZE_MSG] = {
 };
 
 #define PSC_BENDING_PARAM 52
-static char psc_bending_control_param[][PSCIP_SIZE_MSG] = {
+static const char psc_bending_control_param[][PSCIP_SIZE_MSG] = {
 "single_quadrant",          "0x00", "i",  /* i : 1 if single quadrant (1q) ps */
 "pwm_frequency",				    "0x01",	"i",	/* i : pwm frequency in khz (!float in booster quad version only!)*/
 "pwm_uv_phase",				      "0x02",	"i",	/* i : pwm phase in degrees, !!! < 350 � !!! */
@@ -475,7 +477,7 @@ static char psc_bending_control_param[][PSCIP_SIZE_MSG] = {
 };
 
 #define PSC_QUADRUPOLE_PARAM 61
-static char psc_quadrupole_control_param[][PSCIP_SIZE_MSG] = {
+static const char psc_quadrupole_control_param[][PSCIP_SIZE_MSG] = {
 "single_quadrant", 			     "0x00", "i", /* i : 1 if single quadrant (1q) ps */
 "pwm_frequency",				     "0x01", "i",	/* i : pwm frequency in khz */
 "pwm_uv_phase",				       "0x02", "i",	/* i : pwm phase in degrees, !!! < 350 � !!! */
@@ -540,7 +542,7 @@ static char psc_quadrupole_control_param[][PSCIP_SIZE_MSG] = {
 };
 
 #define PSC_CORRECTOR_PARAM 58
-static char psc_corrector_control_param[][PSCIP_SIZE_MSG] = {
+static const char psc_corrector_control_param[][PSCIP_SIZE_MSG] = {
 "single_quadrant", 			     "0x00", "i", /* i : 1 if single quadrant (1q) ps */
 "pwm_frequency",				     "0x01", "i",	/* i : pwm frequency in khz */
 "pwm_uv_phase",				       "0x02", "i",	/* i : pwm phase in degrees, !!! < 350 � !!! */

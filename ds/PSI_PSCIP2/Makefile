@@ -32,11 +32,8 @@ RELEASE    = Release_$(MAJOR_VERS)_$(MINOR_VERS)
 #	Set default home directories
 #-----------------------------------------
 
-TANGO_HOME   =  /siciliarep/build/tango/tango6.0.suse102.32/tango
+TANGO_HOME   =  /siciliarep/build/lib/tango/tango-7.1.1.suse111.32/
 CPP_SERVERS  =  $(TANGO_HOME)/cppserver
-
-# added by ML
-C_LIB_BASE     =$(SICILIA)/
 
 ifdef no_debug
 	DEBUG = -O
@@ -63,17 +60,13 @@ VERS_OPT = -Wl,-soname,
 endif
 
 INCLUDE_DIRS =  -I$(TANGO_HOME)/include \
-					 -I/siciliarep/build/tango/tango6.0.suse102.32/omniorb/include \
+					 -I/siciliarep/build/lib/omniORB/omniORB-4.1.3.suse111.32/include \
 					 -I.	\
-                -I$(CPP_SERVERS)/include \
-		-I$(C_LIB_BASE)/include
-# added by ML
+                -I$(CPP_SERVERS)/include
 
 OBJS_DIR    = obj
 LIB_DIRS    = -L $(TANGO_HOME)/lib \
-				  -L /siciliarep/build/tango/tango6.0.suse102.32/omniorb/lib \
-				-L $(C_LIB_BASE)/lib
-# added by ML
+				  -L/siciliarep/build/lib/omniORB/omniORB-4.1.3.suse111.32/lib
 
 TARGET_LIB = $(CPP_SERVERS)/lib/libtgclasses.a
 
@@ -91,11 +84,11 @@ LFLAGS =  $(DEBUG) $(LIB_DIRS)  		\
 				-lomnithread	\
 				-lCOS4			\
 				-lpthread		\
-				-lposix4 -lsocket -lnsl
+				-lposix4 -lsocket -lnsl 
 endif
 
 ifdef linux
-CXXFLAGS =  $(DEBUG) -Wall -ansi -D_REENTRANT $(INCLUDE_DIRS)
+CXXFLAGS =  $(DEBUG) -D_REENTRANT $(INCLUDE_DIRS)
 LFLAGS =  $(DEBUG) $(LIB_DIRS)  		\
 				-ltango			\
 				-llog4tango		\
@@ -103,7 +96,8 @@ LFLAGS =  $(DEBUG) $(LIB_DIRS)  		\
 				-lomniDynamic4	\
 				-lomnithread	\
 				-lCOS4			\
-				-ldl -lpthread
+				-ldl -lpthread \
+                                -lrt
 endif
 
 
@@ -117,7 +111,8 @@ SVC_OBJS = $(OBJS_DIR)/main.o	\
 		$(OBJS_DIR)/ClassFactory.o	\
 		$(OBJS_DIR)/$(CLASS)Class.o	\
 		$(OBJS_DIR)/$(CLASS)StateMachine.o	\
-		$(OBJS_DIR)/$(CLASS).o
+		$(OBJS_DIR)/$(CLASS).o \
+                $(OBJS_DIR)/NanoSeconds.o
 
 SHLIB_OBJS = $(OBJS_DIR)/$(CLASS)Class.so.o	\
 		$(OBJS_DIR)/$(CLASS)StateMachine.so.o	\
@@ -147,7 +142,7 @@ $(CLASS):	make_obj_dir make_bin_dir $(SVC_OBJS)
 shlib:	make_obj_dir make_shlib_dir $(SHLIB_OBJS)
 	$(AR_SL) -o \
 		shlib/$(CLASS).$(SL_EXT).$(MAJOR_VERS).$(MINOR_VERS) \
-		$(VERS_OPT)shlib/$(CLASS).$(SL_EXT).$(MAJOR_VERS) \
+		$(VERS_OPT)$(CLASS).$(SL_EXT).$(MAJOR_VERS) \
 		$(SHLIB_OBJS) $(LFLAGS)
 	@rm -f shlib/$(CLASS).$(SL_EXT)
 	@cd  shlib; \
@@ -181,10 +176,10 @@ install:
 lib: clean
 	@make no_debug=1
 	cp *.h $(CPP_SERVERS)/include
-	ar ruv $(TARGET_LIB)/$(CLASS).o
-	ar ruv $(TARGET_LIB)/$(CLASS)Class.o
-	ar ruv $(TARGET_LIB)/$(CLASS)StateMachine.o
-	ident  $(TARGET_LIB)/* | grep $(CLASS)
+	ar ruv $(TARGET_LIB) $(CLASS).o
+	ar ruv $(TARGET_LIB) $(CLASS)Class.o
+	ar ruv $(TARGET_LIB) $(CLASS)StateMachine.o
+	ident  $(TARGET_LIB) | grep $(CLASS)
 
 #----------------------------------------------------
 #	Tag the CVS module corresponding to this class

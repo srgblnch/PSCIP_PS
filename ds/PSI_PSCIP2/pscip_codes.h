@@ -7,7 +7,7 @@
 #define COMMUNICATION_DEVICE_ERROR		0x0D
 #define RS232_PRIORITY_ERROR			0x0E
 
-static char psc_communication_alba_errmsg[][PSCIP_SIZE_MSG] = {
+static const char psc_communication_alba_errmsg[][PSCIP_SIZE_MSG] = {
 	"Echo value doesn't match",						//"0x00",
 	"Remote control disabled",						//"0x01",
 	"Generic reading error",						//"0x02",
