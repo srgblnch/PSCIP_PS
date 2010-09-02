@@ -1,0 +1,473 @@
+\hypertarget{structnpscip___dev}{
+\section{npscip\_\-Dev Struct Reference}
+\label{structnpscip___dev}\index{npscip\_\-Dev@{npscip\_\-Dev}}
+}
+Structure to mantain internal device driver variables.  
+
+
+{\tt \#include $<$k\_\-pscip.h$>$}
+
+Collaboration diagram for npscip\_\-Dev:\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+uint32\_\-t \hyperlink{structnpscip___dev_3cfba26d2b0e3fa6a0544e3d262065d2}{pciaddr}
+\begin{CompactList}\small\item\em Phisical address of Base Address 0 PCI Carrier. \item\end{CompactList}\item 
+struct semaphore \hyperlink{structnpscip___dev_b25b0d08851ec85f28cdd6938072e903}{sem}
+\begin{CompactList}\small\item\em Semaphore struct. \item\end{CompactList}\item 
+\hyperlink{structpscip__stats__t}{pscip\_\-stats\_\-t} \hyperlink{structnpscip___dev_ac9020cb6a85822da71cb6a10c06d36f}{stats} \mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}
+\begin{CompactList}\small\item\em Structure used for storing operatin statistics and flags. \item\end{CompactList}\item 
+wait\_\-queue\_\-head\_\-t \hyperlink{structnpscip___dev_88140323c9d4ac1e49fe6a36fbed02aa}{queue} \mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}
+\begin{CompactList}\small\item\em Structure used in waitqueue mechanism. \item\end{CompactList}\item 
+spinlock\_\-t \hyperlink{structnpscip___dev_fd76f4660b40aff8b4ff34ab3c254d35}{lock} \mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}
+\begin{CompactList}\small\item\em Structure used in spinlock mechanism. \item\end{CompactList}\item 
+int \hyperlink{structnpscip___dev_267da34d5acdd2acaf2af946707736f1}{irqflag} \mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}
+\begin{CompactList}\small\item\em Interrupt flag. \item\end{CompactList}\item 
+int \hyperlink{structnpscip___dev_2d77c2f8b559f45698716fd09adf4786}{irqdata} \mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}
+\begin{CompactList}\small\item\em Interrupt data. \item\end{CompactList}\item 
+struct tasklet\_\-struct \hyperlink{structnpscip___dev_136ae19fbe301b0bfcf3d143e59e7bed}{pscip\_\-tsk} \mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}
+\begin{CompactList}\small\item\em Tasklet struct. \item\end{CompactList}\item 
+struct timeval \hyperlink{structnpscip___dev_30bb89cf1d7aed16f8ebacc55f6ded2e}{tv} \mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}
+\begin{CompactList}\small\item\em To avoid ip lock during dsp reboot. \item\end{CompactList}\item 
+struct \hyperlink{structnpscip___dev_4990eb4f37675360d8207ff38e6616a3}{cdev} \hyperlink{structnpscip___dev_4990eb4f37675360d8207ff38e6616a3}{cdev}
+\begin{CompactList}\small\item\em Character device structure embedded in device structure. \item\end{CompactList}\item 
+unsigned long \hyperlink{structnpscip___dev_e8a93765bbde1cad3218f1611d6ae623}{PCIinterfaceAddr}
+\begin{CompactList}\small\item\em Beginning of PCI interface registers. \item\end{CompactList}\item 
+unsigned long \hyperlink{structnpscip___dev_0142cc27edac10b4f03fecc945baceaa}{PCIinterfaceLen}
+\begin{CompactList}\small\item\em Length of the memory area hodling PCI interface registers. \item\end{CompactList}\item 
+unsigned long \hyperlink{structnpscip___dev_638e1740312817476855046b6fb3bd1a}{PCIinterfaceFlags}
+\begin{CompactList}\small\item\em PCI Carrier physical address of Base Address 0 flags. \item\end{CompactList}\item 
+unsigned long \hyperlink{structnpscip___dev_f2580a0984d58cf0423092bc9fe9d137}{IPinterfaceAddr}
+\begin{CompactList}\small\item\em Beginning of IP interface registers. \item\end{CompactList}\item 
+unsigned long \hyperlink{structnpscip___dev_746b6f405b829de9bc181a7cc628f5d9}{IPinterfaceLen}
+\begin{CompactList}\small\item\em Length of the memory area hodling IP interface registers. \item\end{CompactList}\item 
+unsigned long \hyperlink{structnpscip___dev_0ff404840e5bbfed8506602e516f83cb}{IPinterfaceFlags}
+\begin{CompactList}\small\item\em PCI Carrier physical address of Base Address 2 flags. \item\end{CompactList}\item 
+unsigned long \hyperlink{structnpscip___dev_6e53454785de7b34c1cff8030768df82}{IP\_\-IOspaceAddr}
+\begin{CompactList}\small\item\em Beginning of I/O memory space. \item\end{CompactList}\item 
+unsigned long \hyperlink{structnpscip___dev_8f1859f1a65f449d6c9fde8a226009a2}{IP\_\-IOspaceLen}
+\begin{CompactList}\small\item\em Length of the memory area hodling I/O memory space. \item\end{CompactList}\item 
+unsigned long \hyperlink{structnpscip___dev_8dfde8b4c64adcd6c7f67d64dfa2c4eb}{IP\_\-IOspaceFlags}
+\begin{CompactList}\small\item\em PCI Carrier physical address of Base Address 3 flags. \item\end{CompactList}\item 
+void $\ast$ \hyperlink{structnpscip___dev_dbe8eac260892a669589f3ca732c4ad7}{pPCIinterfaceReg}
+\begin{CompactList}\small\item\em Virtual address of IP interface registers. \item\end{CompactList}\item 
+void $\ast$ \hyperlink{structnpscip___dev_55e32b14b74a1a31efa915f3ee30da2c}{pIPinterfaceReg}
+\begin{CompactList}\small\item\em Virtual address of PCI interface registers. \item\end{CompactList}\item 
+void $\ast$ \hyperlink{structnpscip___dev_dc0a68164f555ddc4b5de6d4cf0bf0e9}{pIP\_\-IOspace} \mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}
+\begin{CompactList}\small\item\em Virtual address of I/O memory space. \item\end{CompactList}\item 
+int \hyperlink{structnpscip___dev_6bf8d25b955da3e4560bffb7737cd2f5}{IPnumber}
+\item 
+int \hyperlink{structnpscip___dev_94183aef5d449f3f07669641aed0b6dd}{refcount}
+\begin{CompactList}\small\item\em Number of IP on the PCI Carrier. \item\end{CompactList}\item 
+int \hyperlink{structnpscip___dev_9e516ab0b05d5588434b93ecbf9db04d}{irq}
+\begin{CompactList}\small\item\em Keeps the number of opened references to the device (opend files/nodes in /dev folder). \item\end{CompactList}\item 
+struct pci\_\-dev $\ast$ \hyperlink{structnpscip___dev_d017ea6be67a911fa7e0227048f42112}{pcidev}
+\begin{CompactList}\small\item\em Interrupt line number. \item\end{CompactList}\item 
+char \hyperlink{structnpscip___dev_cc7e28ef3bc0383348dc3839e0589535}{device\_\-name} \mbox{[}10\mbox{]}
+\begin{CompactList}\small\item\em PCI device struct embedded in device structure. \item\end{CompactList}\item 
+int \hyperlink{structnpscip___dev_d340ce8452c6d05d1c1d8755ca9d6715}{pscip\_\-number}
+\begin{CompactList}\small\item\em Name of the device representing it in the user space (both /dev and /proc/driver). \item\end{CompactList}\item 
+int \hyperlink{structnpscip___dev_522956db86a25d51ecf36753988184c0}{carrier\_\-number}
+\begin{CompactList}\small\item\em Number of the IP represented by the device structure connected to PCI bus. \item\end{CompactList}\item 
+char \hyperlink{structnpscip___dev_1cfa6d8e96fec37f835e821407e3b3f4}{IP\_\-in\_\-slot}
+\begin{CompactList}\small\item\em Number of the carrier represented by the device structure connected to PCI bus. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Structure to mantain internal device driver variables. 
+
+It embeds pci\_\-dev, and cdev structures used for kernel interfacing 
+
+Definition at line 181 of file k\_\-pscip.h.
+
+\subsection{Field Documentation}
+\hypertarget{structnpscip___dev_522956db86a25d51ecf36753988184c0}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!carrier\_\-number@{carrier\_\-number}}
+\index{carrier\_\-number@{carrier\_\-number}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{carrier\_\-number}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf npscip\_\-Dev::carrier\_\-number}}}
+\label{structnpscip___dev_522956db86a25d51ecf36753988184c0}
+
+
+Number of the IP represented by the device structure connected to PCI bus. 
+
+
+
+Definition at line 216 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), probe(), and pscip\_\-read\_\-proc().\hypertarget{structnpscip___dev_4990eb4f37675360d8207ff38e6616a3}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!cdev@{cdev}}
+\index{cdev@{cdev}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{cdev}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cdev} {\bf npscip\_\-Dev::cdev}\hspace{0.3cm}{\tt  \mbox{[}read\mbox{]}}}}
+\label{structnpscip___dev_4990eb4f37675360d8207ff38e6616a3}
+
+
+Character device structure embedded in device structure. 
+
+
+
+Definition at line 196 of file k\_\-pscip.h.
+
+Referenced by probe().\hypertarget{structnpscip___dev_cc7e28ef3bc0383348dc3839e0589535}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!device\_\-name@{device\_\-name}}
+\index{device\_\-name@{device\_\-name}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{device\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf npscip\_\-Dev::device\_\-name}\mbox{[}10\mbox{]}}}
+\label{structnpscip___dev_cc7e28ef3bc0383348dc3839e0589535}
+
+
+PCI device struct embedded in device structure. 
+
+Only the device structure of IP 0 (with IPnumber = 0) embeds this structure. 
+
+Definition at line 214 of file k\_\-pscip.h.\hypertarget{structnpscip___dev_1cfa6d8e96fec37f835e821407e3b3f4}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!IP\_\-in\_\-slot@{IP\_\-in\_\-slot}}
+\index{IP\_\-in\_\-slot@{IP\_\-in\_\-slot}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{IP\_\-in\_\-slot}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf npscip\_\-Dev::IP\_\-in\_\-slot}}}
+\label{structnpscip___dev_1cfa6d8e96fec37f835e821407e3b3f4}
+
+
+Number of the carrier represented by the device structure connected to PCI bus. 
+
+Should be: carrier\_\-number = pscip\_\-number \% 2 
+
+Definition at line 217 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), probe(), and pscip\_\-read\_\-proc().\hypertarget{structnpscip___dev_6e53454785de7b34c1cff8030768df82}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!IP\_\-IOspaceAddr@{IP\_\-IOspaceAddr}}
+\index{IP\_\-IOspaceAddr@{IP\_\-IOspaceAddr}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{IP\_\-IOspaceAddr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long {\bf npscip\_\-Dev::IP\_\-IOspaceAddr}}}
+\label{structnpscip___dev_6e53454785de7b34c1cff8030768df82}
+
+
+Beginning of I/O memory space. 
+
+PCI Carrier physical address of Base Address 3. 
+
+Definition at line 197 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), and probe().\hypertarget{structnpscip___dev_8dfde8b4c64adcd6c7f67d64dfa2c4eb}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!IP\_\-IOspaceFlags@{IP\_\-IOspaceFlags}}
+\index{IP\_\-IOspaceFlags@{IP\_\-IOspaceFlags}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{IP\_\-IOspaceFlags}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long {\bf npscip\_\-Dev::IP\_\-IOspaceFlags}}}
+\label{structnpscip___dev_8dfde8b4c64adcd6c7f67d64dfa2c4eb}
+
+
+PCI Carrier physical address of Base Address 3 flags. 
+
+
+
+Definition at line 197 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), and probe().\hypertarget{structnpscip___dev_8f1859f1a65f449d6c9fde8a226009a2}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!IP\_\-IOspaceLen@{IP\_\-IOspaceLen}}
+\index{IP\_\-IOspaceLen@{IP\_\-IOspaceLen}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{IP\_\-IOspaceLen}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long {\bf npscip\_\-Dev::IP\_\-IOspaceLen}}}
+\label{structnpscip___dev_8f1859f1a65f449d6c9fde8a226009a2}
+
+
+Length of the memory area hodling I/O memory space. 
+
+
+
+Definition at line 197 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), and probe().\hypertarget{structnpscip___dev_f2580a0984d58cf0423092bc9fe9d137}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!IPinterfaceAddr@{IPinterfaceAddr}}
+\index{IPinterfaceAddr@{IPinterfaceAddr}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{IPinterfaceAddr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long {\bf npscip\_\-Dev::IPinterfaceAddr}}}
+\label{structnpscip___dev_f2580a0984d58cf0423092bc9fe9d137}
+
+
+Beginning of IP interface registers. 
+
+PCI Carrier physical address of Base Address 2. 
+
+Definition at line 197 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), and probe().\hypertarget{structnpscip___dev_0ff404840e5bbfed8506602e516f83cb}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!IPinterfaceFlags@{IPinterfaceFlags}}
+\index{IPinterfaceFlags@{IPinterfaceFlags}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{IPinterfaceFlags}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long {\bf npscip\_\-Dev::IPinterfaceFlags}}}
+\label{structnpscip___dev_0ff404840e5bbfed8506602e516f83cb}
+
+
+PCI Carrier physical address of Base Address 2 flags. 
+
+
+
+Definition at line 197 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), and probe().\hypertarget{structnpscip___dev_746b6f405b829de9bc181a7cc628f5d9}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!IPinterfaceLen@{IPinterfaceLen}}
+\index{IPinterfaceLen@{IPinterfaceLen}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{IPinterfaceLen}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long {\bf npscip\_\-Dev::IPinterfaceLen}}}
+\label{structnpscip___dev_746b6f405b829de9bc181a7cc628f5d9}
+
+
+Length of the memory area hodling IP interface registers. 
+
+
+
+Definition at line 197 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), and probe().\hypertarget{structnpscip___dev_6bf8d25b955da3e4560bffb7737cd2f5}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!IPnumber@{IPnumber}}
+\index{IPnumber@{IPnumber}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{IPnumber}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf npscip\_\-Dev::IPnumber}}}
+\label{structnpscip___dev_6bf8d25b955da3e4560bffb7737cd2f5}
+
+
+
+
+Definition at line 210 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), IP\_\-DEBUG\_\-read\_\-errors(), k\_\-if\_\-handle\_\-irq(), k\_\-irq\_\-disable(), k\_\-irq\_\-enable(), k\_\-pscip\_\-dump\_\-all\_\-registers(), k\_\-pscip\_\-reset(), probe(), and pscip\_\-read\_\-proc().\hypertarget{structnpscip___dev_9e516ab0b05d5588434b93ecbf9db04d}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!irq@{irq}}
+\index{irq@{irq}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{irq}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf npscip\_\-Dev::irq}}}
+\label{structnpscip___dev_9e516ab0b05d5588434b93ecbf9db04d}
+
+
+Keeps the number of opened references to the device (opend files/nodes in /dev folder). 
+
+
+
+Definition at line 212 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), probe(), pscip\_\-assign\_\-irq(), pscip\_\-open(), and pscip\_\-release().\hypertarget{structnpscip___dev_2d77c2f8b559f45698716fd09adf4786}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!irqdata@{irqdata}}
+\index{irqdata@{irqdata}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{irqdata}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf npscip\_\-Dev::irqdata}\mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}}}
+\label{structnpscip___dev_2d77c2f8b559f45698716fd09adf4786}
+
+
+Interrupt data. 
+
+Seems to be not used 
+
+Definition at line 192 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module().\hypertarget{structnpscip___dev_267da34d5acdd2acaf2af946707736f1}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!irqflag@{irqflag}}
+\index{irqflag@{irqflag}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{irqflag}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf npscip\_\-Dev::irqflag}\mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}}}
+\label{structnpscip___dev_267da34d5acdd2acaf2af946707736f1}
+
+
+Interrupt flag. 
+
+0 - PSCIP\_\-IRQ\_\-DONE1; 1 - PSCIP\_\-IRQ\_\-SERVED; 2 - PSCIP\_\-IRQ\_\-REQUEST 
+
+Definition at line 191 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-irq\_\-handler().\hypertarget{structnpscip___dev_fd76f4660b40aff8b4ff34ab3c254d35}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!lock@{lock}}
+\index{lock@{lock}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}spinlock\_\-t {\bf npscip\_\-Dev::lock}\mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}}}
+\label{structnpscip___dev_fd76f4660b40aff8b4ff34ab3c254d35}
+
+
+Structure used in spinlock mechanism. 
+
+
+
+Definition at line 189 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), pscip\_\-irq\_\-bh0(), and pscip\_\-irq\_\-bh1().\hypertarget{structnpscip___dev_3cfba26d2b0e3fa6a0544e3d262065d2}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!pciaddr@{pciaddr}}
+\index{pciaddr@{pciaddr}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{pciaddr}]{\setlength{\rightskip}{0pt plus 5cm}uint32\_\-t {\bf npscip\_\-Dev::pciaddr}}}
+\label{structnpscip___dev_3cfba26d2b0e3fa6a0544e3d262065d2}
+
+
+Phisical address of Base Address 0 PCI Carrier. 
+
+Used in probe to check IP device number 
+
+Definition at line 182 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), probe(), and pscip\_\-ioctl().\hypertarget{structnpscip___dev_d017ea6be67a911fa7e0227048f42112}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!pcidev@{pcidev}}
+\index{pcidev@{pcidev}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{pcidev}]{\setlength{\rightskip}{0pt plus 5cm}struct pci\_\-dev$\ast$ {\bf npscip\_\-Dev::pcidev}\hspace{0.3cm}{\tt  \mbox{[}read\mbox{]}}}}
+\label{structnpscip___dev_d017ea6be67a911fa7e0227048f42112}
+
+
+Interrupt line number. 
+
+
+
+Definition at line 213 of file k\_\-pscip.h.
+
+Referenced by probe().\hypertarget{structnpscip___dev_e8a93765bbde1cad3218f1611d6ae623}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!PCIinterfaceAddr@{PCIinterfaceAddr}}
+\index{PCIinterfaceAddr@{PCIinterfaceAddr}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{PCIinterfaceAddr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long {\bf npscip\_\-Dev::PCIinterfaceAddr}}}
+\label{structnpscip___dev_e8a93765bbde1cad3218f1611d6ae623}
+
+
+Beginning of PCI interface registers. 
+
+PCI Carrier physical address of Base Address 0. 
+
+Definition at line 197 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), and probe().\hypertarget{structnpscip___dev_638e1740312817476855046b6fb3bd1a}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!PCIinterfaceFlags@{PCIinterfaceFlags}}
+\index{PCIinterfaceFlags@{PCIinterfaceFlags}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{PCIinterfaceFlags}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long {\bf npscip\_\-Dev::PCIinterfaceFlags}}}
+\label{structnpscip___dev_638e1740312817476855046b6fb3bd1a}
+
+
+PCI Carrier physical address of Base Address 0 flags. 
+
+
+
+Definition at line 197 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), and probe().\hypertarget{structnpscip___dev_0142cc27edac10b4f03fecc945baceaa}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!PCIinterfaceLen@{PCIinterfaceLen}}
+\index{PCIinterfaceLen@{PCIinterfaceLen}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{PCIinterfaceLen}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long {\bf npscip\_\-Dev::PCIinterfaceLen}}}
+\label{structnpscip___dev_0142cc27edac10b4f03fecc945baceaa}
+
+
+Length of the memory area hodling PCI interface registers. 
+
+
+
+Definition at line 197 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), and probe().\hypertarget{structnpscip___dev_dc0a68164f555ddc4b5de6d4cf0bf0e9}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!pIP\_\-IOspace@{pIP\_\-IOspace}}
+\index{pIP\_\-IOspace@{pIP\_\-IOspace}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{pIP\_\-IOspace}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ {\bf npscip\_\-Dev::pIP\_\-IOspace}\mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}}}
+\label{structnpscip___dev_dc0a68164f555ddc4b5de6d4cf0bf0e9}
+
+
+Virtual address of I/O memory space. 
+
+
+
+Definition at line 208 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-clear\_\-err\_\-counter(), k\_\-pscip\_\-dump\_\-all\_\-registers(), k\_\-pscip\_\-rdfpgastat(), k\_\-pscip\_\-rdlinkstat(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wait\_\-linkdown(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), probe(), pscip\_\-ioctl(), pscip\_\-irq\_\-handler(), and remove().\hypertarget{structnpscip___dev_55e32b14b74a1a31efa915f3ee30da2c}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!pIPinterfaceReg@{pIPinterfaceReg}}
+\index{pIPinterfaceReg@{pIPinterfaceReg}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{pIPinterfaceReg}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ {\bf npscip\_\-Dev::pIPinterfaceReg}}}
+\label{structnpscip___dev_55e32b14b74a1a31efa915f3ee30da2c}
+
+
+Virtual address of PCI interface registers. 
+
+
+
+Definition at line 207 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), k\_\-if\_\-handle\_\-irq(), k\_\-irq\_\-disable(), k\_\-irq\_\-enable(), k\_\-pscip\_\-dump\_\-all\_\-registers(), k\_\-pscip\_\-reset(), probe(), pscip\_\-ioctl(), and remove().\hypertarget{structnpscip___dev_dbe8eac260892a669589f3ca732c4ad7}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!pPCIinterfaceReg@{pPCIinterfaceReg}}
+\index{pPCIinterfaceReg@{pPCIinterfaceReg}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{pPCIinterfaceReg}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ {\bf npscip\_\-Dev::pPCIinterfaceReg}}}
+\label{structnpscip___dev_dbe8eac260892a669589f3ca732c4ad7}
+
+
+Virtual address of IP interface registers. 
+
+
+
+Definition at line 206 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), k\_\-pscip\_\-dump\_\-all\_\-registers(), probe(), pscip\_\-irq\_\-handler(), and remove().\hypertarget{structnpscip___dev_d340ce8452c6d05d1c1d8755ca9d6715}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!pscip\_\-number@{pscip\_\-number}}
+\index{pscip\_\-number@{pscip\_\-number}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{pscip\_\-number}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf npscip\_\-Dev::pscip\_\-number}}}
+\label{structnpscip___dev_d340ce8452c6d05d1c1d8755ca9d6715}
+
+
+Name of the device representing it in the user space (both /dev and /proc/driver). 
+
+ex pscip0, pscip1,.... 
+
+Definition at line 215 of file k\_\-pscip.h.
+
+Referenced by probe(), and remove().\hypertarget{structnpscip___dev_136ae19fbe301b0bfcf3d143e59e7bed}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!pscip\_\-tsk@{pscip\_\-tsk}}
+\index{pscip\_\-tsk@{pscip\_\-tsk}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{pscip\_\-tsk}]{\setlength{\rightskip}{0pt plus 5cm}struct tasklet\_\-struct {\bf npscip\_\-Dev::pscip\_\-tsk}\mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}read\mbox{]}}}}
+\label{structnpscip___dev_136ae19fbe301b0bfcf3d143e59e7bed}
+
+
+Tasklet struct. 
+
+
+
+Definition at line 193 of file k\_\-pscip.h.
+
+Referenced by pscip\_\-irq\_\-handler().\hypertarget{structnpscip___dev_88140323c9d4ac1e49fe6a36fbed02aa}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!queue@{queue}}
+\index{queue@{queue}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{queue}]{\setlength{\rightskip}{0pt plus 5cm}wait\_\-queue\_\-head\_\-t {\bf npscip\_\-Dev::queue}\mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}}}
+\label{structnpscip___dev_88140323c9d4ac1e49fe6a36fbed02aa}
+
+
+Structure used in waitqueue mechanism. 
+
+
+
+Definition at line 188 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), pscip\_\-irq\_\-bh0(), and pscip\_\-irq\_\-bh1().\hypertarget{structnpscip___dev_94183aef5d449f3f07669641aed0b6dd}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!refcount@{refcount}}
+\index{refcount@{refcount}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{refcount}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf npscip\_\-Dev::refcount}}}
+\label{structnpscip___dev_94183aef5d449f3f07669641aed0b6dd}
+
+
+Number of IP on the PCI Carrier. 
+
+There are max two IPs on one carrier: 0 , 1 
+
+Definition at line 211 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), pscip\_\-open(), and pscip\_\-release().\hypertarget{structnpscip___dev_b25b0d08851ec85f28cdd6938072e903}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!sem@{sem}}
+\index{sem@{sem}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{sem}]{\setlength{\rightskip}{0pt plus 5cm}struct semaphore {\bf npscip\_\-Dev::sem}\hspace{0.3cm}{\tt  \mbox{[}read\mbox{]}}}}
+\label{structnpscip___dev_b25b0d08851ec85f28cdd6938072e903}
+
+
+Semaphore struct. 
+
+
+
+Definition at line 186 of file k\_\-pscip.h.
+
+Referenced by pscip\_\-ioctl(), pscip\_\-open(), pscip\_\-read\_\-proc(), pscip\_\-release(), and pscip\_\-write\_\-proc().\hypertarget{structnpscip___dev_ac9020cb6a85822da71cb6a10c06d36f}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!stats@{stats}}
+\index{stats@{stats}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{stats}]{\setlength{\rightskip}{0pt plus 5cm}{\bf pscip\_\-stats\_\-t} {\bf npscip\_\-Dev::stats}\mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}}}
+\label{structnpscip___dev_ac9020cb6a85822da71cb6a10c06d36f}
+
+
+Structure used for storing operatin statistics and flags. 
+
+
+
+Definition at line 187 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-errors(), k\_\-pscip\_\-rdstatistics(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wait\_\-linkdown(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), pscip\_\-irq\_\-handler(), and pscip\_\-read\_\-proc().\hypertarget{structnpscip___dev_30bb89cf1d7aed16f8ebacc55f6ded2e}{
+\index{npscip\_\-Dev@{npscip\_\-Dev}!tv@{tv}}
+\index{tv@{tv}!npscip_Dev@{npscip\_\-Dev}}
+\subsubsection[{tv}]{\setlength{\rightskip}{0pt plus 5cm}struct timeval {\bf npscip\_\-Dev::tv}\mbox{[}PSCIP\_\-MAX\_\-CHAN\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}read\mbox{]}}}}
+\label{structnpscip___dev_30bb89cf1d7aed16f8ebacc55f6ded2e}
+
+
+To avoid ip lock during dsp reboot. 
+
+
+
+Definition at line 195 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip(), and k\_\-pscip\_\-wait\_\-linkdown().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+Z:/Project/development/PSCIP/driver/\hyperlink{k__pscip_8h}{k\_\-pscip.h}\end{CompactItemize}

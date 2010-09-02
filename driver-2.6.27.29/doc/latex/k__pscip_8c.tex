@@ -1,0 +1,532 @@
+\hypertarget{k__pscip_8c}{
+\section{Z:/Project/development/PSCIP/driver/k\_\-pscip.c File Reference}
+\label{k__pscip_8c}\index{Z:/Project/development/PSCIP/driver/k\_\-pscip.c@{Z:/Project/development/PSCIP/driver/k\_\-pscip.c}}
+}
+Contains function directly interfacing hardware/kernel.  
+
+
+
+
+This graph shows which files directly or indirectly include this file:\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{k__pscip_8c_f3b7c646a7b12b9f333f71bb6ceb24af}{MODULE\_\-DEVICE\_\-TABLE} (pci, \hyperlink{k__pscip_8c_4a12a64d56df9af7c0af998356f07b01}{ids})
+\begin{CompactList}\small\item\em Registering the table defining a list of the different types of CI devices that the driver supports. \item\end{CompactList}\item 
+void \hyperlink{k__pscip_8c_2dab759a46d164a5ffb67021338afa8f}{IP\_\-read\_\-byte} (void $\ast$address, uint8\_\-t $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val})
+\begin{CompactList}\small\item\em Reads byte from the device. \item\end{CompactList}\item 
+void \hyperlink{k__pscip_8c_a45e2281c8ad6b553fae27e127629deb}{IP\_\-read\_\-word} (void $\ast$address, uint16\_\-t $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val})
+\begin{CompactList}\small\item\em Reads word from the device. \item\end{CompactList}\item 
+void \hyperlink{k__pscip_8c_fc42b873fc39adc8deeef3ad4264b880}{IP\_\-write\_\-byte} (void $\ast$address, uint8\_\-t \hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val})
+\begin{CompactList}\small\item\em Writing byte to the device. \item\end{CompactList}\item 
+void \hyperlink{k__pscip_8c_bb54cb7c8617283657252ad4c51feb9a}{IP\_\-write\_\-word} (void $\ast$address, uint16\_\-t \hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val})
+\begin{CompactList}\small\item\em Writing word to the device. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_6784f6ad88e5d30a1844bf9f9fdba1d9}{k\_\-pscip\_\-wait\_\-linkdown} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Wait after linkdown. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_6dc1abe4ae1b126bbefaca9925a8988e}{k\_\-pscip\_\-wrhiprio} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Execute high priority PS-current setting. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_3d09e7e118d65412fabd7a1a1b55cb8b}{k\_\-pscip\_\-write} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Execute writing action. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_b0904bacdb30b392a67dd8f608e81506}{k\_\-pscip\_\-read} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Execute reading action. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_c6eb83f565e73ad37709b030d41fdade}{k\_\-pscip\_\-wrwave} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Write wave value. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_f10f5492ee6ba15616537fe09a8af161}{k\_\-pscip\_\-rdwave} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Execute reading action Function reads data (2 words) of a waveform from given address in PS. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_de6998fee8845158a60df6bcaacc9701}{k\_\-pscip\_\-rdlinkstat} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Read link status. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_9236d56d760f8d28996dc67450fcaf4d}{k\_\-pscip\_\-rdfpgastat} (\hyperlink{structpscip__fpga__t}{pscip\_\-fpga\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Read FPGA status register FPGA status register is for debugging purposes and reflects the error status of the FPGA. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_64870b39eafc9795c55e871b1f334c70}{k\_\-pscip\_\-rdstatistics} (\hyperlink{structpscip__stats__t}{pscip\_\-stats\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Read transmission statistics. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_4eb06abfb78b28f632aeb15a985a2abb}{k\_\-pscip\_\-reset} (int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Reset IP. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_af9fef4aaf709c65ab3b704e43fbfc5f}{k\_\-pscip\_\-clear\_\-err\_\-counter} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Clean error counter in FPGA status register. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_2e05daa62010e54bf8ee30a458db37d4}{k\_\-pscip\_\-dump\_\-all\_\-registers} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Dumps content of all the registers of both IPs on the carrier and of Local Space O (BADR 2) on the Carrier. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_4e412bef519930bb69a051c0b74d239f}{k\_\-irq\_\-enable} (\hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Does hardware magic to enable interrupt on calling IP. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_dfa986826cb900bf1bdc25e1c11c5722}{k\_\-irq\_\-disable} (\hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Does hardware magic to disable interrupt on calling IP. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8c_9a1d8049a6614cc5d9162f4dc0a78910}{k\_\-if\_\-handle\_\-irq} (\hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Veryfies the source of the interrupt. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+static int \hyperlink{k__pscip_8c_65191468c8f3208a293091c116479158}{num\_\-pscip} = 0
+\begin{CompactList}\small\item\em Number of registered devices. \item\end{CompactList}\item 
+static \hyperlink{structnpscip___dev}{npscip\_\-Dev} \hyperlink{k__pscip_8c_d082de6fe736ef827509564e8980bc44}{pscip\_\-devices} \mbox{[}PSCIP\_\-MAX\_\-DEV\mbox{]}
+\begin{CompactList}\small\item\em Static table of structures holding device datea. \item\end{CompactList}\item 
+static struct pci\_\-device\_\-id \hyperlink{k__pscip_8c_4a12a64d56df9af7c0af998356f07b01}{ids} \mbox{[}$\,$\mbox{]}
+\begin{CompactList}\small\item\em The structure is used to define a list of the different types of PCI devices that a driver supports. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Contains function directly interfacing hardware/kernel. 
+
+The file can be viewed like a lower layer of driver interface PSCIP Driver for Linux Kernel Functions to access hardware
+
+GG - 18.07.2005: First implementation GG - 08.02.2006: When setting status writew in the same stat and addr register
+
+22/10/2008 - Start of porting the driver :\begin{itemize}
+\item from 2.4.x to 2.6.x\item from VME to PCIGG \end{itemize}
+
+
+Definition in file \hyperlink{k__pscip_8c-source}{k\_\-pscip.c}.
+
+\subsection{Function Documentation}
+\hypertarget{k__pscip_8c_2dab759a46d164a5ffb67021338afa8f}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!IP\_\-read\_\-byte@{IP\_\-read\_\-byte}}
+\index{IP\_\-read\_\-byte@{IP\_\-read\_\-byte}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{IP\_\-read\_\-byte}]{\setlength{\rightskip}{0pt plus 5cm}void IP\_\-read\_\-byte (void $\ast$ {\em address}, \/  uint8\_\-t $\ast$ {\em val})}}
+\label{k__pscip_8c_2dab759a46d164a5ffb67021338afa8f}
+
+
+Reads byte from the device. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$address}]- virtual address of the register to be read \item[{\em $\ast$val}]- structure containing information about the channel/link we are using \end{description}
+\end{Desc}
+
+
+Definition at line 35 of file k\_\-pscip.c.
+
+Referenced by checkmem\_\-device(), k\_\-pscip\_\-rdlinkstat(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-ioctl().\hypertarget{k__pscip_8c_a45e2281c8ad6b553fae27e127629deb}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!IP\_\-read\_\-word@{IP\_\-read\_\-word}}
+\index{IP\_\-read\_\-word@{IP\_\-read\_\-word}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{IP\_\-read\_\-word}]{\setlength{\rightskip}{0pt plus 5cm}void IP\_\-read\_\-word (void $\ast$ {\em address}, \/  uint16\_\-t $\ast$ {\em val})}}
+\label{k__pscip_8c_a45e2281c8ad6b553fae27e127629deb}
+
+
+Reads word from the device. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$address}]- virtual address of the register to be read \item[{\em $\ast$val}]- structure containing information about the channel/link we are using \end{description}
+\end{Desc}
+
+
+Definition at line 47 of file k\_\-pscip.c.
+
+Referenced by k\_\-if\_\-handle\_\-irq(), k\_\-pscip\_\-dump\_\-all\_\-registers(), k\_\-pscip\_\-rdfpgastat(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wait\_\-linkdown(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-irq\_\-handler().\hypertarget{k__pscip_8c_fc42b873fc39adc8deeef3ad4264b880}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!IP\_\-write\_\-byte@{IP\_\-write\_\-byte}}
+\index{IP\_\-write\_\-byte@{IP\_\-write\_\-byte}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{IP\_\-write\_\-byte}]{\setlength{\rightskip}{0pt plus 5cm}void IP\_\-write\_\-byte (void $\ast$ {\em address}, \/  uint8\_\-t {\em val})}}
+\label{k__pscip_8c_fc42b873fc39adc8deeef3ad4264b880}
+
+
+Writing byte to the device. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$address}]- virtual address of the register to be writen to \item[{\em $\ast$val}]- structure containing information about the channel/link we are using \end{description}
+\end{Desc}
+
+
+Definition at line 60 of file k\_\-pscip.c.
+
+Referenced by k\_\-pscip\_\-clear\_\-err\_\-counter(), and pscip\_\-ioctl().\hypertarget{k__pscip_8c_bb54cb7c8617283657252ad4c51feb9a}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!IP\_\-write\_\-word@{IP\_\-write\_\-word}}
+\index{IP\_\-write\_\-word@{IP\_\-write\_\-word}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{IP\_\-write\_\-word}]{\setlength{\rightskip}{0pt plus 5cm}void IP\_\-write\_\-word (void $\ast$ {\em address}, \/  uint16\_\-t {\em val})}}
+\label{k__pscip_8c_bb54cb7c8617283657252ad4c51feb9a}
+
+
+Writing word to the device. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$address}]- virtual address of the register to be writen to \item[{\em $\ast$val}]- structure containing information about the channel/link we are using \end{description}
+\end{Desc}
+
+
+Definition at line 73 of file k\_\-pscip.c.
+
+Referenced by k\_\-irq\_\-disable(), k\_\-irq\_\-enable(), k\_\-pscip\_\-clear\_\-err\_\-counter(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-reset(), k\_\-pscip\_\-wait\_\-linkdown(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-irq\_\-handler().\hypertarget{k__pscip_8c_9a1d8049a6614cc5d9162f4dc0a78910}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-if\_\-handle\_\-irq@{k\_\-if\_\-handle\_\-irq}}
+\index{k\_\-if\_\-handle\_\-irq@{k\_\-if\_\-handle\_\-irq}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-if\_\-handle\_\-irq}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-if\_\-handle\_\-irq ({\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_9a1d8049a6614cc5d9162f4dc0a78910}
+
+
+Veryfies the source of the interrupt. 
+
+It checks whether the interupt was triggered by an IP represented by dev device structure registerred with given interrupt handler
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]- returns number of channel which triggered the interrupt or error \end{Desc}
+
+
+Definition at line 1105 of file k\_\-pscip.c.
+
+References IP\_\-INT0\_\-A, IP\_\-INT0\_\-B, IP\_\-INT1\_\-A, IP\_\-INT1\_\-B, IP\_\-read\_\-word(), IP\_\-STATUS, npscip\_\-Dev::IPnumber, and npscip\_\-Dev::pIPinterfaceReg.
+
+Referenced by pscip\_\-irq\_\-handler().\hypertarget{k__pscip_8c_dfa986826cb900bf1bdc25e1c11c5722}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-irq\_\-disable@{k\_\-irq\_\-disable}}
+\index{k\_\-irq\_\-disable@{k\_\-irq\_\-disable}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-irq\_\-disable}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-irq\_\-disable ({\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_dfa986826cb900bf1bdc25e1c11c5722}
+
+
+Does hardware magic to disable interrupt on calling IP. 
+
+Called when last reference to give IP (/dev/pscipX) is closed
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 1079 of file k\_\-pscip.c.
+
+References IP\_\-A\_\-CONTROL, IP\_\-B\_\-CONTROL, IP\_\-write\_\-word(), npscip\_\-Dev::IPnumber, and npscip\_\-Dev::pIPinterfaceReg.
+
+Referenced by pscip\_\-release().\hypertarget{k__pscip_8c_4e412bef519930bb69a051c0b74d239f}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-irq\_\-enable@{k\_\-irq\_\-enable}}
+\index{k\_\-irq\_\-enable@{k\_\-irq\_\-enable}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-irq\_\-enable}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-irq\_\-enable ({\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_4e412bef519930bb69a051c0b74d239f}
+
+
+Does hardware magic to enable interrupt on calling IP. 
+
+Called when first reference to give IP (/dev/pscipX) is openned Interrupt 0 is triggered by channel/link 0 Interrupt 1 is triggered by channel/link 1
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 1055 of file k\_\-pscip.c.
+
+References IP\_\-A\_\-CONTROL, IP\_\-B\_\-CONTROL, IP\_\-INT0\_\-EN, IP\_\-INT1\_\-EN, IP\_\-write\_\-word(), npscip\_\-Dev::IPnumber, and npscip\_\-Dev::pIPinterfaceReg.
+
+Referenced by pscip\_\-open().\hypertarget{k__pscip_8c_af9fef4aaf709c65ab3b704e43fbfc5f}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-clear\_\-err\_\-counter@{k\_\-pscip\_\-clear\_\-err\_\-counter}}
+\index{k\_\-pscip\_\-clear\_\-err\_\-counter@{k\_\-pscip\_\-clear\_\-err\_\-counter}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-clear\_\-err\_\-counter}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-clear\_\-err\_\-counter ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_af9fef4aaf709c65ab3b704e43fbfc5f}
+
+
+Clean error counter in FPGA status register. 
+
+Error coutner indicates the number of errors which occured (ex. due to transmition error). The couter is clean before every read/write function from/to PS
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 951 of file k\_\-pscip.c.
+
+References pscip\_\-t::chan, IP\_\-write\_\-byte(), IP\_\-write\_\-word(), num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-ERRCLEAR\_\-MSK, PSCIP\_\-FPGA\_\-HIGH, and PSCIP\_\-FPGA\_\-LOW.
+
+Referenced by pscip\_\-ioctl().\hypertarget{k__pscip_8c_2e05daa62010e54bf8ee30a458db37d4}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-dump\_\-all\_\-registers@{k\_\-pscip\_\-dump\_\-all\_\-registers}}
+\index{k\_\-pscip\_\-dump\_\-all\_\-registers@{k\_\-pscip\_\-dump\_\-all\_\-registers}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-dump\_\-all\_\-registers}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-dump\_\-all\_\-registers ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_2e05daa62010e54bf8ee30a458db37d4}
+
+
+Dumps content of all the registers of both IPs on the carrier and of Local Space O (BADR 2) on the Carrier. 
+
+Local Space 0 contains IP A/B control registers, revision ID and status register. It does not metter which IP calles the function, it always dumps information for entire carrier address I/O space used for interfacing IPs IF \_\-\_\-DEBUG\_\-\_\- defined, it also interprets content of registers in FPGA status register of calling IP and content of PCI Carrier Status register
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 974 of file k\_\-pscip.c.
+
+References pscip\_\-t::chan, IP\_\-read\_\-word(), npscip\_\-Dev::IPnumber, npscip\_\-Dev::pIP\_\-IOspace, npscip\_\-Dev::pIPinterfaceReg, npscip\_\-Dev::pPCIinterfaceReg, PSCIP\_\-CHAN\_\-OFFSET, and PSCIP\_\-IP\_\-OFFSET.
+
+Referenced by pscip\_\-ioctl().\hypertarget{k__pscip_8c_9236d56d760f8d28996dc67450fcaf4d}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-rdfpgastat@{k\_\-pscip\_\-rdfpgastat}}
+\index{k\_\-pscip\_\-rdfpgastat@{k\_\-pscip\_\-rdfpgastat}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-rdfpgastat}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-rdfpgastat ({\bf pscip\_\-fpga\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_9236d56d760f8d28996dc67450fcaf4d}
+
+
+Read FPGA status register FPGA status register is for debugging purposes and reflects the error status of the FPGA. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure reflecting status registers in FPGA - is filled with IP debug information \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 849 of file k\_\-pscip.c.
+
+References pscip\_\-fpga\_\-t::channel, pscip\_\-fpga\_\-t::high\_\-data, IP\_\-read\_\-word(), pscip\_\-fpga\_\-t::low\_\-data, pscip\_\-fpga\_\-t::mid\_\-data, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-FPGA\_\-HIGH, PSCIP\_\-FPGA\_\-LOW, and PSCIP\_\-FPGA\_\-MID.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-errors(), pscip\_\-ioctl(), and pscip\_\-read\_\-proc().\hypertarget{k__pscip_8c_de6998fee8845158a60df6bcaacc9701}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-rdlinkstat@{k\_\-pscip\_\-rdlinkstat}}
+\index{k\_\-pscip\_\-rdlinkstat@{k\_\-pscip\_\-rdlinkstat}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-rdlinkstat}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-rdlinkstat ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_de6998fee8845158a60df6bcaacc9701}
+
+
+Read link status. 
+
+Reads FPGA status register \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure reflecting status registers in FPGA - is filled with IP debug information \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 803 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-t::data, IP\_\-read\_\-byte(), num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-HPRIOWRITE\_\-STAT, PSCIP\_\-PARAM\_\-ERR, PSCIP\_\-RDWAVE\_\-IDX, PSCIP\_\-RDWAVE\_\-STAT, PSCIP\_\-READ\_\-IDX, PSCIP\_\-READ\_\-STAT, PSCIP\_\-WRHPRIO\_\-IDX, PSCIP\_\-WRITE\_\-IDX, PSCIP\_\-WRITE\_\-STAT, PSCIP\_\-WRWAVE\_\-IDX, and PSCIP\_\-WRWAVE\_\-STAT.
+
+Referenced by pscip\_\-ioctl().\hypertarget{k__pscip_8c_64870b39eafc9795c55e871b1f334c70}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-rdstatistics@{k\_\-pscip\_\-rdstatistics}}
+\index{k\_\-pscip\_\-rdstatistics@{k\_\-pscip\_\-rdstatistics}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-rdstatistics}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-rdstatistics ({\bf pscip\_\-stats\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_64870b39eafc9795c55e871b1f334c70}
+
+
+Read transmission statistics. 
+
+Retursn to the user all the information about errors stored in device structure during operation of the driver. It does not read informatin from IP but rather from device structure flags.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure filled with the information about errors \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 884 of file k\_\-pscip.c.
+
+References \_\-\_\-DEBUG\_\-\_\-, pscip\_\-stats\_\-t::channel, pscip\_\-stats\_\-t::err\_\-flag, pscip\_\-stats\_\-t::link\_\-err\_\-flag, pscip\_\-stats\_\-t::linkdown\_\-cnt, num\_\-pscip, pscip\_\-stats\_\-t::rx, npscip\_\-Dev::stats, pscip\_\-stats\_\-t::tx, and pscip\_\-stats\_\-t::txerr\_\-cnt.
+
+Referenced by pscip\_\-ioctl().\hypertarget{k__pscip_8c_f10f5492ee6ba15616537fe09a8af161}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-rdwave@{k\_\-pscip\_\-rdwave}}
+\index{k\_\-pscip\_\-rdwave@{k\_\-pscip\_\-rdwave}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-rdwave}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-rdwave ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_f10f5492ee6ba15616537fe09a8af161}
+
+
+Execute reading action Function reads data (2 words) of a waveform from given address in PS. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 693 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-stats\_\-t::cntrl\_\-stat, pscip\_\-t::data, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-byte(), IP\_\-read\_\-word(), IP\_\-write\_\-word(), npscip\_\-Dev::irqflag, k\_\-pscip\_\-wait\_\-linkdown(), npscip\_\-Dev::lock, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-BUSY\_\-TOUT, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-ERROR\_\-MSK, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-IRQ\_\-DONE, PSCIP\_\-IRQ\_\-REQUEST, PSCIP\_\-IRQ\_\-SERVED, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINK\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-RDWAVE\_\-DATA, PSCIP\_\-RDWAVE\_\-REG, PSCIP\_\-RDWAVE\_\-STAT, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TOUT\_\-ERR, PSCIP\_\-TX\_\-ERR, npscip\_\-Dev::queue, queue\_\-flag, pscip\_\-stats\_\-t::rx, pscip\_\-t::stat, and npscip\_\-Dev::stats.
+
+Referenced by pscip\_\-ioctl().\hypertarget{k__pscip_8c_b0904bacdb30b392a67dd8f608e81506}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-read@{k\_\-pscip\_\-read}}
+\index{k\_\-pscip\_\-read@{k\_\-pscip\_\-read}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-read}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-read ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_b0904bacdb30b392a67dd8f608e81506}
+
+
+Execute reading action. 
+
+Function reads data (2 words) from a given address in PS
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 431 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-stats\_\-t::cntrl\_\-stat, pscip\_\-t::data, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-byte(), IP\_\-read\_\-word(), IP\_\-write\_\-word(), npscip\_\-Dev::irqflag, k\_\-pscip\_\-wait\_\-linkdown(), npscip\_\-Dev::lock, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-BUSY\_\-TOUT, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-ERROR\_\-MSK, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-IRQ\_\-DONE, PSCIP\_\-IRQ\_\-REQUEST, PSCIP\_\-IRQ\_\-SERVED, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINK\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-READ\_\-ADDR, PSCIP\_\-READ\_\-DATA, PSCIP\_\-READ\_\-REG, PSCIP\_\-READ\_\-STAT, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TOUT\_\-ERR, PSCIP\_\-TX\_\-ERR, npscip\_\-Dev::queue, queue\_\-flag, pscip\_\-stats\_\-t::rx, pscip\_\-t::stat, and npscip\_\-Dev::stats.
+
+Referenced by pscip\_\-ioctl(), and pscip\_\-thread().\hypertarget{k__pscip_8c_4eb06abfb78b28f632aeb15a985a2abb}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-reset@{k\_\-pscip\_\-reset}}
+\index{k\_\-pscip\_\-reset@{k\_\-pscip\_\-reset}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-reset (int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_4eb06abfb78b28f632aeb15a985a2abb}
+
+
+Reset IP. 
+
+This is a hardware reset which is triggered from the Carrier.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 919 of file k\_\-pscip.c.
+
+References IP\_\-RESET, IP\_\-write\_\-word(), npscip\_\-Dev::IPnumber, num\_\-pscip, and npscip\_\-Dev::pIPinterfaceReg.
+
+Referenced by pscip\_\-ioctl(), and pscip\_\-write\_\-proc().\hypertarget{k__pscip_8c_6784f6ad88e5d30a1844bf9f9fdba1d9}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-wait\_\-linkdown@{k\_\-pscip\_\-wait\_\-linkdown}}
+\index{k\_\-pscip\_\-wait\_\-linkdown@{k\_\-pscip\_\-wait\_\-linkdown}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-wait\_\-linkdown}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-wait\_\-linkdown ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_6784f6ad88e5d30a1844bf9f9fdba1d9}
+
+
+Wait after linkdown. 
+
+Wait some seconds after a linkdown event, maybe to avoid requesting data after a local control unit reboot
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 92 of file k\_\-pscip.c.
+
+References pscip\_\-t::chan, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-word(), IP\_\-write\_\-word(), pscip\_\-stats\_\-t::linkdown\_\-cnt, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-ERRCLEAR\_\-MSK, PSCIP\_\-ERRCNT\_\-MSK, PSCIP\_\-FPGA\_\-HIGH, PSCIP\_\-FPGA\_\-LOW, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-LINKDOWN\_\-TOUT, npscip\_\-Dev::stats, and npscip\_\-Dev::tv.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), and k\_\-pscip\_\-wrwave().\hypertarget{k__pscip_8c_6dc1abe4ae1b126bbefaca9925a8988e}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-wrhiprio@{k\_\-pscip\_\-wrhiprio}}
+\index{k\_\-pscip\_\-wrhiprio@{k\_\-pscip\_\-wrhiprio}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-wrhiprio}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-wrhiprio ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_6dc1abe4ae1b126bbefaca9925a8988e}
+
+
+Execute high priority PS-current setting. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 163 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-stats\_\-t::cntrl\_\-stat, pscip\_\-t::data, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-byte(), IP\_\-read\_\-word(), IP\_\-write\_\-word(), npscip\_\-Dev::irqflag, k\_\-pscip\_\-wait\_\-linkdown(), npscip\_\-Dev::lock, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-BUSY\_\-TOUT, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-ECHO\_\-MSK, PSCIP\_\-ERROR\_\-MSK, PSCIP\_\-HPRIOWRITE\_\-DATA, PSCIP\_\-HPRIOWRITE\_\-REG, PSCIP\_\-HPRIOWRITE\_\-STAT, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-IRQ\_\-DONE, PSCIP\_\-IRQ\_\-REQUEST, PSCIP\_\-IRQ\_\-SERVED, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINK\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-MISMATCH\_\-ERR, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TOUT\_\-ERR, PSCIP\_\-TX\_\-ERR, npscip\_\-Dev::queue, queue\_\-flag, pscip\_\-t::stat, npscip\_\-Dev::stats, and pscip\_\-stats\_\-t::tx.
+
+Referenced by pscip\_\-ioctl(), and pscip\_\-write\_\-proc().\hypertarget{k__pscip_8c_3d09e7e118d65412fabd7a1a1b55cb8b}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-write@{k\_\-pscip\_\-write}}
+\index{k\_\-pscip\_\-write@{k\_\-pscip\_\-write}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-write}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-write ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_3d09e7e118d65412fabd7a1a1b55cb8b}
+
+
+Execute writing action. 
+
+The function writes given data (2 words) to given address in the PS, the information is passed with a given status.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 303 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-stats\_\-t::cntrl\_\-stat, pscip\_\-t::data, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-byte(), IP\_\-read\_\-word(), IP\_\-write\_\-word(), npscip\_\-Dev::irqflag, k\_\-pscip\_\-wait\_\-linkdown(), npscip\_\-Dev::lock, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-BUSY\_\-TOUT, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-ECHO\_\-MSK, PSCIP\_\-ERROR\_\-MSK, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-IRQ\_\-DONE, PSCIP\_\-IRQ\_\-REQUEST, PSCIP\_\-IRQ\_\-SERVED, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINK\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-MISMATCH\_\-ERR, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TOUT\_\-ERR, PSCIP\_\-TX\_\-ERR, PSCIP\_\-WRITE\_\-DATA, PSCIP\_\-WRITE\_\-REG, PSCIP\_\-WRITE\_\-STAT, npscip\_\-Dev::queue, queue\_\-flag, pscip\_\-t::stat, npscip\_\-Dev::stats, and pscip\_\-stats\_\-t::tx.
+
+Referenced by pscip\_\-ioctl(), and pscip\_\-write\_\-proc().\hypertarget{k__pscip_8c_c6eb83f565e73ad37709b030d41fdade}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!k\_\-pscip\_\-wrwave@{k\_\-pscip\_\-wrwave}}
+\index{k\_\-pscip\_\-wrwave@{k\_\-pscip\_\-wrwave}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{k\_\-pscip\_\-wrwave}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-wrwave ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8c_c6eb83f565e73ad37709b030d41fdade}
+
+
+Write wave value. 
+
+Function writes datat (2 words) of waveform to given address in PS
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 561 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-stats\_\-t::cntrl\_\-stat, pscip\_\-t::data, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-byte(), IP\_\-read\_\-word(), IP\_\-write\_\-word(), npscip\_\-Dev::irqflag, k\_\-pscip\_\-wait\_\-linkdown(), npscip\_\-Dev::lock, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-BUSY\_\-TOUT, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-ECHO\_\-MSK, PSCIP\_\-ERROR\_\-MSK, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-IRQ\_\-DONE, PSCIP\_\-IRQ\_\-REQUEST, PSCIP\_\-IRQ\_\-SERVED, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINK\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-MISMATCH\_\-ERR, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TOUT\_\-ERR, PSCIP\_\-TX\_\-ERR, PSCIP\_\-WRWAVE\_\-DATA, PSCIP\_\-WRWAVE\_\-REG, PSCIP\_\-WRWAVE\_\-STAT, npscip\_\-Dev::queue, queue\_\-flag, pscip\_\-t::stat, npscip\_\-Dev::stats, and pscip\_\-stats\_\-t::tx.
+
+Referenced by pscip\_\-ioctl(), and pscip\_\-write\_\-proc().\hypertarget{k__pscip_8c_f3b7c646a7b12b9f333f71bb6ceb24af}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!MODULE\_\-DEVICE\_\-TABLE@{MODULE\_\-DEVICE\_\-TABLE}}
+\index{MODULE\_\-DEVICE\_\-TABLE@{MODULE\_\-DEVICE\_\-TABLE}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{MODULE\_\-DEVICE\_\-TABLE}]{\setlength{\rightskip}{0pt plus 5cm}MODULE\_\-DEVICE\_\-TABLE (pci, \/  {\bf ids})}}
+\label{k__pscip_8c_f3b7c646a7b12b9f333f71bb6ceb24af}
+
+
+Registering the table defining a list of the different types of CI devices that the driver supports. 
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{k__pscip_8c_4a12a64d56df9af7c0af998356f07b01}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!ids@{ids}}
+\index{ids@{ids}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{ids}]{\setlength{\rightskip}{0pt plus 5cm}struct pci\_\-device\_\-id {\bf ids}\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{k__pscip_8c_4a12a64d56df9af7c0af998356f07b01}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} {
+ { PCI_DEVICE(PCI_VENDOR_ID_TEWS, PCI_DEVICE_ID_TCPI100_PCI), },
+ { PCI_DEVICE(PCI_VENDOR_ID_TEWS, PCI_DEVICE_ID_TCP221_cPCI), },
+ { 0, }
+}
+\end{verbatim}
+\end{Code}
+The structure is used to define a list of the different types of PCI devices that a driver supports. 
+
+
+
+Definition at line 21 of file k\_\-pscip.c.\hypertarget{k__pscip_8c_65191468c8f3208a293091c116479158}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!num\_\-pscip@{num\_\-pscip}}
+\index{num\_\-pscip@{num\_\-pscip}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{num\_\-pscip}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf num\_\-pscip} = 0\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{k__pscip_8c_65191468c8f3208a293091c116479158}
+
+
+Number of registered devices. 
+
+
+
+Definition at line 16 of file k\_\-pscip.c.
+
+Referenced by k\_\-pscip\_\-clear\_\-err\_\-counter(), k\_\-pscip\_\-rdfpgastat(), k\_\-pscip\_\-rdlinkstat(), k\_\-pscip\_\-rdstatistics(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-reset(), k\_\-pscip\_\-wait\_\-linkdown(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and probe().\hypertarget{k__pscip_8c_d082de6fe736ef827509564e8980bc44}{
+\index{k\_\-pscip.c@{k\_\-pscip.c}!pscip\_\-devices@{pscip\_\-devices}}
+\index{pscip\_\-devices@{pscip\_\-devices}!k_pscip.c@{k\_\-pscip.c}}
+\subsubsection[{pscip\_\-devices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf npscip\_\-Dev} {\bf pscip\_\-devices}\mbox{[}PSCIP\_\-MAX\_\-DEV\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{k__pscip_8c_d082de6fe736ef827509564e8980bc44}
+
+
+Static table of structures holding device datea. 
+
+
+
+Definition at line 18 of file k\_\-pscip.c.
+
+Referenced by checkmem\_\-device(), init\_\-pscip(), init\_\-pscip\_\-module(), probe(), pscip\_\-read\_\-proc(), pscip\_\-write\_\-proc(), and remove().

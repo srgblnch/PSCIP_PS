@@ -1,0 +1,314 @@
+\hypertarget{pscipacq_8c}{
+\section{Z:/Project/development/PSCIP/driver/pscipacq.c File Reference}
+\label{pscipacq_8c}\index{Z:/Project/development/PSCIP/driver/pscipacq.c@{Z:/Project/development/PSCIP/driver/pscipacq.c}}
+}
+{\tt \#include $<$linux/module.h$>$}\par
+{\tt \#include $<$linux/types.h$>$}\par
+{\tt \#include $<$linux/errno.h$>$}\par
+{\tt \#include $<$linux/proc\_\-fs.h$>$}\par
+{\tt \#include $<$linux/interrupt.h$>$}\par
+{\tt \#include $<$linux/delay.h$>$}\par
+{\tt \#include $<$asm/io.h$>$}\par
+{\tt \#include $<$asm/uaccess.h$>$}\par
+{\tt \#include $<$rtai.h$>$}\par
+{\tt \#include $<$rtai\_\-sched.h$>$}\par
+{\tt \#include $<$rt\_\-shmem\_\-defs.h$>$}\par
+{\tt \#include \char`\"{}pscip.h\char`\"{}}\par
+{\tt \#include \char`\"{}k\_\-pscip.h\char`\"{}}\par
+{\tt \#include \char`\"{}gpbf.h\char`\"{}}\par
+
+
+Include dependency graph for pscipacq.c:\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{pscipacq_8c_70a3c3ba218bbc0a662870f6a3d5755f}{TOT\_\-BUF}~4
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{pscipacq_8c_c811cd7b705301a7126b97e108348b47}{pscip\_\-thread} (void)
+\item 
+static void \hyperlink{pscipacq_8c_e5c1d68a1bf35e164a65ba3f7dafe6d5}{psc\_\-task\_\-init} (void)
+\item 
+static void \hyperlink{pscipacq_8c_2677b861028136eb22327093b0be9a3e}{pscip\_\-task\_\-delete} (void)
+\item 
+static void \hyperlink{pscipacq_8c_56064044d42fabf92e88abb2c4a61c79}{cleanup\_\-module} (void)
+\item 
+static int \hyperlink{pscipacq_8c_0833789462b1cddf0b1e59c9daab88e8}{init\_\-module} (void)
+\item 
+\hyperlink{pscipacq_8c_053aa2d984a71368fd527a27e3766622}{MODULE\_\-PARM} (\hyperlink{pscipacq_8c_d6a2103a4731b848a3e7ec84e59473ce}{vmeaddr},\char`\"{}i\char`\"{})
+\item 
+\hyperlink{pscipacq_8c_26ecf4359497ca8d1b052a36ebce66f2}{MODULE\_\-PARM} (\hyperlink{pscipacq_8c_e0d22272b68e75d19ac0b80c01f806b6}{freq},\char`\"{}i\char`\"{})
+\item 
+\hyperlink{pscipacq_8c_50dc5531725c1dff48a1c1ebcd7df9e2}{MODULE\_\-PARM\_\-DESC} (\hyperlink{pscipacq_8c_d6a2103a4731b848a3e7ec84e59473ce}{vmeaddr},\char`\"{}PSCIP vme address\char`\"{})
+\item 
+\hyperlink{pscipacq_8c_45be1e5743aafba48f44a1cc352b51c2}{MODULE\_\-AUTHOR} (\char`\"{}Giulio Gaio\char`\"{})
+\item 
+\hyperlink{pscipacq_8c_5b76fe1c3226910201620eaf1e5c645f}{MODULE\_\-DESCRIPTION} (\char`\"{}PSCIP fast acquisition module\char`\"{})
+\item 
+\hyperlink{pscipacq_8c_d94b36675e7eb067ea3ce6ff9e244a44}{MODULE\_\-LICENSE} (\char`\"{}GPL\char`\"{})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+static int \hyperlink{pscipacq_8c_a050cc11178fbd69d80d7ec883b809e3}{buf\_\-idx} \mbox{[}TOT\_\-BUF\mbox{]}
+\item 
+static gpbf\_\-manag\_\-t $\ast$ \hyperlink{pscipacq_8c_7e1c0b645fb607faf2f0cff7df10eb93}{gpbfm}
+\item 
+static gpbf\_\-data\_\-t \hyperlink{pscipacq_8c_8e9322058360ecd519bda5e380bfe6d8}{datat}
+\item 
+static int \hyperlink{pscipacq_8c_e0d22272b68e75d19ac0b80c01f806b6}{freq} = 1000
+\item 
+static int \hyperlink{pscipacq_8c_c707e36519aa65b9b123bcec1c62fcaa}{pscip\_\-t\_\-s}
+\item 
+static RT\_\-TASK \hyperlink{pscipacq_8c_d372a8860837ddd7260965a6678c04d5}{pscip\_\-task}
+\item 
+static RTIME \hyperlink{pscipacq_8c_177761dcde873f4ff185972cf425472d}{pscip\_\-now}
+\item 
+static RTIME \hyperlink{pscipacq_8c_fddaccec8fd3daeb7c362573d7048c32}{pscip\_\-tick}
+\item 
+static const char $\ast$ \hyperlink{pscipacq_8c_4c2d9327de87c6be0b54f793adc7f1fb}{module\_\-name} = \char`\"{}pscipacq\char`\"{}
+\item 
+static int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}
+\item 
+static int \hyperlink{pscipacq_8c_d6a2103a4731b848a3e7ec84e59473ce}{vmeaddr} = 0xffff6000
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{pscipacq_8c_70a3c3ba218bbc0a662870f6a3d5755f}{
+\index{pscipacq.c@{pscipacq.c}!TOT\_\-BUF@{TOT\_\-BUF}}
+\index{TOT\_\-BUF@{TOT\_\-BUF}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{TOT\_\-BUF}]{\setlength{\rightskip}{0pt plus 5cm}\#define TOT\_\-BUF~4}}
+\label{pscipacq_8c_70a3c3ba218bbc0a662870f6a3d5755f}
+
+
+
+
+Definition at line 27 of file pscipacq.c.
+
+\subsection{Function Documentation}
+\hypertarget{pscipacq_8c_56064044d42fabf92e88abb2c4a61c79}{
+\index{pscipacq.c@{pscipacq.c}!cleanup\_\-module@{cleanup\_\-module}}
+\index{cleanup\_\-module@{cleanup\_\-module}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{cleanup\_\-module}]{\setlength{\rightskip}{0pt plus 5cm}static void cleanup\_\-module (void)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_56064044d42fabf92e88abb2c4a61c79}
+
+
+
+
+Definition at line 124 of file pscipacq.c.
+
+References buf\_\-idx, gpbfm, and pscip\_\-task\_\-delete().\hypertarget{pscipacq_8c_0833789462b1cddf0b1e59c9daab88e8}{
+\index{pscipacq.c@{pscipacq.c}!init\_\-module@{init\_\-module}}
+\index{init\_\-module@{init\_\-module}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{init\_\-module}]{\setlength{\rightskip}{0pt plus 5cm}static int init\_\-module (void)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_0833789462b1cddf0b1e59c9daab88e8}
+
+
+
+
+Definition at line 141 of file pscipacq.c.
+
+References buf\_\-idx, datat, gpbfm, module\_\-name, and psc\_\-task\_\-init().\hypertarget{pscipacq_8c_45be1e5743aafba48f44a1cc352b51c2}{
+\index{pscipacq.c@{pscipacq.c}!MODULE\_\-AUTHOR@{MODULE\_\-AUTHOR}}
+\index{MODULE\_\-AUTHOR@{MODULE\_\-AUTHOR}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{MODULE\_\-AUTHOR}]{\setlength{\rightskip}{0pt plus 5cm}MODULE\_\-AUTHOR (\char`\"{}Giulio Gaio\char`\"{})}}
+\label{pscipacq_8c_45be1e5743aafba48f44a1cc352b51c2}
+
+
+\hypertarget{pscipacq_8c_5b76fe1c3226910201620eaf1e5c645f}{
+\index{pscipacq.c@{pscipacq.c}!MODULE\_\-DESCRIPTION@{MODULE\_\-DESCRIPTION}}
+\index{MODULE\_\-DESCRIPTION@{MODULE\_\-DESCRIPTION}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{MODULE\_\-DESCRIPTION}]{\setlength{\rightskip}{0pt plus 5cm}MODULE\_\-DESCRIPTION (\char`\"{}PSCIP fast acquisition module\char`\"{})}}
+\label{pscipacq_8c_5b76fe1c3226910201620eaf1e5c645f}
+
+
+\hypertarget{pscipacq_8c_d94b36675e7eb067ea3ce6ff9e244a44}{
+\index{pscipacq.c@{pscipacq.c}!MODULE\_\-LICENSE@{MODULE\_\-LICENSE}}
+\index{MODULE\_\-LICENSE@{MODULE\_\-LICENSE}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{MODULE\_\-LICENSE}]{\setlength{\rightskip}{0pt plus 5cm}MODULE\_\-LICENSE (\char`\"{}GPL\char`\"{})}}
+\label{pscipacq_8c_d94b36675e7eb067ea3ce6ff9e244a44}
+
+
+\hypertarget{pscipacq_8c_26ecf4359497ca8d1b052a36ebce66f2}{
+\index{pscipacq.c@{pscipacq.c}!MODULE\_\-PARM@{MODULE\_\-PARM}}
+\index{MODULE\_\-PARM@{MODULE\_\-PARM}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{MODULE\_\-PARM}]{\setlength{\rightskip}{0pt plus 5cm}MODULE\_\-PARM ({\bf freq}, \/  \char`\"{}i\char`\"{})}}
+\label{pscipacq_8c_26ecf4359497ca8d1b052a36ebce66f2}
+
+
+\hypertarget{pscipacq_8c_053aa2d984a71368fd527a27e3766622}{
+\index{pscipacq.c@{pscipacq.c}!MODULE\_\-PARM@{MODULE\_\-PARM}}
+\index{MODULE\_\-PARM@{MODULE\_\-PARM}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{MODULE\_\-PARM}]{\setlength{\rightskip}{0pt plus 5cm}MODULE\_\-PARM ({\bf vmeaddr}, \/  \char`\"{}i\char`\"{})}}
+\label{pscipacq_8c_053aa2d984a71368fd527a27e3766622}
+
+
+\hypertarget{pscipacq_8c_50dc5531725c1dff48a1c1ebcd7df9e2}{
+\index{pscipacq.c@{pscipacq.c}!MODULE\_\-PARM\_\-DESC@{MODULE\_\-PARM\_\-DESC}}
+\index{MODULE\_\-PARM\_\-DESC@{MODULE\_\-PARM\_\-DESC}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{MODULE\_\-PARM\_\-DESC}]{\setlength{\rightskip}{0pt plus 5cm}MODULE\_\-PARM\_\-DESC ({\bf vmeaddr}, \/  \char`\"{}PSCIP vme address\char`\"{})}}
+\label{pscipacq_8c_50dc5531725c1dff48a1c1ebcd7df9e2}
+
+
+\hypertarget{pscipacq_8c_e5c1d68a1bf35e164a65ba3f7dafe6d5}{
+\index{pscipacq.c@{pscipacq.c}!psc\_\-task\_\-init@{psc\_\-task\_\-init}}
+\index{psc\_\-task\_\-init@{psc\_\-task\_\-init}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{psc\_\-task\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}static void psc\_\-task\_\-init (void)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_e5c1d68a1bf35e164a65ba3f7dafe6d5}
+
+
+
+
+Definition at line 92 of file pscipacq.c.
+
+References freq, pscip\_\-now, pscip\_\-t\_\-s, pscip\_\-task, pscip\_\-thread(), and pscip\_\-tick.
+
+Referenced by init\_\-module().\hypertarget{pscipacq_8c_2677b861028136eb22327093b0be9a3e}{
+\index{pscipacq.c@{pscipacq.c}!pscip\_\-task\_\-delete@{pscip\_\-task\_\-delete}}
+\index{pscip\_\-task\_\-delete@{pscip\_\-task\_\-delete}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{pscip\_\-task\_\-delete}]{\setlength{\rightskip}{0pt plus 5cm}static void pscip\_\-task\_\-delete (void)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_2677b861028136eb22327093b0be9a3e}
+
+
+
+
+Definition at line 112 of file pscipacq.c.
+
+References pscip\_\-task.
+
+Referenced by cleanup\_\-module().\hypertarget{pscipacq_8c_c811cd7b705301a7126b97e108348b47}{
+\index{pscipacq.c@{pscipacq.c}!pscip\_\-thread@{pscip\_\-thread}}
+\index{pscip\_\-thread@{pscip\_\-thread}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{pscip\_\-thread}]{\setlength{\rightskip}{0pt plus 5cm}void pscip\_\-thread (void)}}
+\label{pscipacq_8c_c811cd7b705301a7126b97e108348b47}
+
+
+
+
+Definition at line 52 of file pscipacq.c.
+
+References pscip\_\-t::address, buf\_\-idx, pscip\_\-t::chan, pscip\_\-t::data, datat, gpbfm, id\_\-pscip, k\_\-pscip\_\-read(), pscip\_\-t::stat, and val.
+
+Referenced by psc\_\-task\_\-init().
+
+\subsection{Variable Documentation}
+\hypertarget{pscipacq_8c_a050cc11178fbd69d80d7ec883b809e3}{
+\index{pscipacq.c@{pscipacq.c}!buf\_\-idx@{buf\_\-idx}}
+\index{buf\_\-idx@{buf\_\-idx}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{buf\_\-idx}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf buf\_\-idx}\mbox{[}TOT\_\-BUF\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_a050cc11178fbd69d80d7ec883b809e3}
+
+
+
+
+Definition at line 30 of file pscipacq.c.
+
+Referenced by cleanup\_\-module(), init\_\-module(), and pscip\_\-thread().\hypertarget{pscipacq_8c_8e9322058360ecd519bda5e380bfe6d8}{
+\index{pscipacq.c@{pscipacq.c}!datat@{datat}}
+\index{datat@{datat}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{datat}]{\setlength{\rightskip}{0pt plus 5cm}gpbf\_\-data\_\-t {\bf datat}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_8e9322058360ecd519bda5e380bfe6d8}
+
+
+
+
+Definition at line 32 of file pscipacq.c.
+
+Referenced by init\_\-module(), and pscip\_\-thread().\hypertarget{pscipacq_8c_e0d22272b68e75d19ac0b80c01f806b6}{
+\index{pscipacq.c@{pscipacq.c}!freq@{freq}}
+\index{freq@{freq}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{freq}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf freq} = 1000\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_e0d22272b68e75d19ac0b80c01f806b6}
+
+
+
+
+Definition at line 35 of file pscipacq.c.
+
+Referenced by psc\_\-task\_\-init().\hypertarget{pscipacq_8c_7e1c0b645fb607faf2f0cff7df10eb93}{
+\index{pscipacq.c@{pscipacq.c}!gpbfm@{gpbfm}}
+\index{gpbfm@{gpbfm}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{gpbfm}]{\setlength{\rightskip}{0pt plus 5cm}gpbf\_\-manag\_\-t$\ast$ {\bf gpbfm}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_7e1c0b645fb607faf2f0cff7df10eb93}
+
+
+
+
+Definition at line 31 of file pscipacq.c.
+
+Referenced by cleanup\_\-module(), init\_\-module(), and pscip\_\-thread().\hypertarget{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{
+\index{pscipacq.c@{pscipacq.c}!id\_\-pscip@{id\_\-pscip}}
+\index{id\_\-pscip@{id\_\-pscip}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{id\_\-pscip}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf id\_\-pscip}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_c3b08da755e3580f678c98552d066a18}
+
+
+
+
+Definition at line 43 of file pscipacq.c.
+
+Referenced by pscip\_\-ioctl(), pscip\_\-read\_\-proc(), pscip\_\-thread(), and pscip\_\-write\_\-proc().\hypertarget{pscipacq_8c_4c2d9327de87c6be0b54f793adc7f1fb}{
+\index{pscipacq.c@{pscipacq.c}!module\_\-name@{module\_\-name}}
+\index{module\_\-name@{module\_\-name}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{module\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ {\bf module\_\-name} = \char`\"{}pscipacq\char`\"{}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_4c2d9327de87c6be0b54f793adc7f1fb}
+
+
+
+
+Definition at line 42 of file pscipacq.c.\hypertarget{pscipacq_8c_177761dcde873f4ff185972cf425472d}{
+\index{pscipacq.c@{pscipacq.c}!pscip\_\-now@{pscip\_\-now}}
+\index{pscip\_\-now@{pscip\_\-now}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{pscip\_\-now}]{\setlength{\rightskip}{0pt plus 5cm}RTIME {\bf pscip\_\-now}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_177761dcde873f4ff185972cf425472d}
+
+
+
+
+Definition at line 40 of file pscipacq.c.
+
+Referenced by psc\_\-task\_\-init().\hypertarget{pscipacq_8c_c707e36519aa65b9b123bcec1c62fcaa}{
+\index{pscipacq.c@{pscipacq.c}!pscip\_\-t\_\-s@{pscip\_\-t\_\-s}}
+\index{pscip\_\-t\_\-s@{pscip\_\-t\_\-s}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{pscip\_\-t\_\-s}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf pscip\_\-t\_\-s}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_c707e36519aa65b9b123bcec1c62fcaa}
+
+
+
+
+Definition at line 38 of file pscipacq.c.
+
+Referenced by psc\_\-task\_\-init().\hypertarget{pscipacq_8c_d372a8860837ddd7260965a6678c04d5}{
+\index{pscipacq.c@{pscipacq.c}!pscip\_\-task@{pscip\_\-task}}
+\index{pscip\_\-task@{pscip\_\-task}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{pscip\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}RT\_\-TASK {\bf pscip\_\-task}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_d372a8860837ddd7260965a6678c04d5}
+
+
+
+
+Definition at line 39 of file pscipacq.c.
+
+Referenced by psc\_\-task\_\-init(), and pscip\_\-task\_\-delete().\hypertarget{pscipacq_8c_fddaccec8fd3daeb7c362573d7048c32}{
+\index{pscipacq.c@{pscipacq.c}!pscip\_\-tick@{pscip\_\-tick}}
+\index{pscip\_\-tick@{pscip\_\-tick}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{pscip\_\-tick}]{\setlength{\rightskip}{0pt plus 5cm}RTIME {\bf pscip\_\-tick}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_fddaccec8fd3daeb7c362573d7048c32}
+
+
+
+
+Definition at line 40 of file pscipacq.c.
+
+Referenced by psc\_\-task\_\-init().\hypertarget{pscipacq_8c_d6a2103a4731b848a3e7ec84e59473ce}{
+\index{pscipacq.c@{pscipacq.c}!vmeaddr@{vmeaddr}}
+\index{vmeaddr@{vmeaddr}!pscipacq.c@{pscipacq.c}}
+\subsubsection[{vmeaddr}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf vmeaddr} = 0xffff6000\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscipacq_8c_d6a2103a4731b848a3e7ec84e59473ce}
+
+
+
+
+Definition at line 46 of file pscipacq.c.

@@ -1,0 +1,97 @@
+\hypertarget{test__prog_8c}{
+\section{Z:/Project/development/PSCIP/driver/test\_\-prog.c File Reference}
+\label{test__prog_8c}\index{Z:/Project/development/PSCIP/driver/test\_\-prog.c@{Z:/Project/development/PSCIP/driver/test\_\-prog.c}}
+}
+{\tt \#include $<$sys/types.h$>$}\par
+{\tt \#include $<$sys/stat.h$>$}\par
+{\tt \#include $<$sys/time.h$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$signal.h$>$}\par
+{\tt \#include $<$fcntl.h$>$}\par
+{\tt \#include $<$sys/ioctl.h$>$}\par
+{\tt \#include \char`\"{}pscip.h\char`\"{}}\par
+
+
+Include dependency graph for test\_\-prog.c:\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+static char $\ast$ \hyperlink{test__prog_8c_4826b4785ca3a918667ec49b7f73affa}{pscip\_\-get\_\-errmsg} (int err)
+\item 
+int \hyperlink{test__prog_8c_0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\hyperlink{structpscip__t}{pscip\_\-t} \hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}
+\item 
+static char \hyperlink{test__prog_8c_ba5fa490390565dff7f19d1fd8a868d8}{psc\_\-errmsg} \mbox{[}$\,$\mbox{]}\mbox{[}PSCIP\_\-SIZE\_\-MSG\mbox{]}
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{test__prog_8c_0ddf1224851353fc92bfbff6f499fa97}{
+\index{test\_\-prog.c@{test\_\-prog.c}!main@{main}}
+\index{main@{main}!test_prog.c@{test\_\-prog.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}\mbox{[}$\,$\mbox{]})}}
+\label{test__prog_8c_0ddf1224851353fc92bfbff6f499fa97}
+
+
+
+
+Definition at line 74 of file test\_\-prog.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-t::data, PSCIP\_\-CLRCOUNTER, PSCIP\_\-DUMPFPGAREGS, PSCIP\_\-ERR\_\-OFFSET, pscip\_\-get\_\-errmsg(), PSCIP\_\-PCIADDR, PSCIP\_\-RDWAVE, PSCIP\_\-READ, PSCIP\_\-READIPREG, PSCIP\_\-RESET, PSCIP\_\-WRHIPRIO, PSCIP\_\-WRITE, PSCIP\_\-WRITEIPREG, PSCIP\_\-WRWAVE, and pscip\_\-t::stat.\hypertarget{test__prog_8c_4826b4785ca3a918667ec49b7f73affa}{
+\index{test\_\-prog.c@{test\_\-prog.c}!pscip\_\-get\_\-errmsg@{pscip\_\-get\_\-errmsg}}
+\index{pscip\_\-get\_\-errmsg@{pscip\_\-get\_\-errmsg}!test_prog.c@{test\_\-prog.c}}
+\subsubsection[{pscip\_\-get\_\-errmsg}]{\setlength{\rightskip}{0pt plus 5cm}static char$\ast$ pscip\_\-get\_\-errmsg (int {\em err})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{test__prog_8c_4826b4785ca3a918667ec49b7f73affa}
+
+
+
+
+Definition at line 62 of file test\_\-prog.c.
+
+References psc\_\-errmsg, PSCIP\_\-IOCTL\_\-MAGIC, and PSCIP\_\-SIZE\_\-MSG.
+
+Referenced by main().
+
+\subsection{Variable Documentation}
+\hypertarget{test__prog_8c_ba5fa490390565dff7f19d1fd8a868d8}{
+\index{test\_\-prog.c@{test\_\-prog.c}!psc\_\-errmsg@{psc\_\-errmsg}}
+\index{psc\_\-errmsg@{psc\_\-errmsg}!test_prog.c@{test\_\-prog.c}}
+\subsubsection[{psc\_\-errmsg}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf psc\_\-errmsg}\mbox{[}$\,$\mbox{]}\mbox{[}PSCIP\_\-SIZE\_\-MSG\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{test__prog_8c_ba5fa490390565dff7f19d1fd8a868d8}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} {
+ "Echo value doesn't match", 
+ "Remote control disabled",
+ "Generic reading error", 
+ "Data timeout",
+ "Input buffer full",
+ "Dsp stopped",
+ "Link is down",
+ "Transmission error", 
+ "Parameter error",
+ "VME bus error" 
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 44 of file test\_\-prog.c.
+
+Referenced by pscip\_\-get\_\-errmsg().\hypertarget{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{
+\index{test\_\-prog.c@{test\_\-prog.c}!val@{val}}
+\index{val@{val}!test_prog.c@{test\_\-prog.c}}
+\subsubsection[{val}]{\setlength{\rightskip}{0pt plus 5cm}{\bf pscip\_\-t} {\bf val}}}
+\label{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}
+
+
+
+
+Definition at line 25 of file test\_\-prog.c.

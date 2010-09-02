@@ -1,0 +1,79 @@
+\hypertarget{debug__pscip_8c}{
+\section{Z:/Project/development/PSCIP/driver/debug\_\-pscip.c File Reference}
+\label{debug__pscip_8c}\index{Z:/Project/development/PSCIP/driver/debug\_\-pscip.c@{Z:/Project/development/PSCIP/driver/debug\_\-pscip.c}}
+}
+Includes functions used while debugging.  
+
+
+
+
+This graph shows which files directly or indirectly include this file:\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{debug__pscip_8c_e1f521774fbb48cde1bb1191aab3e28c}{IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat} (volatile struct \hyperlink{struct_f_p_g_astatus__reg}{FPGAstatus\_\-reg} $\ast$pReg)
+\item 
+void \hyperlink{debug__pscip_8c_8ac38aaea0bc2a41ecc0f0a1e4ddebb4}{IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg} (volatile struct \hyperlink{struct_i_p_local_space0}{IPLocalSpace0} $\ast$pReg)
+\item 
+int \hyperlink{debug__pscip_8c_b894497894b1d80b015f118942caa8ff}{IP\_\-DEBUG\_\-read\_\-errors} (\hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\item 
+static unsigned char \hyperlink{debug__pscip_8c_514e772505d73df9b79b715538a676e6}{pscip\_\-get\_\-PCI\_\-info} (struct pci\_\-dev $\ast$dev)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Includes functions used while debugging. 
+
+This functions interprete IP and PCI Carrier registers - make life much easier for the developer 
+
+Definition in file \hyperlink{debug__pscip_8c-source}{debug\_\-pscip.c}.
+
+\subsection{Function Documentation}
+\hypertarget{debug__pscip_8c_b894497894b1d80b015f118942caa8ff}{
+\index{debug\_\-pscip.c@{debug\_\-pscip.c}!IP\_\-DEBUG\_\-read\_\-errors@{IP\_\-DEBUG\_\-read\_\-errors}}
+\index{IP\_\-DEBUG\_\-read\_\-errors@{IP\_\-DEBUG\_\-read\_\-errors}!debug_pscip.c@{debug\_\-pscip.c}}
+\subsubsection[{IP\_\-DEBUG\_\-read\_\-errors}]{\setlength{\rightskip}{0pt plus 5cm}int IP\_\-DEBUG\_\-read\_\-errors ({\bf pscip\_\-Dev} {\em dev})}}
+\label{debug__pscip_8c_b894497894b1d80b015f118942caa8ff}
+
+
+
+
+Definition at line 280 of file debug\_\-pscip.c.
+
+References pscip\_\-fpga\_\-t::channel, pscip\_\-stats\_\-t::cntrl\_\-stat, pscip\_\-fpga\_\-t::high\_\-data, npscip\_\-Dev::IPnumber, k\_\-pscip\_\-rdfpgastat(), pscip\_\-stats\_\-t::linkdown\_\-cnt, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TXERR\_\-MSK, pscip\_\-stats\_\-t::rx, npscip\_\-Dev::stats, pscip\_\-stats\_\-t::tx, and pscip\_\-stats\_\-t::txerr\_\-cnt.\hypertarget{debug__pscip_8c_e1f521774fbb48cde1bb1191aab3e28c}{
+\index{debug\_\-pscip.c@{debug\_\-pscip.c}!IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat@{IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat}}
+\index{IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat@{IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat}!debug_pscip.c@{debug\_\-pscip.c}}
+\subsubsection[{IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat}]{\setlength{\rightskip}{0pt plus 5cm}void IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat (volatile struct {\bf FPGAstatus\_\-reg} $\ast$ {\em pReg})}}
+\label{debug__pscip_8c_e1f521774fbb48cde1bb1191aab3e28c}
+
+
+
+
+Definition at line 6 of file debug\_\-pscip.c.
+
+References FPGAstatus\_\-reg::errorCounter, FPGAstatus\_\-reg::highWord, FPGAstatus\_\-reg::lowWord, FPGAstatus\_\-reg::midWord, PSCIP\_\-BREAK\_\-ERR\_\-0\_\-MSK, PSCIP\_\-BREAK\_\-ERR\_\-1\_\-MSK, PSCIP\_\-BREAK\_\-ERR\_\-2\_\-MSK, PSCIP\_\-BREAK\_\-ERR\_\-3\_\-MSK, PSCIP\_\-BREAK\_\-ERR\_\-4\_\-MSK, PSCIP\_\-COMP\_\-ERR\_\-0\_\-MSK, PSCIP\_\-COMP\_\-ERR\_\-1\_\-MSK, PSCIP\_\-COMP\_\-ERR\_\-2\_\-MSK, PSCIP\_\-COMP\_\-ERR\_\-3\_\-MSK, PSCIP\_\-COMP\_\-ERR\_\-4\_\-MSK, PSCIP\_\-FRAME\_\-ERR\_\-0\_\-MSK, PSCIP\_\-FRAME\_\-ERR\_\-1\_\-MSK, PSCIP\_\-FRAME\_\-ERR\_\-2\_\-MSK, PSCIP\_\-FRAME\_\-ERR\_\-3\_\-MSK, PSCIP\_\-FRAME\_\-ERR\_\-4\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-LOOPBACK\_\-MSK, PSCIP\_\-PAR\_\-ERR\_\-0\_\-MSK, PSCIP\_\-PAR\_\-ERR\_\-1\_\-MSK, PSCIP\_\-PAR\_\-ERR\_\-2\_\-MSK, PSCIP\_\-PAR\_\-ERR\_\-3\_\-MSK, PSCIP\_\-PAR\_\-ERR\_\-4\_\-MSK, PSCIP\_\-TIMEOUT\_\-ERR\_\-0\_\-MSK, PSCIP\_\-TIMEOUT\_\-ERR\_\-1\_\-MSK, PSCIP\_\-TIMEOUT\_\-ERR\_\-2\_\-MSK, PSCIP\_\-TIMEOUT\_\-ERR\_\-3\_\-MSK, PSCIP\_\-TIMEOUT\_\-ERR\_\-4\_\-MSK, and PSCIP\_\-TXERR\_\-MSK.
+
+Referenced by pscip\_\-ioctl().\hypertarget{debug__pscip_8c_8ac38aaea0bc2a41ecc0f0a1e4ddebb4}{
+\index{debug\_\-pscip.c@{debug\_\-pscip.c}!IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg@{IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg}}
+\index{IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg@{IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg}!debug_pscip.c@{debug\_\-pscip.c}}
+\subsubsection[{IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg}]{\setlength{\rightskip}{0pt plus 5cm}void IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg (volatile struct {\bf IPLocalSpace0} $\ast$ {\em pReg})}}
+\label{debug__pscip_8c_8ac38aaea0bc2a41ecc0f0a1e4ddebb4}
+
+
+
+
+Definition at line 149 of file debug\_\-pscip.c.
+
+References IP\_\-CLKRATE, IP\_\-ERR\_\-A, IP\_\-ERR\_\-B, IP\_\-ERR\_\-INT\_\-EN, IP\_\-INT0\_\-A, IP\_\-INT0\_\-B, IP\_\-INT0\_\-EN, IP\_\-INT0\_\-SENSE, IP\_\-INT1\_\-A, IP\_\-INT1\_\-B, IP\_\-INT1\_\-EN, IP\_\-INT1\_\-SENSE, IP\_\-RECOVER, IP\_\-TIME\_\-A, IP\_\-TIME\_\-B, IPA\_\-RESET\_\-MASK, IPLocalSpace0::IPAcontrol, IPB\_\-RESET\_\-MASK, IPLocalSpace0::IPBcontrol, IPLocalSpace0::RESET, IPLocalSpace0::revisionID, and IPLocalSpace0::STATUS.
+
+Referenced by pscip\_\-ioctl().\hypertarget{debug__pscip_8c_514e772505d73df9b79b715538a676e6}{
+\index{debug\_\-pscip.c@{debug\_\-pscip.c}!pscip\_\-get\_\-PCI\_\-info@{pscip\_\-get\_\-PCI\_\-info}}
+\index{pscip\_\-get\_\-PCI\_\-info@{pscip\_\-get\_\-PCI\_\-info}!debug_pscip.c@{debug\_\-pscip.c}}
+\subsubsection[{pscip\_\-get\_\-PCI\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}static unsigned char pscip\_\-get\_\-PCI\_\-info (struct pci\_\-dev $\ast$ {\em dev})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{debug__pscip_8c_514e772505d73df9b79b715538a676e6}
+
+
+
+
+Definition at line 339 of file debug\_\-pscip.c.
+
+Referenced by probe().

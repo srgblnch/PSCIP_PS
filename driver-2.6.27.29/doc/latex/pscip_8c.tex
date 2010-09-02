@@ -1,0 +1,703 @@
+\hypertarget{pscip_8c}{
+\section{Z:/Project/development/PSCIP/driver/pscip.c File Reference}
+\label{pscip_8c}\index{Z:/Project/development/PSCIP/driver/pscip.c@{Z:/Project/development/PSCIP/driver/pscip.c}}
+}
+PSCIP Driver for Linux Kernel 2.6.x-development version - main file.  
+
+
+{\tt \#include $<$linux/init.h$>$}\par
+{\tt \#include $<$linux/module.h$>$}\par
+{\tt \#include $<$linux/moduleparam.h$>$}\par
+{\tt \#include $<$linux/fs.h$>$}\par
+{\tt \#include $<$linux/types.h$>$}\par
+{\tt \#include $<$linux/kdev\_\-t.h$>$}\par
+{\tt \#include $<$linux/cdev.h$>$}\par
+{\tt \#include $<$linux/kernel.h$>$}\par
+{\tt \#include $<$linux/pci.h$>$}\par
+{\tt \#include $<$linux/ioport.h$>$}\par
+{\tt \#include $<$linux/interrupt.h$>$}\par
+{\tt \#include $<$asm/spinlock.h$>$}\par
+{\tt \#include $<$asm/semaphore.h$>$}\par
+{\tt \#include $<$asm/system.h$>$}\par
+{\tt \#include $<$asm/io.h$>$}\par
+{\tt \#include $<$linux/proc\_\-fs.h$>$}\par
+{\tt \#include $<$linux/errno.h$>$}\par
+{\tt \#include $<$linux/delay.h$>$}\par
+{\tt \#include $<$linux/time.h$>$}\par
+{\tt \#include $<$asm/uaccess.h$>$}\par
+{\tt \#include $<$asm/atomic.h$>$}\par
+{\tt \#include \char`\"{}debug\_\-pscip.h\char`\"{}}\par
+{\tt \#include \char`\"{}pscip.h\char`\"{}}\par
+{\tt \#include \char`\"{}k\_\-pscip.h\char`\"{}}\par
+{\tt \#include \char`\"{}k\_\-pscip.c\char`\"{}}\par
+{\tt \#include \char`\"{}debug\_\-pscip.c\char`\"{}}\par
+
+
+Include dependency graph for pscip.c:\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{pscip_8c_928bcd4ed1ca26fa864fe5516efa2b20}{\_\-\_\-DEBUG\_\-\_\-}
+\begin{CompactList}\small\item\em If defined, enables debug printk to logfile. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{pscip_8c_d94b36675e7eb067ea3ce6ff9e244a44}{MODULE\_\-LICENSE} (\char`\"{}GPL\char`\"{})
+\begin{CompactList}\small\item\em $<$ If defined, Real Time IP enabled. \item\end{CompactList}\item 
+\hyperlink{pscip_8c_eeb0a2d9412b2598de60d3ab78abd559}{module\_\-param} (\hyperlink{pscip_8c_1aa2a01bfd35c87921617d64a164bda7}{hack\_\-driver}, int, 0)
+\begin{CompactList}\small\item\em Macro defining hack\_\-driver module parameters. \item\end{CompactList}\item 
+\hyperlink{pscip_8c_b83342c5da927e07b71f9e9e0f2ac1ba}{module\_\-param} (\hyperlink{pscip_8c_c42777cda72b563c2676c06d0fd98c1a}{pscip\_\-major}, int, 0)
+\begin{CompactList}\small\item\em Macro defining pscip\_\-major module parameters. \item\end{CompactList}\item 
+\hyperlink{pscip_8c_486932d17bb9779ad2d987b610b1ab88}{MODULE\_\-PARM\_\-DESC} (\hyperlink{pscip_8c_c42777cda72b563c2676c06d0fd98c1a}{pscip\_\-major},\char`\"{}PSCIP major number, if defined by user\char`\"{})
+\item 
+\hyperlink{pscip_8c_4c7ea419630b353c78ac1aaf9cdd3a78}{MODULE\_\-PARM\_\-DESC} (\hyperlink{pscip_8c_5227c6d12c17c33f868af17fb077dc62}{pscip\_\-dev\_\-number},\char`\"{}PSCIP number of devices which can be run using this driver\char`\"{})
+\item 
+\hyperlink{pscip_8c_905ed87697ca0a454ff57d69ec22af48}{MODULE\_\-PARM\_\-DESC} (\hyperlink{pscip_8c_1aa2a01bfd35c87921617d64a164bda7}{hack\_\-driver},\char`\"{}PSCIP special functions for developers:$\backslash$n -- no func implemented at the moment --\char`\"{})
+\item 
+void \hyperlink{pscip_8c_fbfd4fc2195d42c9aaed821f40c33e12}{pscip\_\-irq\_\-bh0} (unsigned long)
+\begin{CompactList}\small\item\em Tasklet used to send a SIGIO to user space, chan 0. \item\end{CompactList}\item 
+void \hyperlink{pscip_8c_0792694f70567c97210fbbee0e0702a3}{pscip\_\-irq\_\-bh1} (unsigned long)
+\begin{CompactList}\small\item\em Tasklet used to send a SIGIO to user space, chan 0. \item\end{CompactList}\item 
+int \hyperlink{pscip_8c_893e661d3b98b489ec148f53552157ef}{pscip\_\-assign\_\-irq} (\hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Function registering interrupt in the cernel. \item\end{CompactList}\item 
+irqreturn\_\-t \hyperlink{pscip_8c_0356476f23b4337ef94d580026be8bbb}{pscip\_\-irq\_\-handler} (int pciirq, void $\ast$dev\_\-id, struct pt\_\-regs $\ast$regs)
+\begin{CompactList}\small\item\em Interrupt hanlder. \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_38ed0a47b49920ca3b02392764122bed}{pscip\_\-open} (struct inode $\ast$, struct file $\ast$)
+\begin{CompactList}\small\item\em Function called when the node represeting driver is opened. \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_ac05b05bbeed23bd53e662d75d14d4f8}{pscip\_\-release} (struct inode $\ast$, struct file $\ast$)
+\begin{CompactList}\small\item\em Function called when the node represeting driver is closed. \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_189aa0b40518a5c712bb9c24f4da5e7f}{pscip\_\-ioctl} (struct inode $\ast$, struct file $\ast$, unsigned int, unsigned long)
+\begin{CompactList}\small\item\em Function implementing ioctl control. \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_1f2bd07aac6fb1d9a27f635dac28669b}{probe} (struct pci\_\-dev $\ast$dev, const struct pci\_\-device\_\-id $\ast$id)
+\begin{CompactList}\small\item\em Function called when the device (Carrier card) is detected on the PCI bus. \item\end{CompactList}\item 
+static void \hyperlink{pscip_8c_fdbceb4ede4f982e2e68f2ee7c0cf6e1}{remove} (struct pci\_\-dev $\ast$pcidev)
+\begin{CompactList}\small\item\em Function called when the device (Carrier) is removed from the PCI bus. \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_8675bb66851e6553e8d99ec533e2f6ec}{pscip\_\-read\_\-proc} (char $\ast$page, char $\ast$$\ast$start, off\_\-t offset, int count, int $\ast$eof, void $\ast$data)
+\begin{CompactList}\small\item\em Create a proc filesystem read entry. \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_bf1022c0b7beb0fa86c449b1ba63d58b}{pscip\_\-write\_\-proc} (struct file $\ast$filp, const char $\ast$buffer, unsigned long count, void $\ast$data)
+\begin{CompactList}\small\item\em creat a proc file system write entry \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_4c7cd65a5fb7a2c6dc317b41df5622dd}{pscip\_\-procfs\_\-register} (void)
+\begin{CompactList}\small\item\em Register proc filesystem entries. \item\end{CompactList}\item 
+static void \hyperlink{pscip_8c_d74a62d23d8b05733bfe84136d4c3431}{init\_\-pscip} (int i)
+\begin{CompactList}\small\item\em Initializatin of interrupt and concurrency related mechanisms. \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_6a25efed588d9784c4b9e53ae3c7a5b8}{checkmem\_\-device} (int i)
+\begin{CompactList}\small\item\em Checks whether device is in the slot by reading specific registers holdilng IP IDs. \item\end{CompactList}\item 
+static void \hyperlink{pscip_8c_a07850d4e960afda29741908877b9f72}{exit\_\-pscip\_\-module} (void)
+\begin{CompactList}\small\item\em Function called when the module is deinserted. \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_f6ae932073296558700ee54b8c3ba8b2}{init\_\-pscip\_\-module} (void)
+\begin{CompactList}\small\item\em Function called when the driver/module is inserted. \item\end{CompactList}\item 
+\hyperlink{pscip_8c_a5f2885f1cd67ce96d2afa5a402033a8}{module\_\-init} (init\_\-pscip\_\-module)
+\begin{CompactList}\small\item\em Registering first function to be called when inserting the module. \item\end{CompactList}\item 
+\hyperlink{pscip_8c_cc378f45db0de3c2cc0ac3b485843a26}{module\_\-exit} (exit\_\-pscip\_\-module)
+\begin{CompactList}\small\item\em Registering last function to be called when de-inserting the module. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+static int \hyperlink{pscip_8c_8883057b44748f328f9ab36e5bcf2a8f}{queue\_\-flag} = 0
+\begin{CompactList}\small\item\em Flag used in waitqueue mechanism. \item\end{CompactList}\item 
+int \hyperlink{pscip_8c_422f87b12a1ce74ba2ba50eacb4ee12e}{pscip\_\-minor} = PSCIP\_\-MINOR\_\-NUMBER
+\begin{CompactList}\small\item\em Global variable with first minor numer associated with the driver. \item\end{CompactList}\item 
+static char \hyperlink{pscip_8c_699de8ad6de47a5f252fe943bbe146e5}{ver} \mbox{[}10\mbox{]} = \char`\"{}1.0\char`\"{}
+\begin{CompactList}\small\item\em Module/driver version. \item\end{CompactList}\item 
+const char $\ast$ \hyperlink{pscip_8c_4c2d9327de87c6be0b54f793adc7f1fb}{module\_\-name} = \char`\"{}pscip\char`\"{}
+\begin{CompactList}\small\item\em module name. \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_5227c6d12c17c33f868af17fb077dc62}{pscip\_\-dev\_\-number} = 0
+\begin{CompactList}\small\item\em Module parameter - number of IPs. \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_1aa2a01bfd35c87921617d64a164bda7}{hack\_\-driver} = 0
+\begin{CompactList}\small\item\em Module paramter - options for developer. \item\end{CompactList}\item 
+static int \hyperlink{pscip_8c_c42777cda72b563c2676c06d0fd98c1a}{pscip\_\-major}
+\begin{CompactList}\small\item\em Global variable with major numer associated with the driver. \item\end{CompactList}\item 
+static struct file\_\-operations \hyperlink{pscip_8c_1969c4e32e8a199df965d0e49e7bdb8e}{pscip\_\-fops}
+\begin{CompactList}\small\item\em File operation structure. \item\end{CompactList}\item 
+static struct pci\_\-driver \hyperlink{pscip_8c_b8e932f1cc0da35f7c08d4bcfb8afaee}{pscip\_\-driver}
+\begin{CompactList}\small\item\em Structure describing PCI device (IP). \item\end{CompactList}\item 
+static \hyperlink{structnpscip___proc}{pscip\_\-Proc} \hyperlink{pscip_8c_8f2d8a5dd9c85bb225fbd2edf4175095}{pscip\_\-procdev}
+\begin{CompactList}\small\item\em Proc filesystem structure . \item\end{CompactList}\item 
+static struct proc\_\-dir\_\-entry $\ast$ \hyperlink{pscip_8c_e88af066b7442e9fc6cf5228860c2cc5}{proc\_\-model\_\-dir}
+\begin{CompactList}\small\item\em Structure defining entry in proc file system. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+PSCIP Driver for Linux Kernel 2.6.x-development version - main file. 
+
+GG - 19.07.2005: First implementation
+
+22/10/2008 - Start of porting the driver :\begin{itemize}
+\item from 2.4.x to 2.6.x\item from VME to PCIGG 12/20008 - finalizing first release \end{itemize}
+
+
+Definition in file \hyperlink{pscip_8c-source}{pscip.c}.
+
+\subsection{Define Documentation}
+\hypertarget{pscip_8c_928bcd4ed1ca26fa864fe5516efa2b20}{
+\index{pscip.c@{pscip.c}!\_\-\_\-DEBUG\_\-\_\-@{\_\-\_\-DEBUG\_\-\_\-}}
+\index{\_\-\_\-DEBUG\_\-\_\-@{\_\-\_\-DEBUG\_\-\_\-}!pscip.c@{pscip.c}}
+\subsubsection[{\_\-\_\-DEBUG\_\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-\_\-DEBUG\_\-\_\-}}
+\label{pscip_8c_928bcd4ed1ca26fa864fe5516efa2b20}
+
+
+If defined, enables debug printk to logfile. 
+
+Can be very useful when trying to determine bug location Every function prints information when beginning and when finishing Functions whose code is in \hyperlink{pscip_8c}{pscip.c} file print informatin starting with DEBUG\_\-M and are not intended Fundtions whose code is in \hyperlink{k__pscip_8c}{k\_\-pscip.c} file print information starting with DEBUG\_\-K and are intended Funnctions whose code is in debug\_\-pscip. file print information starting with DEBUG and are even more inteded 
+
+Definition at line 69 of file pscip.c.
+
+Referenced by k\_\-pscip\_\-rdstatistics().
+
+\subsection{Function Documentation}
+\hypertarget{pscip_8c_6a25efed588d9784c4b9e53ae3c7a5b8}{
+\index{pscip.c@{pscip.c}!checkmem\_\-device@{checkmem\_\-device}}
+\index{checkmem\_\-device@{checkmem\_\-device}!pscip.c@{pscip.c}}
+\subsubsection[{checkmem\_\-device}]{\setlength{\rightskip}{0pt plus 5cm}static int checkmem\_\-device (int {\em i})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_6a25efed588d9784c4b9e53ae3c7a5b8}
+
+
+Checks whether device is in the slot by reading specific registers holdilng IP IDs. 
+
+
+
+Definition at line 1174 of file pscip.c.
+
+References IP\_\-read\_\-byte(), pscip\_\-devices, PSCIP\_\-MANIFAC\_\-ID, PSCIP\_\-MANIFAC\_\-REG, PSCIP\_\-MODEL\_\-ID, and PSCIP\_\-MODEL\_\-REG.
+
+Referenced by probe().\hypertarget{pscip_8c_a07850d4e960afda29741908877b9f72}{
+\index{pscip.c@{pscip.c}!exit\_\-pscip\_\-module@{exit\_\-pscip\_\-module}}
+\index{exit\_\-pscip\_\-module@{exit\_\-pscip\_\-module}!pscip.c@{pscip.c}}
+\subsubsection[{exit\_\-pscip\_\-module}]{\setlength{\rightskip}{0pt plus 5cm}static void exit\_\-pscip\_\-module (void)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_a07850d4e960afda29741908877b9f72}
+
+
+Function called when the module is deinserted. 
+
+Clean up module from kernel - all unregister staff 
+
+Definition at line 1417 of file pscip.c.
+
+References module\_\-name, proc\_\-model\_\-dir, pscip\_\-dev\_\-number, pscip\_\-driver, pscip\_\-major, and pscip\_\-minor.\hypertarget{pscip_8c_d74a62d23d8b05733bfe84136d4c3431}{
+\index{pscip.c@{pscip.c}!init\_\-pscip@{init\_\-pscip}}
+\index{init\_\-pscip@{init\_\-pscip}!pscip.c@{pscip.c}}
+\subsubsection[{init\_\-pscip}]{\setlength{\rightskip}{0pt plus 5cm}static void init\_\-pscip (int {\em i})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_d74a62d23d8b05733bfe84136d4c3431}
+
+
+Initializatin of interrupt and concurrency related mechanisms. 
+
+The functions registers tasklests for each channel on the calling IP, registers spinlocks and waitqueues.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em i}]- number of device ( IP ) in the device structure \end{description}
+\end{Desc}
+
+
+Definition at line 1135 of file pscip.c.
+
+References pscip\_\-devices, pscip\_\-irq\_\-bh0(), pscip\_\-irq\_\-bh1(), PSCIP\_\-LINKDOWN\_\-TOUT, and npscip\_\-Dev::tv.
+
+Referenced by probe().\hypertarget{pscip_8c_f6ae932073296558700ee54b8c3ba8b2}{
+\index{pscip.c@{pscip.c}!init\_\-pscip\_\-module@{init\_\-pscip\_\-module}}
+\index{init\_\-pscip\_\-module@{init\_\-pscip\_\-module}!pscip.c@{pscip.c}}
+\subsubsection[{init\_\-pscip\_\-module}]{\setlength{\rightskip}{0pt plus 5cm}static int init\_\-pscip\_\-module (void)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_f6ae932073296558700ee54b8c3ba8b2}
+
+
+Function called when the driver/module is inserted. 
+
+It establishes how many devices ( IPs ) the driver will enable to operate. It registers major and minor numbers for the driver, registers driver, prepare memory for device structure, initializes device structure table with 0/null values and create proc\_\-fs entries in /proc/driver folder. 
+
+Definition at line 1455 of file pscip.c.
+
+References npscip\_\-Dev::carrier\_\-number, FALSE, npscip\_\-Dev::IP\_\-in\_\-slot, npscip\_\-Dev::IP\_\-IOspaceAddr, npscip\_\-Dev::IP\_\-IOspaceFlags, npscip\_\-Dev::IP\_\-IOspaceLen, npscip\_\-Dev::IPinterfaceAddr, npscip\_\-Dev::IPinterfaceFlags, npscip\_\-Dev::IPinterfaceLen, npscip\_\-Dev::IPnumber, npscip\_\-Dev::irq, npscip\_\-Dev::irqdata, npscip\_\-Dev::irqflag, npscip\_\-Dev::pciaddr, npscip\_\-Dev::PCIinterfaceAddr, npscip\_\-Dev::PCIinterfaceFlags, npscip\_\-Dev::PCIinterfaceLen, npscip\_\-Dev::pIPinterfaceReg, npscip\_\-Dev::pPCIinterfaceReg, PSCIP\_\-DEFAULT\_\-DEV, pscip\_\-dev\_\-number, pscip\_\-devices, pscip\_\-driver, pscip\_\-major, PSCIP\_\-MAX\_\-CHAN, PSCIP\_\-MAX\_\-DEV, pscip\_\-minor, pscip\_\-procfs\_\-register(), and npscip\_\-Dev::refcount.\hypertarget{pscip_8c_cc378f45db0de3c2cc0ac3b485843a26}{
+\index{pscip.c@{pscip.c}!module\_\-exit@{module\_\-exit}}
+\index{module\_\-exit@{module\_\-exit}!pscip.c@{pscip.c}}
+\subsubsection[{module\_\-exit}]{\setlength{\rightskip}{0pt plus 5cm}module\_\-exit (exit\_\-pscip\_\-module)}}
+\label{pscip_8c_cc378f45db0de3c2cc0ac3b485843a26}
+
+
+Registering last function to be called when de-inserting the module. 
+
+\hypertarget{pscip_8c_a5f2885f1cd67ce96d2afa5a402033a8}{
+\index{pscip.c@{pscip.c}!module\_\-init@{module\_\-init}}
+\index{module\_\-init@{module\_\-init}!pscip.c@{pscip.c}}
+\subsubsection[{module\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}module\_\-init (init\_\-pscip\_\-module)}}
+\label{pscip_8c_a5f2885f1cd67ce96d2afa5a402033a8}
+
+
+Registering first function to be called when inserting the module. 
+
+\hypertarget{pscip_8c_d94b36675e7eb067ea3ce6ff9e244a44}{
+\index{pscip.c@{pscip.c}!MODULE\_\-LICENSE@{MODULE\_\-LICENSE}}
+\index{MODULE\_\-LICENSE@{MODULE\_\-LICENSE}!pscip.c@{pscip.c}}
+\subsubsection[{MODULE\_\-LICENSE}]{\setlength{\rightskip}{0pt plus 5cm}MODULE\_\-LICENSE (\char`\"{}GPL\char`\"{})}}
+\label{pscip_8c_d94b36675e7eb067ea3ce6ff9e244a44}
+
+
+$<$ If defined, Real Time IP enabled. 
+
+RTAI is inharited from Electtra and not changed/looked into Determines the driver's licencing. If missing the kernel shouts about taining it \hypertarget{pscip_8c_b83342c5da927e07b71f9e9e0f2ac1ba}{
+\index{pscip.c@{pscip.c}!module\_\-param@{module\_\-param}}
+\index{module\_\-param@{module\_\-param}!pscip.c@{pscip.c}}
+\subsubsection[{module\_\-param}]{\setlength{\rightskip}{0pt plus 5cm}module\_\-param ({\bf pscip\_\-major}, \/  int, \/  0)}}
+\label{pscip_8c_b83342c5da927e07b71f9e9e0f2ac1ba}
+
+
+Macro defining pscip\_\-major module parameters. 
+
+\hypertarget{pscip_8c_eeb0a2d9412b2598de60d3ab78abd559}{
+\index{pscip.c@{pscip.c}!module\_\-param@{module\_\-param}}
+\index{module\_\-param@{module\_\-param}!pscip.c@{pscip.c}}
+\subsubsection[{module\_\-param}]{\setlength{\rightskip}{0pt plus 5cm}module\_\-param ({\bf hack\_\-driver}, \/  int, \/  0)}}
+\label{pscip_8c_eeb0a2d9412b2598de60d3ab78abd559}
+
+
+Macro defining hack\_\-driver module parameters. 
+
+\hypertarget{pscip_8c_905ed87697ca0a454ff57d69ec22af48}{
+\index{pscip.c@{pscip.c}!MODULE\_\-PARM\_\-DESC@{MODULE\_\-PARM\_\-DESC}}
+\index{MODULE\_\-PARM\_\-DESC@{MODULE\_\-PARM\_\-DESC}!pscip.c@{pscip.c}}
+\subsubsection[{MODULE\_\-PARM\_\-DESC}]{\setlength{\rightskip}{0pt plus 5cm}MODULE\_\-PARM\_\-DESC ({\bf hack\_\-driver}, \/  \char`\"{}PSCIP special functions for developers:$\backslash$n -- no func implemented at the moment --\char`\"{})}}
+\label{pscip_8c_905ed87697ca0a454ff57d69ec22af48}
+
+
+\hypertarget{pscip_8c_4c7ea419630b353c78ac1aaf9cdd3a78}{
+\index{pscip.c@{pscip.c}!MODULE\_\-PARM\_\-DESC@{MODULE\_\-PARM\_\-DESC}}
+\index{MODULE\_\-PARM\_\-DESC@{MODULE\_\-PARM\_\-DESC}!pscip.c@{pscip.c}}
+\subsubsection[{MODULE\_\-PARM\_\-DESC}]{\setlength{\rightskip}{0pt plus 5cm}MODULE\_\-PARM\_\-DESC ({\bf pscip\_\-dev\_\-number}, \/  \char`\"{}PSCIP number of devices which can be run using this driver\char`\"{})}}
+\label{pscip_8c_4c7ea419630b353c78ac1aaf9cdd3a78}
+
+
+\hypertarget{pscip_8c_486932d17bb9779ad2d987b610b1ab88}{
+\index{pscip.c@{pscip.c}!MODULE\_\-PARM\_\-DESC@{MODULE\_\-PARM\_\-DESC}}
+\index{MODULE\_\-PARM\_\-DESC@{MODULE\_\-PARM\_\-DESC}!pscip.c@{pscip.c}}
+\subsubsection[{MODULE\_\-PARM\_\-DESC}]{\setlength{\rightskip}{0pt plus 5cm}MODULE\_\-PARM\_\-DESC ({\bf pscip\_\-major}, \/  \char`\"{}PSCIP major  {\em number}, \/  if defined by user\char`\"{})}}
+\label{pscip_8c_486932d17bb9779ad2d987b610b1ab88}
+
+
+\hypertarget{pscip_8c_1f2bd07aac6fb1d9a27f635dac28669b}{
+\index{pscip.c@{pscip.c}!probe@{probe}}
+\index{probe@{probe}!pscip.c@{pscip.c}}
+\subsubsection[{probe}]{\setlength{\rightskip}{0pt plus 5cm}static int probe (struct pci\_\-dev $\ast$ {\em dev}, \/  const struct pci\_\-device\_\-id $\ast$ {\em id})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_1f2bd07aac6fb1d9a27f635dac28669b}
+
+
+Function called when the device (Carrier card) is detected on the PCI bus. 
+
+It performs most of the initialization for both IPs on the carrier and registers the character device in the kernel.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$dev}]- PCI device structure representing PCI device \item[{\em $\ast$id}]- \end{description}
+\end{Desc}
+
+
+Definition at line 1202 of file pscip.c.
+
+References npscip\_\-Dev::carrier\_\-number, npscip\_\-Dev::cdev, checkmem\_\-device(), FALSE, init\_\-pscip(), npscip\_\-Dev::IP\_\-in\_\-slot, npscip\_\-Dev::IP\_\-IOspaceAddr, npscip\_\-Dev::IP\_\-IOspaceFlags, npscip\_\-Dev::IP\_\-IOspaceLen, npscip\_\-Dev::IPinterfaceAddr, npscip\_\-Dev::IPinterfaceFlags, npscip\_\-Dev::IPinterfaceLen, npscip\_\-Dev::IPnumber, npscip\_\-Dev::irq, MAX\_\-NUMER\_\-OF\_\-IPs\_\-ON\_\-CARRIER, module\_\-name, num\_\-pscip, npscip\_\-Dev::pciaddr, npscip\_\-Dev::pcidev, npscip\_\-Dev::PCIinterfaceAddr, npscip\_\-Dev::PCIinterfaceFlags, npscip\_\-Dev::PCIinterfaceLen, npscip\_\-Dev::pIP\_\-IOspace, npscip\_\-Dev::pIPinterfaceReg, npscip\_\-Dev::pPCIinterfaceReg, PSCIP\_\-CHAN\_\-OFFSET, pscip\_\-dev\_\-number, pscip\_\-devices, pscip\_\-fops, pscip\_\-get\_\-PCI\_\-info(), PSCIP\_\-IP\_\-OFFSET, pscip\_\-major, pscip\_\-minor, npscip\_\-Dev::pscip\_\-number, and TRUE.\hypertarget{pscip_8c_893e661d3b98b489ec148f53552157ef}{
+\index{pscip.c@{pscip.c}!pscip\_\-assign\_\-irq@{pscip\_\-assign\_\-irq}}
+\index{pscip\_\-assign\_\-irq@{pscip\_\-assign\_\-irq}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-assign\_\-irq}]{\setlength{\rightskip}{0pt plus 5cm}int pscip\_\-assign\_\-irq ({\bf pscip\_\-Dev} {\em dev})}}
+\label{pscip_8c_893e661d3b98b489ec148f53552157ef}
+
+
+Function registering interrupt in the cernel. 
+
+Calles function which registers interrupt handler.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em dev}]- device structure \end{description}
+\end{Desc}
+
+
+Definition at line 844 of file pscip.c.
+
+References npscip\_\-Dev::irq, and pscip\_\-irq\_\-handler().
+
+Referenced by pscip\_\-open().\hypertarget{pscip_8c_189aa0b40518a5c712bb9c24f4da5e7f}{
+\index{pscip.c@{pscip.c}!pscip\_\-ioctl@{pscip\_\-ioctl}}
+\index{pscip\_\-ioctl@{pscip\_\-ioctl}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-ioctl}]{\setlength{\rightskip}{0pt plus 5cm}static int pscip\_\-ioctl (struct inode $\ast$ {\em inode}, \/  struct file $\ast$ {\em filp}, \/  unsigned int {\em cmd}, \/  unsigned long {\em arg})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_189aa0b40518a5c712bb9c24f4da5e7f}
+
+
+Function implementing ioctl control. 
+
+Used to read-write I/O operations and IP configuration.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$inode}]- contains cdev structure, allows to get our device structure \item[{\em $\ast$filp}]- pointer to a file structure  cmd - command to be executed \item[{\em arg}]- data passed from/to kernel space \end{description}
+\end{Desc}
+
+
+Definition at line 302 of file pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, id\_\-pscip, IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat(), IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg(), IP\_\-read\_\-byte(), IP\_\-write\_\-byte(), k\_\-pscip\_\-clear\_\-err\_\-counter(), k\_\-pscip\_\-dump\_\-all\_\-registers(), k\_\-pscip\_\-rdfpgastat(), k\_\-pscip\_\-rdlinkstat(), k\_\-pscip\_\-rdstatistics(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-reset(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), npscip\_\-Dev::pciaddr, npscip\_\-Dev::pIP\_\-IOspace, npscip\_\-Dev::pIPinterfaceReg, PSCIP\_\-CLRCOUNTER, PSCIP\_\-DUMPFPGAREGS, PSCIP\_\-FPGA\_\-REG, PSCIP\_\-PCIADDR, PSCIP\_\-RDFPGASTAT, PSCIP\_\-RDLINKSTAT, PSCIP\_\-RDSTATISTICS, PSCIP\_\-RDWAVE, PSCIP\_\-READ, PSCIP\_\-READIPREG, PSCIP\_\-RESET, PSCIP\_\-WRHIPRIO, PSCIP\_\-WRITE, PSCIP\_\-WRITEIPREG, PSCIP\_\-WRWAVE, npscip\_\-Dev::sem, pscip\_\-t::stat, and val.\hypertarget{pscip_8c_fbfd4fc2195d42c9aaed821f40c33e12}{
+\index{pscip.c@{pscip.c}!pscip\_\-irq\_\-bh0@{pscip\_\-irq\_\-bh0}}
+\index{pscip\_\-irq\_\-bh0@{pscip\_\-irq\_\-bh0}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-irq\_\-bh0}]{\setlength{\rightskip}{0pt plus 5cm}void pscip\_\-irq\_\-bh0 (unsigned long {\em data})}}
+\label{pscip_8c_fbfd4fc2195d42c9aaed821f40c33e12}
+
+
+Tasklet used to send a SIGIO to user space, chan 0. 
+
+pscip\_\-irq\_\-bh0 - called for interrupts on channel 0 of IP tasklets are a special function that may be scheduled to run, in software interrupt context, at a system-determined safe time.
+
+They may be scheduled to run multiple times, but tasklet scheduling is not cumulative; the tasklet runs only once, even if it is requested repeatedly before it is launched. NOTE: tasklet function should return irqreturn\_\-t but here this functions are initialized in \char`\"{}unconventional\char`\"{} way and they need to return void.....
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em data}]- data to be passed to the tasklet - anything cased to unsigned long - probably pointer \end{description}
+\end{Desc}
+
+
+Definition at line 686 of file pscip.c.
+
+References npscip\_\-Dev::lock, npscip\_\-Dev::queue, and queue\_\-flag.
+
+Referenced by init\_\-pscip().\hypertarget{pscip_8c_0792694f70567c97210fbbee0e0702a3}{
+\index{pscip.c@{pscip.c}!pscip\_\-irq\_\-bh1@{pscip\_\-irq\_\-bh1}}
+\index{pscip\_\-irq\_\-bh1@{pscip\_\-irq\_\-bh1}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-irq\_\-bh1}]{\setlength{\rightskip}{0pt plus 5cm}void pscip\_\-irq\_\-bh1 (unsigned long {\em data})}}
+\label{pscip_8c_0792694f70567c97210fbbee0e0702a3}
+
+
+Tasklet used to send a SIGIO to user space, chan 0. 
+
+pscip\_\-irq\_\-bh1 - called for interrupts on channel 1 of IP tasklets are a special function that may be scheduled to run, in software interrupt context, at a system-determined safe time.
+
+They may be scheduled to run multiple times, but tasklet scheduling is not cumulative; the tasklet runs only once, even if it is requested repeatedly before it is launched. NOTE: tasklet function should return irqreturn\_\-t but here this functions are initialized in \char`\"{}unconventional\char`\"{} way and they need to return void.....
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em data}]- data to be passed to the tasklet - anything cased to unsigned long - probably pointer \end{description}
+\end{Desc}
+
+
+Definition at line 722 of file pscip.c.
+
+References npscip\_\-Dev::lock, npscip\_\-Dev::queue, and queue\_\-flag.
+
+Referenced by init\_\-pscip().\hypertarget{pscip_8c_0356476f23b4337ef94d580026be8bbb}{
+\index{pscip.c@{pscip.c}!pscip\_\-irq\_\-handler@{pscip\_\-irq\_\-handler}}
+\index{pscip\_\-irq\_\-handler@{pscip\_\-irq\_\-handler}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-irq\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}irqreturn\_\-t pscip\_\-irq\_\-handler (int {\em pciirq}, \/  void $\ast$ {\em dev\_\-id}, \/  struct pt\_\-regs $\ast$ {\em regs})}}
+\label{pscip_8c_0356476f23b4337ef94d580026be8bbb}
+
+
+Interrupt hanlder. 
+
+Called when an interrupt occures.
+
+It recognize whether the interrupt should be handled, checks errors and schedules appropraite tasklet function. Irq handler immediately reset pending interrupts to avoid CPU freezing
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pciirq}]- interrupt number registered for this device,hardware-wise number of interrupt line \item[{\em $\ast$dev\_\-id}]- a sort of client data \item[{\em $\ast$regs}]- holds a snapshot of the processor’s context before the processor entered interrupt code \end{description}
+\end{Desc}
+
+
+Definition at line 761 of file pscip.c.
+
+References pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-word(), IP\_\-write\_\-word(), npscip\_\-Dev::irqflag, k\_\-if\_\-handle\_\-irq(), pscip\_\-stats\_\-t::link\_\-err\_\-flag, pscip\_\-stats\_\-t::linkdown\_\-cnt, npscip\_\-Dev::pIP\_\-IOspace, PLX9030\_\-INTCSR\_\-LINTI1\_\-STAT, npscip\_\-Dev::pPCIinterfaceReg, PSCIP\_\-ERRCLEAR\_\-MSK, PSCIP\_\-ERROR\_\-MSK, PSCIP\_\-FPGA\_\-HIGH, PSCIP\_\-FPGA\_\-LOW, PSCIP\_\-FPGA\_\-MID, PSCIP\_\-IRQ\_\-SERVED, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-RDWAVE\_\-IDX, PSCIP\_\-READ\_\-IDX, PSCIP\_\-REG\_\-STAT, npscip\_\-Dev::pscip\_\-tsk, PSCIP\_\-TXERR\_\-MSK, PSCIP\_\-WRHPRIO\_\-IDX, PSCIP\_\-WRITE\_\-IDX, PSCIP\_\-WRWAVE\_\-IDX, npscip\_\-Dev::stats, and pscip\_\-stats\_\-t::txerr\_\-cnt.
+
+Referenced by pscip\_\-assign\_\-irq().\hypertarget{pscip_8c_38ed0a47b49920ca3b02392764122bed}{
+\index{pscip.c@{pscip.c}!pscip\_\-open@{pscip\_\-open}}
+\index{pscip\_\-open@{pscip\_\-open}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-open}]{\setlength{\rightskip}{0pt plus 5cm}static int pscip\_\-open (struct inode $\ast$ {\em inode}, \/  struct file $\ast$ {\em filp})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_38ed0a47b49920ca3b02392764122bed}
+
+
+Function called when the node represeting driver is opened. 
+
+Does any initialization for later operations.
+
+While creating first reference (first file/node open) interrupt on give IP are enabled
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$inode}]- contains cdev structure, allows to get our device structure \item[{\em $\ast$filp}]pointer to a file structure \end{description}
+\end{Desc}
+
+
+Error code. Store error code in case of errro 
+
+Definition at line 200 of file pscip.c.
+
+References npscip\_\-Dev::irq, k\_\-irq\_\-enable(), pscip\_\-assign\_\-irq(), npscip\_\-Dev::refcount, and npscip\_\-Dev::sem.\hypertarget{pscip_8c_4c7cd65a5fb7a2c6dc317b41df5622dd}{
+\index{pscip.c@{pscip.c}!pscip\_\-procfs\_\-register@{pscip\_\-procfs\_\-register}}
+\index{pscip\_\-procfs\_\-register@{pscip\_\-procfs\_\-register}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-procfs\_\-register}]{\setlength{\rightskip}{0pt plus 5cm}static int pscip\_\-procfs\_\-register (void)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_4c7cd65a5fb7a2c6dc317b41df5622dd}
+
+
+Register proc filesystem entries. 
+
+It creates the appropriate directory in /proc/driver/ and fills it with nodes representing each IP It registers functions implemented for proc\_\-fs interface 
+
+Definition at line 1058 of file pscip.c.
+
+References npscip\_\-Proc::count, module\_\-name, proc\_\-model\_\-dir, pscip\_\-dev\_\-number, pscip\_\-read\_\-proc(), and pscip\_\-write\_\-proc().
+
+Referenced by init\_\-pscip\_\-module().\hypertarget{pscip_8c_8675bb66851e6553e8d99ec533e2f6ec}{
+\index{pscip.c@{pscip.c}!pscip\_\-read\_\-proc@{pscip\_\-read\_\-proc}}
+\index{pscip\_\-read\_\-proc@{pscip\_\-read\_\-proc}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-read\_\-proc}]{\setlength{\rightskip}{0pt plus 5cm}static int pscip\_\-read\_\-proc (char $\ast$ {\em page}, \/  char $\ast$$\ast$ {\em start}, \/  off\_\-t {\em offset}, \/  int {\em count}, \/  int $\ast$ {\em eof}, \/  void $\ast$ {\em data})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_8675bb66851e6553e8d99ec533e2f6ec}
+
+
+Create a proc filesystem read entry. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$page}]- page pointer, buffer to which date is writen \item[{\em $\ast$$\ast$start}]- used by the function to say where the interesting data has been written \item[{\em offset}]- the same as count \item[{\em count}]- \item[{\em $\ast$eof}]- points to an integer that must be set by the driver to signal that it has no more data to return \item[{\em data}]- \end{description}
+\end{Desc}
+
+
+Definition at line 879 of file pscip.c.
+
+References npscip\_\-Dev::carrier\_\-number, pscip\_\-fpga\_\-t::channel, pscip\_\-stats\_\-t::cntrl\_\-stat, npscip\_\-Proc::count, pscip\_\-fpga\_\-t::high\_\-data, id\_\-pscip, npscip\_\-Dev::IP\_\-in\_\-slot, npscip\_\-Dev::IPnumber, k\_\-pscip\_\-rdfpgastat(), pscip\_\-stats\_\-t::linkdown\_\-cnt, pscip\_\-devices, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-MAX\_\-CHAN, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TXERR\_\-MSK, pscip\_\-stats\_\-t::rx, npscip\_\-Dev::sem, npscip\_\-Dev::stats, pscip\_\-stats\_\-t::tx, pscip\_\-stats\_\-t::txerr\_\-cnt, and ver.
+
+Referenced by pscip\_\-procfs\_\-register().\hypertarget{pscip_8c_ac05b05bbeed23bd53e662d75d14d4f8}{
+\index{pscip.c@{pscip.c}!pscip\_\-release@{pscip\_\-release}}
+\index{pscip\_\-release@{pscip\_\-release}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-release}]{\setlength{\rightskip}{0pt plus 5cm}static int pscip\_\-release (struct inode $\ast$ {\em inode}, \/  struct file $\ast$ {\em filp})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_ac05b05bbeed23bd53e662d75d14d4f8}
+
+
+Function called when the node represeting driver is closed. 
+
+Invoked when the file structure is being released.
+
+If the last reference is closed, interrupts are disabled on give IP represented by the file/node
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$inode}]- contains cdev structure, allows to get our device structure \item[{\em $\ast$filp}]pointer to a file structure \end{description}
+\end{Desc}
+
+
+Definition at line 250 of file pscip.c.
+
+References npscip\_\-Dev::irq, k\_\-irq\_\-disable(), npscip\_\-Dev::refcount, and npscip\_\-Dev::sem.\hypertarget{pscip_8c_bf1022c0b7beb0fa86c449b1ba63d58b}{
+\index{pscip.c@{pscip.c}!pscip\_\-write\_\-proc@{pscip\_\-write\_\-proc}}
+\index{pscip\_\-write\_\-proc@{pscip\_\-write\_\-proc}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-write\_\-proc}]{\setlength{\rightskip}{0pt plus 5cm}static int pscip\_\-write\_\-proc (struct file $\ast$ {\em filp}, \/  const char $\ast$ {\em buffer}, \/  unsigned long {\em count}, \/  void $\ast$ {\em data})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_bf1022c0b7beb0fa86c449b1ba63d58b}
+
+
+creat a proc file system write entry 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em filep}]- file structure pointer \item[{\em $\ast$buffer}]- data from the user \item[{\em count}]- \item[{\em $\ast$data}]- \end{description}
+\end{Desc}
+
+
+Definition at line 964 of file pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, npscip\_\-Proc::count, pscip\_\-t::data, id\_\-pscip, k\_\-pscip\_\-reset(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), pscip\_\-devices, PSCIP\_\-PROC\_\-HPRIO, PSCIP\_\-PROC\_\-RESET, PSCIP\_\-PROC\_\-WRITE, PSCIP\_\-PROC\_\-WRWAVE, npscip\_\-Dev::sem, pscip\_\-t::stat, and val.
+
+Referenced by pscip\_\-procfs\_\-register().\hypertarget{pscip_8c_fdbceb4ede4f982e2e68f2ee7c0cf6e1}{
+\index{pscip.c@{pscip.c}!remove@{remove}}
+\index{remove@{remove}!pscip.c@{pscip.c}}
+\subsubsection[{remove}]{\setlength{\rightskip}{0pt plus 5cm}static void remove (struct pci\_\-dev $\ast$ {\em pcidev})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_fdbceb4ede4f982e2e68f2ee7c0cf6e1}
+
+
+Function called when the device (Carrier) is removed from the PCI bus. 
+
+Does all the unregister/remove/free stuff in reverse order than probe.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$pcidev}]- structure representing PCI device \end{description}
+\end{Desc}
+
+
+Definition at line 1393 of file pscip.c.
+
+References npscip\_\-Dev::pIP\_\-IOspace, npscip\_\-Dev::pIPinterfaceReg, npscip\_\-Dev::pPCIinterfaceReg, pscip\_\-devices, and npscip\_\-Dev::pscip\_\-number.
+
+\subsection{Variable Documentation}
+\hypertarget{pscip_8c_1aa2a01bfd35c87921617d64a164bda7}{
+\index{pscip.c@{pscip.c}!hack\_\-driver@{hack\_\-driver}}
+\index{hack\_\-driver@{hack\_\-driver}!pscip.c@{pscip.c}}
+\subsubsection[{hack\_\-driver}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf hack\_\-driver} = 0\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_1aa2a01bfd35c87921617d64a164bda7}
+
+
+Module paramter - options for developer. 
+
+At the moment ot used 
+
+Definition at line 113 of file pscip.c.\hypertarget{pscip_8c_4c2d9327de87c6be0b54f793adc7f1fb}{
+\index{pscip.c@{pscip.c}!module\_\-name@{module\_\-name}}
+\index{module\_\-name@{module\_\-name}!pscip.c@{pscip.c}}
+\subsubsection[{module\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ {\bf module\_\-name} = \char`\"{}pscip\char`\"{}}}
+\label{pscip_8c_4c2d9327de87c6be0b54f793adc7f1fb}
+
+
+module name. 
+
+
+
+Definition at line 109 of file pscip.c.
+
+Referenced by exit\_\-pscip\_\-module(), init\_\-module(), probe(), and pscip\_\-procfs\_\-register().\hypertarget{pscip_8c_e88af066b7442e9fc6cf5228860c2cc5}{
+\index{pscip.c@{pscip.c}!proc\_\-model\_\-dir@{proc\_\-model\_\-dir}}
+\index{proc\_\-model\_\-dir@{proc\_\-model\_\-dir}!pscip.c@{pscip.c}}
+\subsubsection[{proc\_\-model\_\-dir}]{\setlength{\rightskip}{0pt plus 5cm}struct proc\_\-dir\_\-entry$\ast$ {\bf proc\_\-model\_\-dir}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_e88af066b7442e9fc6cf5228860c2cc5}
+
+
+Structure defining entry in proc file system. 
+
+
+
+Definition at line 186 of file pscip.c.
+
+Referenced by exit\_\-pscip\_\-module(), and pscip\_\-procfs\_\-register().\hypertarget{pscip_8c_5227c6d12c17c33f868af17fb077dc62}{
+\index{pscip.c@{pscip.c}!pscip\_\-dev\_\-number@{pscip\_\-dev\_\-number}}
+\index{pscip\_\-dev\_\-number@{pscip\_\-dev\_\-number}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-dev\_\-number}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf pscip\_\-dev\_\-number} = 0\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_5227c6d12c17c33f868af17fb077dc62}
+
+
+Module parameter - number of IPs. 
+
+Number of devices (IP modules) which will be in the computer, if not set, the DEFAULT number will be give, is limited by the MAX\_\-DEV number 
+
+Definition at line 112 of file pscip.c.
+
+Referenced by exit\_\-pscip\_\-module(), init\_\-pscip\_\-module(), probe(), and pscip\_\-procfs\_\-register().\hypertarget{pscip_8c_b8e932f1cc0da35f7c08d4bcfb8afaee}{
+\index{pscip.c@{pscip.c}!pscip\_\-driver@{pscip\_\-driver}}
+\index{pscip\_\-driver@{pscip\_\-driver}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-driver}]{\setlength{\rightskip}{0pt plus 5cm}struct pci\_\-driver {\bf pscip\_\-driver}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_b8e932f1cc0da35f7c08d4bcfb8afaee}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} {
+ .name = "pscip",
+ .id_table = ids,
+ .probe = probe,
+ .remove = remove,
+}
+\end{verbatim}
+\end{Code}
+Structure describing PCI device (IP). 
+
+Structure consists of a number of function callbacks and variables that describe the PCI driver to the PCI core 
+
+Definition at line 176 of file pscip.c.
+
+Referenced by exit\_\-pscip\_\-module(), and init\_\-pscip\_\-module().\hypertarget{pscip_8c_1969c4e32e8a199df965d0e49e7bdb8e}{
+\index{pscip.c@{pscip.c}!pscip\_\-fops@{pscip\_\-fops}}
+\index{pscip\_\-fops@{pscip\_\-fops}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-fops}]{\setlength{\rightskip}{0pt plus 5cm}struct file\_\-operations {\bf pscip\_\-fops}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_1969c4e32e8a199df965d0e49e7bdb8e}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+{
+ .owner  =   THIS_MODULE,
+ .ioctl  = pscip_ioctl,
+ .open  = pscip_open,
+ .release = pscip_release
+ 
+}
+\end{verbatim}
+\end{Code}
+File operation structure. 
+
+Associates the driver (major number) with device operations. The structure is a collection of function pointers. Each open file is associated with its own set of functions 
+
+Definition at line 164 of file pscip.c.
+
+Referenced by probe().\hypertarget{pscip_8c_c42777cda72b563c2676c06d0fd98c1a}{
+\index{pscip.c@{pscip.c}!pscip\_\-major@{pscip\_\-major}}
+\index{pscip\_\-major@{pscip\_\-major}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-major}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf pscip\_\-major}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_c42777cda72b563c2676c06d0fd98c1a}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} PSCIP_MAJOR_NUMBER
+
+ 
+ module_param(pscip_dev_number, int, 0)
+\end{verbatim}
+\end{Code}
+Global variable with major numer associated with the driver. 
+
+A default major number can be set in the header, if defalut value is 0 the major number is set dynamically unless user pass major number as a parameter 
+
+Definition at line 114 of file pscip.c.
+
+Referenced by exit\_\-pscip\_\-module(), init\_\-pscip\_\-module(), and probe().\hypertarget{pscip_8c_422f87b12a1ce74ba2ba50eacb4ee12e}{
+\index{pscip.c@{pscip.c}!pscip\_\-minor@{pscip\_\-minor}}
+\index{pscip\_\-minor@{pscip\_\-minor}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-minor}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf pscip\_\-minor} = PSCIP\_\-MINOR\_\-NUMBER}}
+\label{pscip_8c_422f87b12a1ce74ba2ba50eacb4ee12e}
+
+
+Global variable with first minor numer associated with the driver. 
+
+
+
+Definition at line 106 of file pscip.c.
+
+Referenced by exit\_\-pscip\_\-module(), init\_\-pscip\_\-module(), and probe().\hypertarget{pscip_8c_8f2d8a5dd9c85bb225fbd2edf4175095}{
+\index{pscip.c@{pscip.c}!pscip\_\-procdev@{pscip\_\-procdev}}
+\index{pscip\_\-procdev@{pscip\_\-procdev}!pscip.c@{pscip.c}}
+\subsubsection[{pscip\_\-procdev}]{\setlength{\rightskip}{0pt plus 5cm}{\bf pscip\_\-Proc} {\bf pscip\_\-procdev}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_8f2d8a5dd9c85bb225fbd2edf4175095}
+
+
+Proc filesystem structure . 
+
+
+
+Definition at line 185 of file pscip.c.\hypertarget{pscip_8c_8883057b44748f328f9ab36e5bcf2a8f}{
+\index{pscip.c@{pscip.c}!queue\_\-flag@{queue\_\-flag}}
+\index{queue\_\-flag@{queue\_\-flag}!pscip.c@{pscip.c}}
+\subsubsection[{queue\_\-flag}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf queue\_\-flag} = 0\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_8883057b44748f328f9ab36e5bcf2a8f}
+
+
+Flag used in waitqueue mechanism. 
+
+This is a provisional solution, probablyl needs better implementation 
+
+Definition at line 91 of file pscip.c.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), pscip\_\-irq\_\-bh0(), and pscip\_\-irq\_\-bh1().\hypertarget{pscip_8c_699de8ad6de47a5f252fe943bbe146e5}{
+\index{pscip.c@{pscip.c}!ver@{ver}}
+\index{ver@{ver}!pscip.c@{pscip.c}}
+\subsubsection[{ver}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf ver}\mbox{[}10\mbox{]} = \char`\"{}1.0\char`\"{}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{pscip_8c_699de8ad6de47a5f252fe943bbe146e5}
+
+
+Module/driver version. 
+
+
+
+Definition at line 108 of file pscip.c.
+
+Referenced by pscip\_\-read\_\-proc().

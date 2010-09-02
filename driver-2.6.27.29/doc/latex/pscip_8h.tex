@@ -1,0 +1,1101 @@
+\hypertarget{pscip_8h}{
+\section{Z:/Project/development/PSCIP/driver/pscip.h File Reference}
+\label{pscip_8h}\index{Z:/Project/development/PSCIP/driver/pscip.h@{Z:/Project/development/PSCIP/driver/pscip.h}}
+}
+Header file used in the driver and device server.  
+
+
+
+
+This graph shows which files directly or indirectly include this file:\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structpscip__t}{pscip\_\-t}
+\item 
+struct \hyperlink{structpscip__fpga__t}{pscip\_\-fpga\_\-t}
+\item 
+struct \hyperlink{structpscip__stats__t}{pscip\_\-stats\_\-t}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{pscip_8h_582748943d8ab2e1c25e39011824dde5}{PSCIP\_\-WRITEREAD\_\-MODE\_\-MSK}~0x80
+\item 
+\#define \hyperlink{pscip_8h_5e5c3361310be64daa76d9d103fe34d7}{PSCIP\_\-ECHO\_\-MSK}~0x40
+\item 
+\#define \hyperlink{pscip_8h_59b697efb51c2c83347d8419b704c983}{PSCIP\_\-INPUTBUF\_\-MSK}~0x20
+\item 
+\#define \hyperlink{pscip_8h_6747cbf210e1a9e3e552b0acf3837963}{PSCIP\_\-DSP\_\-MSK}~0x10
+\item 
+\#define \hyperlink{pscip_8h_94c046d664551a867db7de20906b46f8}{PSCIP\_\-REMLOC\_\-MSK}~0x8
+\item 
+\#define \hyperlink{pscip_8h_41a33862da3a71478344216914a894d9}{PSCIP\_\-LINK\_\-MSK}~0x4
+\item 
+\#define \hyperlink{pscip_8h_efe3cf779ccb8b637255c8b143541922}{PSCIP\_\-ERROR\_\-MSK}~0x8000
+\item 
+\#define \hyperlink{pscip_8h_79af993cebbbe8c2753a3ef7ce954cbf}{PSCIP\_\-RDWAVE\_\-BUSY\_\-MSK}~0x10
+\item 
+\#define \hyperlink{pscip_8h_d5ccc1baf89461e88d11ed2b816df3ad}{PSCIP\_\-WRWAVE\_\-BUSY\_\-MSK}~0x8
+\item 
+\#define \hyperlink{pscip_8h_13ba36df2bb45634e26582e68ab1e28a}{PSCIP\_\-READ\_\-BUSY\_\-MSK}~0x4
+\item 
+\#define \hyperlink{pscip_8h_616ca64c5d899df40f7286c8e990a613}{PSCIP\_\-WRITE\_\-BUSY\_\-MSK}~0x2
+\item 
+\#define \hyperlink{pscip_8h_f41679abbe34eab8483f9719f786a7f0}{PSCIP\_\-SETCUR\_\-BUSY\_\-MSK}~0x1
+\item 
+\#define \hyperlink{pscip_8h_0534332c3b81f68e09fe1b2f5ea56714}{PSCIP\_\-ERRCLEAR\_\-MSK}~0x8000
+\item 
+\#define \hyperlink{pscip_8h_f2d71b7fdc783dd22ccb19f09cdd20fc}{PSCIP\_\-SETLOOP\_\-MSK}~0x1
+\item 
+\#define \hyperlink{pscip_8h_f6a2b8afefa74b6d7abf5be4b8a26386}{PSCIP\_\-ERRCNT\_\-MSK}~0x8000
+\item 
+\#define \hyperlink{pscip_8h_0e2a6d07d5e8dd2925cfbbd1c91495bf}{PSCIP\_\-LINKDOWN\_\-MSK}~0x80
+\item 
+\#define \hyperlink{pscip_8h_dc700fb2ec1ecb614cd0b743e1a7781a}{PSCIP\_\-TXERR\_\-MSK}~0x40
+\item 
+\#define \hyperlink{pscip_8h_5ac9ed160f475c343b09a06a86faf4cd}{PSCIP\_\-LOOPBACK\_\-MSK}~0x1
+\item 
+\#define \hyperlink{pscip_8h_df801c8c361d6a3e4252076cc8881330}{PSCIP\_\-PAR\_\-ERR\_\-0\_\-MSK}~0x4000
+\item 
+\#define \hyperlink{pscip_8h_27a13cf462bf22c5ec0c445e6de9caf9}{PSCIP\_\-BREAK\_\-ERR\_\-0\_\-MSK}~0x2000
+\item 
+\#define \hyperlink{pscip_8h_84ef82c05ccc85482ef34413caedcc89}{PSCIP\_\-FRAME\_\-ERR\_\-0\_\-MSK}~0x1000
+\item 
+\#define \hyperlink{pscip_8h_1c1b2d0a7c89d428d5451f81240fd677}{PSCIP\_\-COMP\_\-ERR\_\-0\_\-MSK}~0x800
+\item 
+\#define \hyperlink{pscip_8h_d98d269b9eaa6a9f38af4febda583d59}{PSCIP\_\-TIMEOUT\_\-ERR\_\-0\_\-MSK}~0x400
+\item 
+\#define \hyperlink{pscip_8h_ac068ca99a34d17ef3e16f8990452647}{PSCIP\_\-PAR\_\-ERR\_\-1\_\-MSK}~0x200
+\item 
+\#define \hyperlink{pscip_8h_d413350d8ca89cce5fd477f6860a0042}{PSCIP\_\-BREAK\_\-ERR\_\-1\_\-MSK}~0x100
+\item 
+\#define \hyperlink{pscip_8h_327c009f2fd9e0d38d45e51599a69545}{PSCIP\_\-FRAME\_\-ERR\_\-1\_\-MSK}~0x80
+\item 
+\#define \hyperlink{pscip_8h_8c6fa45efeef3547663a30d393bbce16}{PSCIP\_\-COMP\_\-ERR\_\-1\_\-MSK}~0x40
+\item 
+\#define \hyperlink{pscip_8h_3877c08b4e5f0bff754160566c3b1f4b}{PSCIP\_\-TIMEOUT\_\-ERR\_\-1\_\-MSK}~0x20
+\item 
+\#define \hyperlink{pscip_8h_2fcf60d989bdb5e26a2fc228bd84c189}{PSCIP\_\-PAR\_\-ERR\_\-2\_\-MSK}~0x10
+\item 
+\#define \hyperlink{pscip_8h_a58e66d4d65b604550b4d2d552313cba}{PSCIP\_\-BREAK\_\-ERR\_\-2\_\-MSK}~0x8
+\item 
+\#define \hyperlink{pscip_8h_48f0004b0214403210e6cf34a052c7e3}{PSCIP\_\-FRAME\_\-ERR\_\-2\_\-MSK}~0x4
+\item 
+\#define \hyperlink{pscip_8h_65e2c03d41a0d99801653dd29820c129}{PSCIP\_\-COMP\_\-ERR\_\-2\_\-MSK}~0x2
+\item 
+\#define \hyperlink{pscip_8h_135787e357871ab2fb61970c5ef476cb}{PSCIP\_\-TIMEOUT\_\-ERR\_\-2\_\-MSK}~0x1
+\item 
+\#define \hyperlink{pscip_8h_d5a1f88eaf104520e552bf0e91ccbb07}{PSCIP\_\-PAR\_\-ERR\_\-3\_\-MSK}~0x200
+\item 
+\#define \hyperlink{pscip_8h_25ae7db1dc51169973988daca95a9d3a}{PSCIP\_\-BREAK\_\-ERR\_\-3\_\-MSK}~0x100
+\item 
+\#define \hyperlink{pscip_8h_fca6cddcf6fedbaf3bc42dd4a2cc0566}{PSCIP\_\-FRAME\_\-ERR\_\-3\_\-MSK}~0x80
+\item 
+\#define \hyperlink{pscip_8h_7d3a12806330ac9c9230663e3050cd0c}{PSCIP\_\-COMP\_\-ERR\_\-3\_\-MSK}~0x40
+\item 
+\#define \hyperlink{pscip_8h_851e48c111466921614bb14c5840456e}{PSCIP\_\-TIMEOUT\_\-ERR\_\-3\_\-MSK}~0x20
+\item 
+\#define \hyperlink{pscip_8h_8de1c54d691f6eed3ab942b58a2dda71}{PSCIP\_\-PAR\_\-ERR\_\-4\_\-MSK}~0x10
+\item 
+\#define \hyperlink{pscip_8h_5380e84ef27de9dddcb816e614c519d0}{PSCIP\_\-BREAK\_\-ERR\_\-4\_\-MSK}~0x8
+\item 
+\#define \hyperlink{pscip_8h_480694597b99c899f67b96d7b575e5ad}{PSCIP\_\-FRAME\_\-ERR\_\-4\_\-MSK}~0x4
+\item 
+\#define \hyperlink{pscip_8h_9bc5e31f2c964935e54b849ca5ed27cf}{PSCIP\_\-COMP\_\-ERR\_\-4\_\-MSK}~0x2
+\item 
+\#define \hyperlink{pscip_8h_ef50a4f3848c14539a1ab4ee55ae428d}{PSCIP\_\-TIMEOUT\_\-ERR\_\-4\_\-MSK}~0x1
+\item 
+\#define \hyperlink{pscip_8h_7f97604abcd0363026b87993b5477f0e}{PSCIP\_\-PAR\_\-ERR\_\-MSK}~0x10
+\item 
+\#define \hyperlink{pscip_8h_1ea63530119f92e4f65026a25577df9c}{PSCIP\_\-BREAK\_\-ERR\_\-MSK}~0x8
+\item 
+\#define \hyperlink{pscip_8h_9541bbd441615cb7228d0d38bcfcc7fb}{PSCIP\_\-FRAME\_\-ERR\_\-MSK}~0x4
+\item 
+\#define \hyperlink{pscip_8h_252dc6b62397369ab0782713467db618}{PSCIP\_\-COMP\_\-ERR\_\-MSK}~0x2
+\item 
+\#define \hyperlink{pscip_8h_a22e9fd240f74a49787710c3b218506c}{PSCIP\_\-TIMEOUT\_\-ERR\_\-MSK}~0x1
+\item 
+\#define \hyperlink{pscip_8h_6d8d8c48fe5e3166eb6718304beeb66c}{PSCIP\_\-WRHPRIO\_\-IDX}~0
+\item 
+\#define \hyperlink{pscip_8h_11834e1dd301ff195bf17f2d3006a9dc}{PSCIP\_\-WRITE\_\-IDX}~1
+\item 
+\#define \hyperlink{pscip_8h_adcef2e7b45d1bedb797b98591ff4042}{PSCIP\_\-READ\_\-IDX}~2
+\item 
+\#define \hyperlink{pscip_8h_7ed4de6f363e00ae2367bee55519d56c}{PSCIP\_\-WRWAVE\_\-IDX}~3
+\item 
+\#define \hyperlink{pscip_8h_dc56993b93ac2b4edf3742d94a042895}{PSCIP\_\-RDWAVE\_\-IDX}~4
+\item 
+\#define \hyperlink{pscip_8h_76415ef6a4793984654ab438584e4221}{PSCIP\_\-LINKDOWN\_\-TOUT}~4
+\item 
+\#define \hyperlink{pscip_8h_b6d7fefcaa8a61bbdac013f306915762}{PSCIP\_\-THREAD\_\-RUN\_\-MSK}~0x1
+\item 
+\#define \hyperlink{pscip_8h_86c058ae122f12ef18680843bc2c0949}{PSCIP\_\-THREAD\_\-ERR\_\-MSK}~0x2
+\item 
+\#define \hyperlink{pscip_8h_f1c216310d1c8a97199c376c50577ca5}{PSCIP\_\-IOCTL\_\-MAGIC}~0xB1B
+\item 
+\#define \hyperlink{pscip_8h_f564936bc290fbdda24a3f9ce25ea70d}{PSCIP\_\-WRHIPRIO}~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 1, \hyperlink{structpscip__t}{pscip\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_145abb0528d0562f2d3e9180d2d8bdd7}{PSCIP\_\-WRITE}~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 2, \hyperlink{structpscip__t}{pscip\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_1ad87f3dd3daf9ceac34bc7c040fd488}{PSCIP\_\-READ}~\_\-IOWR (PSCIP\_\-IOCTL\_\-MAGIC, 3, \hyperlink{structpscip__t}{pscip\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_c644090d8b0ecb81e3fc1f37136fefcb}{PSCIP\_\-WRWAVE}~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 4, \hyperlink{structpscip__t}{pscip\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_f6891eb1f27034974efd79d30f27ed7a}{PSCIP\_\-RDWAVE}~\_\-IOWR (PSCIP\_\-IOCTL\_\-MAGIC, 5, \hyperlink{structpscip__t}{pscip\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_bed7503a31783d40312723134b775222}{PSCIP\_\-RDLINKSTAT}~\_\-IOWR  (PSCIP\_\-IOCTL\_\-MAGIC,6, \hyperlink{structpscip__t}{pscip\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_927f359d87b1927f99e7efd666e49081}{PSCIP\_\-RDFPGASTAT}~\_\-IOR  (PSCIP\_\-IOCTL\_\-MAGIC, 7, \hyperlink{structpscip__fpga__t}{pscip\_\-fpga\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_5da1d5661a8f241619875b191b9a8e50}{PSCIP\_\-RDSTATISTICS}~\_\-IOR  (PSCIP\_\-IOCTL\_\-MAGIC, 8, \hyperlink{structpscip__stats__t}{pscip\_\-stats\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_b1756c28ed55fd46b27c1c9c9c79109a}{PSCIP\_\-PCIADDR}~\_\-IOR  (PSCIP\_\-IOCTL\_\-MAGIC, 9, unsigned long)
+\item 
+\#define \hyperlink{pscip_8h_5788cb36fa2a76b191152affbce54791}{PSCIP\_\-RESET}~\_\-IO  (PSCIP\_\-IOCTL\_\-MAGIC, 17)
+\item 
+\#define \hyperlink{pscip_8h_2a7c8b03e64b8001a8fab58b5912ef30}{PSCIP\_\-CLRCOUNTER}~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 18, \hyperlink{structpscip__t}{pscip\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_98ab0b3a0501e0ad2b1e7377b8ba621d}{PSCIP\_\-DUMPFPGAREGS}~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 19, \hyperlink{structpscip__t}{pscip\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_835190a56c8493939498802b5bed4194}{PSCIP\_\-WRITEIPREG}~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 10, \hyperlink{structpscip__t}{pscip\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_734db0298305c99c5ed29f2881c08ee5}{PSCIP\_\-READIPREG}~\_\-IOWR (PSCIP\_\-IOCTL\_\-MAGIC, 11, \hyperlink{structpscip__t}{pscip\_\-t})
+\item 
+\#define \hyperlink{pscip_8h_b661b89922349e1f42117ae8518801b5}{PSCIP\_\-ERR\_\-OFFSET}~PSCIP\_\-IOCTL\_\-MAGIC
+\item 
+\#define \hyperlink{pscip_8h_e545bf20a6d1ef12c4ebce0ee38e28e6}{PSCIP\_\-MISMATCH\_\-ERR}~(PSCIP\_\-ERR\_\-OFFSET + 0)
+\item 
+\#define \hyperlink{pscip_8h_a0b920fdccfae233b941a391f9a5324f}{PSCIP\_\-REMLOC\_\-ERR}~(PSCIP\_\-ERR\_\-OFFSET + 1)
+\item 
+\#define \hyperlink{pscip_8h_9456f878d27f639ab2e7826620e6ca69}{PSCIP\_\-READ\_\-ERR}~(PSCIP\_\-ERR\_\-OFFSET + 2)
+\item 
+\#define \hyperlink{pscip_8h_42916fdc194d01eb84928ba96b628cac}{PSCIP\_\-TOUT\_\-ERR}~(PSCIP\_\-ERR\_\-OFFSET + 3)
+\item 
+\#define \hyperlink{pscip_8h_b1919dfb790e08b1384bf6ac5b389f4f}{PSCIP\_\-BUFFER\_\-ERR}~(PSCIP\_\-ERR\_\-OFFSET + 4)
+\item 
+\#define \hyperlink{pscip_8h_648cdda556328941bf2d6b5209c245ca}{PSCIP\_\-DSP\_\-ERR}~(PSCIP\_\-ERR\_\-OFFSET + 5)
+\item 
+\#define \hyperlink{pscip_8h_bf6400c5fa906f201860824adcf69dc2}{PSCIP\_\-LINK\_\-ERR}~(PSCIP\_\-ERR\_\-OFFSET + 6)
+\item 
+\#define \hyperlink{pscip_8h_a3ff8458fc8540824a7e1d39d0122d16}{PSCIP\_\-TX\_\-ERR}~(PSCIP\_\-ERR\_\-OFFSET + 7)
+\item 
+\#define \hyperlink{pscip_8h_507cc1e5cecd0dc495549f7f9f42dc0a}{PSCIP\_\-PARAM\_\-ERR}~(PSCIP\_\-ERR\_\-OFFSET + 8)
+\item 
+\#define \hyperlink{pscip_8h_6a84d9fb1619ec1617a343d4c2fa6e0c}{PSCIP\_\-BUS\_\-ERR}~(PSCIP\_\-ERR\_\-OFFSET + 9)
+\item 
+\#define \hyperlink{pscip_8h_d665b2c4a0bd94221563aef3f1ac61a2}{PSCIP\_\-SIZE\_\-MSG}~80
+\item 
+\#define \hyperlink{pscip_8h_44bc792c860f34473029a901a60dbe35}{PSCIP\_\-MINOR\_\-NUMBER}~0;
+\item 
+\#define \hyperlink{pscip_8h_22ccf226492566e2a4bd692289186529}{PSCIP\_\-MAJOR\_\-NUMBER}~0;
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Header file used in the driver and device server. 
+
+Includes structures, ioctl commands and masks useful in the driver and DS
+
+GG - 18.07.205: First implementation
+
+22/10/2008 - Start of porting the driver :\begin{itemize}
+\item from 2.4.x to 2.6.x\item from VME to PCIGG \end{itemize}
+
+
+Definition in file \hyperlink{pscip_8h-source}{pscip.h}.
+
+\subsection{Define Documentation}
+\hypertarget{pscip_8h_27a13cf462bf22c5ec0c445e6de9caf9}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-BREAK\_\-ERR\_\-0\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-0\_\-MSK}}
+\index{PSCIP\_\-BREAK\_\-ERR\_\-0\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-0\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-BREAK\_\-ERR\_\-0\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BREAK\_\-ERR\_\-0\_\-MSK~0x2000}}
+\label{pscip_8h_27a13cf462bf22c5ec0c445e6de9caf9}
+
+
+
+
+Definition at line 92 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_d413350d8ca89cce5fd477f6860a0042}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-BREAK\_\-ERR\_\-1\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-1\_\-MSK}}
+\index{PSCIP\_\-BREAK\_\-ERR\_\-1\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-1\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-BREAK\_\-ERR\_\-1\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BREAK\_\-ERR\_\-1\_\-MSK~0x100}}
+\label{pscip_8h_d413350d8ca89cce5fd477f6860a0042}
+
+
+
+
+Definition at line 97 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_a58e66d4d65b604550b4d2d552313cba}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-BREAK\_\-ERR\_\-2\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-2\_\-MSK}}
+\index{PSCIP\_\-BREAK\_\-ERR\_\-2\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-2\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-BREAK\_\-ERR\_\-2\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BREAK\_\-ERR\_\-2\_\-MSK~0x8}}
+\label{pscip_8h_a58e66d4d65b604550b4d2d552313cba}
+
+
+
+
+Definition at line 102 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_25ae7db1dc51169973988daca95a9d3a}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-BREAK\_\-ERR\_\-3\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-3\_\-MSK}}
+\index{PSCIP\_\-BREAK\_\-ERR\_\-3\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-3\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-BREAK\_\-ERR\_\-3\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BREAK\_\-ERR\_\-3\_\-MSK~0x100}}
+\label{pscip_8h_25ae7db1dc51169973988daca95a9d3a}
+
+
+
+
+Definition at line 111 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_5380e84ef27de9dddcb816e614c519d0}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-BREAK\_\-ERR\_\-4\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-4\_\-MSK}}
+\index{PSCIP\_\-BREAK\_\-ERR\_\-4\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-4\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-BREAK\_\-ERR\_\-4\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BREAK\_\-ERR\_\-4\_\-MSK~0x8}}
+\label{pscip_8h_5380e84ef27de9dddcb816e614c519d0}
+
+
+
+
+Definition at line 116 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_1ea63530119f92e4f65026a25577df9c}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-BREAK\_\-ERR\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-MSK}}
+\index{PSCIP\_\-BREAK\_\-ERR\_\-MSK@{PSCIP\_\-BREAK\_\-ERR\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-BREAK\_\-ERR\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BREAK\_\-ERR\_\-MSK~0x8}}
+\label{pscip_8h_1ea63530119f92e4f65026a25577df9c}
+
+
+
+
+Definition at line 123 of file pscip.h.\hypertarget{pscip_8h_b1919dfb790e08b1384bf6ac5b389f4f}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-BUFFER\_\-ERR@{PSCIP\_\-BUFFER\_\-ERR}}
+\index{PSCIP\_\-BUFFER\_\-ERR@{PSCIP\_\-BUFFER\_\-ERR}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-BUFFER\_\-ERR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BUFFER\_\-ERR~(PSCIP\_\-ERR\_\-OFFSET + 4)}}
+\label{pscip_8h_b1919dfb790e08b1384bf6ac5b389f4f}
+
+
+
+
+Definition at line 173 of file pscip.h.\hypertarget{pscip_8h_6a84d9fb1619ec1617a343d4c2fa6e0c}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-BUS\_\-ERR@{PSCIP\_\-BUS\_\-ERR}}
+\index{PSCIP\_\-BUS\_\-ERR@{PSCIP\_\-BUS\_\-ERR}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-BUS\_\-ERR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BUS\_\-ERR~(PSCIP\_\-ERR\_\-OFFSET + 9)}}
+\label{pscip_8h_6a84d9fb1619ec1617a343d4c2fa6e0c}
+
+
+
+
+Definition at line 178 of file pscip.h.\hypertarget{pscip_8h_2a7c8b03e64b8001a8fab58b5912ef30}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-CLRCOUNTER@{PSCIP\_\-CLRCOUNTER}}
+\index{PSCIP\_\-CLRCOUNTER@{PSCIP\_\-CLRCOUNTER}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-CLRCOUNTER}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-CLRCOUNTER~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 18, {\bf pscip\_\-t})}}
+\label{pscip_8h_2a7c8b03e64b8001a8fab58b5912ef30}
+
+
+
+
+Definition at line 163 of file pscip.h.
+
+Referenced by main(), and pscip\_\-ioctl().\hypertarget{pscip_8h_1c1b2d0a7c89d428d5451f81240fd677}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-COMP\_\-ERR\_\-0\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-0\_\-MSK}}
+\index{PSCIP\_\-COMP\_\-ERR\_\-0\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-0\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-COMP\_\-ERR\_\-0\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-COMP\_\-ERR\_\-0\_\-MSK~0x800}}
+\label{pscip_8h_1c1b2d0a7c89d428d5451f81240fd677}
+
+
+
+
+Definition at line 94 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_8c6fa45efeef3547663a30d393bbce16}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-COMP\_\-ERR\_\-1\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-1\_\-MSK}}
+\index{PSCIP\_\-COMP\_\-ERR\_\-1\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-1\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-COMP\_\-ERR\_\-1\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-COMP\_\-ERR\_\-1\_\-MSK~0x40}}
+\label{pscip_8h_8c6fa45efeef3547663a30d393bbce16}
+
+
+
+
+Definition at line 99 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_65e2c03d41a0d99801653dd29820c129}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-COMP\_\-ERR\_\-2\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-2\_\-MSK}}
+\index{PSCIP\_\-COMP\_\-ERR\_\-2\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-2\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-COMP\_\-ERR\_\-2\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-COMP\_\-ERR\_\-2\_\-MSK~0x2}}
+\label{pscip_8h_65e2c03d41a0d99801653dd29820c129}
+
+
+
+
+Definition at line 104 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_7d3a12806330ac9c9230663e3050cd0c}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-COMP\_\-ERR\_\-3\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-3\_\-MSK}}
+\index{PSCIP\_\-COMP\_\-ERR\_\-3\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-3\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-COMP\_\-ERR\_\-3\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-COMP\_\-ERR\_\-3\_\-MSK~0x40}}
+\label{pscip_8h_7d3a12806330ac9c9230663e3050cd0c}
+
+
+
+
+Definition at line 113 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_9bc5e31f2c964935e54b849ca5ed27cf}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-COMP\_\-ERR\_\-4\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-4\_\-MSK}}
+\index{PSCIP\_\-COMP\_\-ERR\_\-4\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-4\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-COMP\_\-ERR\_\-4\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-COMP\_\-ERR\_\-4\_\-MSK~0x2}}
+\label{pscip_8h_9bc5e31f2c964935e54b849ca5ed27cf}
+
+
+
+
+Definition at line 118 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_252dc6b62397369ab0782713467db618}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-COMP\_\-ERR\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-MSK}}
+\index{PSCIP\_\-COMP\_\-ERR\_\-MSK@{PSCIP\_\-COMP\_\-ERR\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-COMP\_\-ERR\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-COMP\_\-ERR\_\-MSK~0x2}}
+\label{pscip_8h_252dc6b62397369ab0782713467db618}
+
+
+
+
+Definition at line 125 of file pscip.h.\hypertarget{pscip_8h_648cdda556328941bf2d6b5209c245ca}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-DSP\_\-ERR@{PSCIP\_\-DSP\_\-ERR}}
+\index{PSCIP\_\-DSP\_\-ERR@{PSCIP\_\-DSP\_\-ERR}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-DSP\_\-ERR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-DSP\_\-ERR~(PSCIP\_\-ERR\_\-OFFSET + 5)}}
+\label{pscip_8h_648cdda556328941bf2d6b5209c245ca}
+
+
+
+
+Definition at line 174 of file pscip.h.\hypertarget{pscip_8h_6747cbf210e1a9e3e552b0acf3837963}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-DSP\_\-MSK@{PSCIP\_\-DSP\_\-MSK}}
+\index{PSCIP\_\-DSP\_\-MSK@{PSCIP\_\-DSP\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-DSP\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-DSP\_\-MSK~0x10}}
+\label{pscip_8h_6747cbf210e1a9e3e552b0acf3837963}
+
+
+
+
+Definition at line 59 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-errors(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-read\_\-proc().\hypertarget{pscip_8h_98ab0b3a0501e0ad2b1e7377b8ba621d}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-DUMPFPGAREGS@{PSCIP\_\-DUMPFPGAREGS}}
+\index{PSCIP\_\-DUMPFPGAREGS@{PSCIP\_\-DUMPFPGAREGS}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-DUMPFPGAREGS}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-DUMPFPGAREGS~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 19, {\bf pscip\_\-t})}}
+\label{pscip_8h_98ab0b3a0501e0ad2b1e7377b8ba621d}
+
+
+
+
+Definition at line 164 of file pscip.h.
+
+Referenced by main(), and pscip\_\-ioctl().\hypertarget{pscip_8h_5e5c3361310be64daa76d9d103fe34d7}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-ECHO\_\-MSK@{PSCIP\_\-ECHO\_\-MSK}}
+\index{PSCIP\_\-ECHO\_\-MSK@{PSCIP\_\-ECHO\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-ECHO\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-ECHO\_\-MSK~0x40}}
+\label{pscip_8h_5e5c3361310be64daa76d9d103fe34d7}
+
+
+
+
+Definition at line 57 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), and k\_\-pscip\_\-wrwave().\hypertarget{pscip_8h_b661b89922349e1f42117ae8518801b5}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-ERR\_\-OFFSET@{PSCIP\_\-ERR\_\-OFFSET}}
+\index{PSCIP\_\-ERR\_\-OFFSET@{PSCIP\_\-ERR\_\-OFFSET}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-ERR\_\-OFFSET}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-ERR\_\-OFFSET~PSCIP\_\-IOCTL\_\-MAGIC}}
+\label{pscip_8h_b661b89922349e1f42117ae8518801b5}
+
+
+
+
+Definition at line 168 of file pscip.h.
+
+Referenced by main().\hypertarget{pscip_8h_0534332c3b81f68e09fe1b2f5ea56714}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-ERRCLEAR\_\-MSK@{PSCIP\_\-ERRCLEAR\_\-MSK}}
+\index{PSCIP\_\-ERRCLEAR\_\-MSK@{PSCIP\_\-ERRCLEAR\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-ERRCLEAR\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-ERRCLEAR\_\-MSK~0x8000}}
+\label{pscip_8h_0534332c3b81f68e09fe1b2f5ea56714}
+
+
+
+
+Definition at line 76 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-clear\_\-err\_\-counter(), k\_\-pscip\_\-wait\_\-linkdown(), and pscip\_\-irq\_\-handler().\hypertarget{pscip_8h_f6a2b8afefa74b6d7abf5be4b8a26386}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-ERRCNT\_\-MSK@{PSCIP\_\-ERRCNT\_\-MSK}}
+\index{PSCIP\_\-ERRCNT\_\-MSK@{PSCIP\_\-ERRCNT\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-ERRCNT\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-ERRCNT\_\-MSK~0x8000}}
+\label{pscip_8h_f6a2b8afefa74b6d7abf5be4b8a26386}
+
+
+
+
+Definition at line 83 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-wait\_\-linkdown().\hypertarget{pscip_8h_efe3cf779ccb8b637255c8b143541922}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-ERROR\_\-MSK@{PSCIP\_\-ERROR\_\-MSK}}
+\index{PSCIP\_\-ERROR\_\-MSK@{PSCIP\_\-ERROR\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-ERROR\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-ERROR\_\-MSK~0x8000}}
+\label{pscip_8h_efe3cf779ccb8b637255c8b143541922}
+
+
+
+
+Definition at line 66 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-irq\_\-handler().\hypertarget{pscip_8h_84ef82c05ccc85482ef34413caedcc89}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-FRAME\_\-ERR\_\-0\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-0\_\-MSK}}
+\index{PSCIP\_\-FRAME\_\-ERR\_\-0\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-0\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-FRAME\_\-ERR\_\-0\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-FRAME\_\-ERR\_\-0\_\-MSK~0x1000}}
+\label{pscip_8h_84ef82c05ccc85482ef34413caedcc89}
+
+
+
+
+Definition at line 93 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_327c009f2fd9e0d38d45e51599a69545}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-FRAME\_\-ERR\_\-1\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-1\_\-MSK}}
+\index{PSCIP\_\-FRAME\_\-ERR\_\-1\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-1\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-FRAME\_\-ERR\_\-1\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-FRAME\_\-ERR\_\-1\_\-MSK~0x80}}
+\label{pscip_8h_327c009f2fd9e0d38d45e51599a69545}
+
+
+
+
+Definition at line 98 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_48f0004b0214403210e6cf34a052c7e3}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-FRAME\_\-ERR\_\-2\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-2\_\-MSK}}
+\index{PSCIP\_\-FRAME\_\-ERR\_\-2\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-2\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-FRAME\_\-ERR\_\-2\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-FRAME\_\-ERR\_\-2\_\-MSK~0x4}}
+\label{pscip_8h_48f0004b0214403210e6cf34a052c7e3}
+
+
+
+
+Definition at line 103 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_fca6cddcf6fedbaf3bc42dd4a2cc0566}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-FRAME\_\-ERR\_\-3\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-3\_\-MSK}}
+\index{PSCIP\_\-FRAME\_\-ERR\_\-3\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-3\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-FRAME\_\-ERR\_\-3\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-FRAME\_\-ERR\_\-3\_\-MSK~0x80}}
+\label{pscip_8h_fca6cddcf6fedbaf3bc42dd4a2cc0566}
+
+
+
+
+Definition at line 112 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_480694597b99c899f67b96d7b575e5ad}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-FRAME\_\-ERR\_\-4\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-4\_\-MSK}}
+\index{PSCIP\_\-FRAME\_\-ERR\_\-4\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-4\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-FRAME\_\-ERR\_\-4\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-FRAME\_\-ERR\_\-4\_\-MSK~0x4}}
+\label{pscip_8h_480694597b99c899f67b96d7b575e5ad}
+
+
+
+
+Definition at line 117 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_9541bbd441615cb7228d0d38bcfcc7fb}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-FRAME\_\-ERR\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-MSK}}
+\index{PSCIP\_\-FRAME\_\-ERR\_\-MSK@{PSCIP\_\-FRAME\_\-ERR\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-FRAME\_\-ERR\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-FRAME\_\-ERR\_\-MSK~0x4}}
+\label{pscip_8h_9541bbd441615cb7228d0d38bcfcc7fb}
+
+
+
+
+Definition at line 124 of file pscip.h.\hypertarget{pscip_8h_59b697efb51c2c83347d8419b704c983}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-INPUTBUF\_\-MSK@{PSCIP\_\-INPUTBUF\_\-MSK}}
+\index{PSCIP\_\-INPUTBUF\_\-MSK@{PSCIP\_\-INPUTBUF\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-INPUTBUF\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-INPUTBUF\_\-MSK~0x20}}
+\label{pscip_8h_59b697efb51c2c83347d8419b704c983}
+
+
+
+
+Definition at line 58 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-errors(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-read\_\-proc().\hypertarget{pscip_8h_f1c216310d1c8a97199c376c50577ca5}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-IOCTL\_\-MAGIC@{PSCIP\_\-IOCTL\_\-MAGIC}}
+\index{PSCIP\_\-IOCTL\_\-MAGIC@{PSCIP\_\-IOCTL\_\-MAGIC}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-IOCTL\_\-MAGIC}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-IOCTL\_\-MAGIC~0xB1B}}
+\label{pscip_8h_f1c216310d1c8a97199c376c50577ca5}
+
+
+
+
+Definition at line 148 of file pscip.h.
+
+Referenced by pscip\_\-get\_\-errmsg().\hypertarget{pscip_8h_bf6400c5fa906f201860824adcf69dc2}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-LINK\_\-ERR@{PSCIP\_\-LINK\_\-ERR}}
+\index{PSCIP\_\-LINK\_\-ERR@{PSCIP\_\-LINK\_\-ERR}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-LINK\_\-ERR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-LINK\_\-ERR~(PSCIP\_\-ERR\_\-OFFSET + 6)}}
+\label{pscip_8h_bf6400c5fa906f201860824adcf69dc2}
+
+
+
+
+Definition at line 175 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wait\_\-linkdown(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), and k\_\-pscip\_\-wrwave().\hypertarget{pscip_8h_41a33862da3a71478344216914a894d9}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-LINK\_\-MSK@{PSCIP\_\-LINK\_\-MSK}}
+\index{PSCIP\_\-LINK\_\-MSK@{PSCIP\_\-LINK\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-LINK\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-LINK\_\-MSK~0x4}}
+\label{pscip_8h_41a33862da3a71478344216914a894d9}
+
+
+
+
+Definition at line 61 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), and k\_\-pscip\_\-wrwave().\hypertarget{pscip_8h_0e2a6d07d5e8dd2925cfbbd1c91495bf}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-LINKDOWN\_\-MSK@{PSCIP\_\-LINKDOWN\_\-MSK}}
+\index{PSCIP\_\-LINKDOWN\_\-MSK@{PSCIP\_\-LINKDOWN\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-LINKDOWN\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-LINKDOWN\_\-MSK~0x80}}
+\label{pscip_8h_0e2a6d07d5e8dd2925cfbbd1c91495bf}
+
+
+
+
+Definition at line 84 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-errors(), IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wait\_\-linkdown(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), pscip\_\-irq\_\-handler(), and pscip\_\-read\_\-proc().\hypertarget{pscip_8h_76415ef6a4793984654ab438584e4221}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-LINKDOWN\_\-TOUT@{PSCIP\_\-LINKDOWN\_\-TOUT}}
+\index{PSCIP\_\-LINKDOWN\_\-TOUT@{PSCIP\_\-LINKDOWN\_\-TOUT}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-LINKDOWN\_\-TOUT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-LINKDOWN\_\-TOUT~4}}
+\label{pscip_8h_76415ef6a4793984654ab438584e4221}
+
+
+
+
+Definition at line 138 of file pscip.h.
+
+Referenced by init\_\-pscip(), and k\_\-pscip\_\-wait\_\-linkdown().\hypertarget{pscip_8h_5ac9ed160f475c343b09a06a86faf4cd}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-LOOPBACK\_\-MSK@{PSCIP\_\-LOOPBACK\_\-MSK}}
+\index{PSCIP\_\-LOOPBACK\_\-MSK@{PSCIP\_\-LOOPBACK\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-LOOPBACK\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-LOOPBACK\_\-MSK~0x1}}
+\label{pscip_8h_5ac9ed160f475c343b09a06a86faf4cd}
+
+
+
+
+Definition at line 86 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_22ccf226492566e2a4bd692289186529}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-MAJOR\_\-NUMBER@{PSCIP\_\-MAJOR\_\-NUMBER}}
+\index{PSCIP\_\-MAJOR\_\-NUMBER@{PSCIP\_\-MAJOR\_\-NUMBER}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-MAJOR\_\-NUMBER}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-MAJOR\_\-NUMBER~0;}}
+\label{pscip_8h_22ccf226492566e2a4bd692289186529}
+
+
+
+
+Definition at line 186 of file pscip.h.\hypertarget{pscip_8h_44bc792c860f34473029a901a60dbe35}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-MINOR\_\-NUMBER@{PSCIP\_\-MINOR\_\-NUMBER}}
+\index{PSCIP\_\-MINOR\_\-NUMBER@{PSCIP\_\-MINOR\_\-NUMBER}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-MINOR\_\-NUMBER}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-MINOR\_\-NUMBER~0;}}
+\label{pscip_8h_44bc792c860f34473029a901a60dbe35}
+
+
+
+
+Definition at line 185 of file pscip.h.\hypertarget{pscip_8h_e545bf20a6d1ef12c4ebce0ee38e28e6}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-MISMATCH\_\-ERR@{PSCIP\_\-MISMATCH\_\-ERR}}
+\index{PSCIP\_\-MISMATCH\_\-ERR@{PSCIP\_\-MISMATCH\_\-ERR}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-MISMATCH\_\-ERR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-MISMATCH\_\-ERR~(PSCIP\_\-ERR\_\-OFFSET + 0)}}
+\label{pscip_8h_e545bf20a6d1ef12c4ebce0ee38e28e6}
+
+
+
+
+Definition at line 169 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), and k\_\-pscip\_\-wrwave().\hypertarget{pscip_8h_df801c8c361d6a3e4252076cc8881330}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-PAR\_\-ERR\_\-0\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-0\_\-MSK}}
+\index{PSCIP\_\-PAR\_\-ERR\_\-0\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-0\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-PAR\_\-ERR\_\-0\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PAR\_\-ERR\_\-0\_\-MSK~0x4000}}
+\label{pscip_8h_df801c8c361d6a3e4252076cc8881330}
+
+
+
+
+Definition at line 91 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_ac068ca99a34d17ef3e16f8990452647}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-PAR\_\-ERR\_\-1\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-1\_\-MSK}}
+\index{PSCIP\_\-PAR\_\-ERR\_\-1\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-1\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-PAR\_\-ERR\_\-1\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PAR\_\-ERR\_\-1\_\-MSK~0x200}}
+\label{pscip_8h_ac068ca99a34d17ef3e16f8990452647}
+
+
+
+
+Definition at line 96 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_2fcf60d989bdb5e26a2fc228bd84c189}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-PAR\_\-ERR\_\-2\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-2\_\-MSK}}
+\index{PSCIP\_\-PAR\_\-ERR\_\-2\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-2\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-PAR\_\-ERR\_\-2\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PAR\_\-ERR\_\-2\_\-MSK~0x10}}
+\label{pscip_8h_2fcf60d989bdb5e26a2fc228bd84c189}
+
+
+
+
+Definition at line 101 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_d5a1f88eaf104520e552bf0e91ccbb07}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-PAR\_\-ERR\_\-3\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-3\_\-MSK}}
+\index{PSCIP\_\-PAR\_\-ERR\_\-3\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-3\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-PAR\_\-ERR\_\-3\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PAR\_\-ERR\_\-3\_\-MSK~0x200}}
+\label{pscip_8h_d5a1f88eaf104520e552bf0e91ccbb07}
+
+
+
+
+Definition at line 110 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_8de1c54d691f6eed3ab942b58a2dda71}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-PAR\_\-ERR\_\-4\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-4\_\-MSK}}
+\index{PSCIP\_\-PAR\_\-ERR\_\-4\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-4\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-PAR\_\-ERR\_\-4\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PAR\_\-ERR\_\-4\_\-MSK~0x10}}
+\label{pscip_8h_8de1c54d691f6eed3ab942b58a2dda71}
+
+
+
+
+Definition at line 115 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_7f97604abcd0363026b87993b5477f0e}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-PAR\_\-ERR\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-MSK}}
+\index{PSCIP\_\-PAR\_\-ERR\_\-MSK@{PSCIP\_\-PAR\_\-ERR\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-PAR\_\-ERR\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PAR\_\-ERR\_\-MSK~0x10}}
+\label{pscip_8h_7f97604abcd0363026b87993b5477f0e}
+
+
+
+
+Definition at line 122 of file pscip.h.\hypertarget{pscip_8h_507cc1e5cecd0dc495549f7f9f42dc0a}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-PARAM\_\-ERR@{PSCIP\_\-PARAM\_\-ERR}}
+\index{PSCIP\_\-PARAM\_\-ERR@{PSCIP\_\-PARAM\_\-ERR}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-PARAM\_\-ERR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PARAM\_\-ERR~(PSCIP\_\-ERR\_\-OFFSET + 8)}}
+\label{pscip_8h_507cc1e5cecd0dc495549f7f9f42dc0a}
+
+
+
+
+Definition at line 177 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-rdlinkstat().\hypertarget{pscip_8h_b1756c28ed55fd46b27c1c9c9c79109a}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-PCIADDR@{PSCIP\_\-PCIADDR}}
+\index{PSCIP\_\-PCIADDR@{PSCIP\_\-PCIADDR}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-PCIADDR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PCIADDR~\_\-IOR  (PSCIP\_\-IOCTL\_\-MAGIC, 9, unsigned long)}}
+\label{pscip_8h_b1756c28ed55fd46b27c1c9c9c79109a}
+
+
+
+
+Definition at line 158 of file pscip.h.
+
+Referenced by main(), and pscip\_\-ioctl().\hypertarget{pscip_8h_927f359d87b1927f99e7efd666e49081}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-RDFPGASTAT@{PSCIP\_\-RDFPGASTAT}}
+\index{PSCIP\_\-RDFPGASTAT@{PSCIP\_\-RDFPGASTAT}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-RDFPGASTAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RDFPGASTAT~\_\-IOR  (PSCIP\_\-IOCTL\_\-MAGIC, 7, {\bf pscip\_\-fpga\_\-t})}}
+\label{pscip_8h_927f359d87b1927f99e7efd666e49081}
+
+
+
+
+Definition at line 155 of file pscip.h.
+
+Referenced by pscip\_\-ioctl().\hypertarget{pscip_8h_bed7503a31783d40312723134b775222}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-RDLINKSTAT@{PSCIP\_\-RDLINKSTAT}}
+\index{PSCIP\_\-RDLINKSTAT@{PSCIP\_\-RDLINKSTAT}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-RDLINKSTAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RDLINKSTAT~\_\-IOWR  (PSCIP\_\-IOCTL\_\-MAGIC,6, {\bf pscip\_\-t})}}
+\label{pscip_8h_bed7503a31783d40312723134b775222}
+
+
+
+
+Definition at line 154 of file pscip.h.
+
+Referenced by pscip\_\-ioctl().\hypertarget{pscip_8h_5da1d5661a8f241619875b191b9a8e50}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-RDSTATISTICS@{PSCIP\_\-RDSTATISTICS}}
+\index{PSCIP\_\-RDSTATISTICS@{PSCIP\_\-RDSTATISTICS}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-RDSTATISTICS}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RDSTATISTICS~\_\-IOR  (PSCIP\_\-IOCTL\_\-MAGIC, 8, {\bf pscip\_\-stats\_\-t})}}
+\label{pscip_8h_5da1d5661a8f241619875b191b9a8e50}
+
+
+
+
+Definition at line 156 of file pscip.h.
+
+Referenced by pscip\_\-ioctl().\hypertarget{pscip_8h_f6891eb1f27034974efd79d30f27ed7a}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-RDWAVE@{PSCIP\_\-RDWAVE}}
+\index{PSCIP\_\-RDWAVE@{PSCIP\_\-RDWAVE}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-RDWAVE}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RDWAVE~\_\-IOWR (PSCIP\_\-IOCTL\_\-MAGIC, 5, {\bf pscip\_\-t})}}
+\label{pscip_8h_f6891eb1f27034974efd79d30f27ed7a}
+
+
+
+
+Definition at line 153 of file pscip.h.
+
+Referenced by main(), and pscip\_\-ioctl().\hypertarget{pscip_8h_79af993cebbbe8c2753a3ef7ce954cbf}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-RDWAVE\_\-BUSY\_\-MSK@{PSCIP\_\-RDWAVE\_\-BUSY\_\-MSK}}
+\index{PSCIP\_\-RDWAVE\_\-BUSY\_\-MSK@{PSCIP\_\-RDWAVE\_\-BUSY\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-RDWAVE\_\-BUSY\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RDWAVE\_\-BUSY\_\-MSK~0x10}}
+\label{pscip_8h_79af993cebbbe8c2753a3ef7ce954cbf}
+
+
+
+
+Definition at line 67 of file pscip.h.\hypertarget{pscip_8h_dc56993b93ac2b4edf3742d94a042895}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-RDWAVE\_\-IDX@{PSCIP\_\-RDWAVE\_\-IDX}}
+\index{PSCIP\_\-RDWAVE\_\-IDX@{PSCIP\_\-RDWAVE\_\-IDX}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-RDWAVE\_\-IDX}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RDWAVE\_\-IDX~4}}
+\label{pscip_8h_dc56993b93ac2b4edf3742d94a042895}
+
+
+
+
+Definition at line 136 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-rdlinkstat(), and pscip\_\-irq\_\-handler().\hypertarget{pscip_8h_1ad87f3dd3daf9ceac34bc7c040fd488}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-READ@{PSCIP\_\-READ}}
+\index{PSCIP\_\-READ@{PSCIP\_\-READ}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-READ}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-READ~\_\-IOWR (PSCIP\_\-IOCTL\_\-MAGIC, 3, {\bf pscip\_\-t})}}
+\label{pscip_8h_1ad87f3dd3daf9ceac34bc7c040fd488}
+
+
+
+
+Definition at line 151 of file pscip.h.
+
+Referenced by main(), and pscip\_\-ioctl().\hypertarget{pscip_8h_13ba36df2bb45634e26582e68ab1e28a}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-READ\_\-BUSY\_\-MSK@{PSCIP\_\-READ\_\-BUSY\_\-MSK}}
+\index{PSCIP\_\-READ\_\-BUSY\_\-MSK@{PSCIP\_\-READ\_\-BUSY\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-READ\_\-BUSY\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-READ\_\-BUSY\_\-MSK~0x4}}
+\label{pscip_8h_13ba36df2bb45634e26582e68ab1e28a}
+
+
+
+
+Definition at line 69 of file pscip.h.\hypertarget{pscip_8h_9456f878d27f639ab2e7826620e6ca69}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-READ\_\-ERR@{PSCIP\_\-READ\_\-ERR}}
+\index{PSCIP\_\-READ\_\-ERR@{PSCIP\_\-READ\_\-ERR}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-READ\_\-ERR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-READ\_\-ERR~(PSCIP\_\-ERR\_\-OFFSET + 2)}}
+\label{pscip_8h_9456f878d27f639ab2e7826620e6ca69}
+
+
+
+
+Definition at line 171 of file pscip.h.\hypertarget{pscip_8h_adcef2e7b45d1bedb797b98591ff4042}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-READ\_\-IDX@{PSCIP\_\-READ\_\-IDX}}
+\index{PSCIP\_\-READ\_\-IDX@{PSCIP\_\-READ\_\-IDX}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-READ\_\-IDX}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-READ\_\-IDX~2}}
+\label{pscip_8h_adcef2e7b45d1bedb797b98591ff4042}
+
+
+
+
+Definition at line 134 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-rdlinkstat(), and pscip\_\-irq\_\-handler().\hypertarget{pscip_8h_734db0298305c99c5ed29f2881c08ee5}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-READIPREG@{PSCIP\_\-READIPREG}}
+\index{PSCIP\_\-READIPREG@{PSCIP\_\-READIPREG}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-READIPREG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-READIPREG~\_\-IOWR (PSCIP\_\-IOCTL\_\-MAGIC, 11, {\bf pscip\_\-t})}}
+\label{pscip_8h_734db0298305c99c5ed29f2881c08ee5}
+
+
+
+
+Definition at line 166 of file pscip.h.
+
+Referenced by main(), and pscip\_\-ioctl().\hypertarget{pscip_8h_a0b920fdccfae233b941a391f9a5324f}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-REMLOC\_\-ERR@{PSCIP\_\-REMLOC\_\-ERR}}
+\index{PSCIP\_\-REMLOC\_\-ERR@{PSCIP\_\-REMLOC\_\-ERR}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-REMLOC\_\-ERR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-REMLOC\_\-ERR~(PSCIP\_\-ERR\_\-OFFSET + 1)}}
+\label{pscip_8h_a0b920fdccfae233b941a391f9a5324f}
+
+
+
+
+Definition at line 170 of file pscip.h.\hypertarget{pscip_8h_94c046d664551a867db7de20906b46f8}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-REMLOC\_\-MSK@{PSCIP\_\-REMLOC\_\-MSK}}
+\index{PSCIP\_\-REMLOC\_\-MSK@{PSCIP\_\-REMLOC\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-REMLOC\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-REMLOC\_\-MSK~0x8}}
+\label{pscip_8h_94c046d664551a867db7de20906b46f8}
+
+
+
+
+Definition at line 60 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-errors(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-read\_\-proc().\hypertarget{pscip_8h_5788cb36fa2a76b191152affbce54791}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-RESET@{PSCIP\_\-RESET}}
+\index{PSCIP\_\-RESET@{PSCIP\_\-RESET}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-RESET}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RESET~\_\-IO  (PSCIP\_\-IOCTL\_\-MAGIC, 17)}}
+\label{pscip_8h_5788cb36fa2a76b191152affbce54791}
+
+
+
+
+Definition at line 160 of file pscip.h.
+
+Referenced by main(), and pscip\_\-ioctl().\hypertarget{pscip_8h_f41679abbe34eab8483f9719f786a7f0}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-SETCUR\_\-BUSY\_\-MSK@{PSCIP\_\-SETCUR\_\-BUSY\_\-MSK}}
+\index{PSCIP\_\-SETCUR\_\-BUSY\_\-MSK@{PSCIP\_\-SETCUR\_\-BUSY\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-SETCUR\_\-BUSY\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-SETCUR\_\-BUSY\_\-MSK~0x1}}
+\label{pscip_8h_f41679abbe34eab8483f9719f786a7f0}
+
+
+
+
+Definition at line 71 of file pscip.h.\hypertarget{pscip_8h_f2d71b7fdc783dd22ccb19f09cdd20fc}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-SETLOOP\_\-MSK@{PSCIP\_\-SETLOOP\_\-MSK}}
+\index{PSCIP\_\-SETLOOP\_\-MSK@{PSCIP\_\-SETLOOP\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-SETLOOP\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-SETLOOP\_\-MSK~0x1}}
+\label{pscip_8h_f2d71b7fdc783dd22ccb19f09cdd20fc}
+
+
+
+
+Definition at line 77 of file pscip.h.\hypertarget{pscip_8h_d665b2c4a0bd94221563aef3f1ac61a2}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-SIZE\_\-MSG@{PSCIP\_\-SIZE\_\-MSG}}
+\index{PSCIP\_\-SIZE\_\-MSG@{PSCIP\_\-SIZE\_\-MSG}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-SIZE\_\-MSG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-SIZE\_\-MSG~80}}
+\label{pscip_8h_d665b2c4a0bd94221563aef3f1ac61a2}
+
+
+
+
+Definition at line 180 of file pscip.h.
+
+Referenced by pscip\_\-get\_\-errmsg().\hypertarget{pscip_8h_86c058ae122f12ef18680843bc2c0949}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-THREAD\_\-ERR\_\-MSK@{PSCIP\_\-THREAD\_\-ERR\_\-MSK}}
+\index{PSCIP\_\-THREAD\_\-ERR\_\-MSK@{PSCIP\_\-THREAD\_\-ERR\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-THREAD\_\-ERR\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-THREAD\_\-ERR\_\-MSK~0x2}}
+\label{pscip_8h_86c058ae122f12ef18680843bc2c0949}
+
+
+
+
+Definition at line 143 of file pscip.h.\hypertarget{pscip_8h_b6d7fefcaa8a61bbdac013f306915762}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-THREAD\_\-RUN\_\-MSK@{PSCIP\_\-THREAD\_\-RUN\_\-MSK}}
+\index{PSCIP\_\-THREAD\_\-RUN\_\-MSK@{PSCIP\_\-THREAD\_\-RUN\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-THREAD\_\-RUN\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-THREAD\_\-RUN\_\-MSK~0x1}}
+\label{pscip_8h_b6d7fefcaa8a61bbdac013f306915762}
+
+
+
+
+Definition at line 142 of file pscip.h.\hypertarget{pscip_8h_d98d269b9eaa6a9f38af4febda583d59}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-TIMEOUT\_\-ERR\_\-0\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-0\_\-MSK}}
+\index{PSCIP\_\-TIMEOUT\_\-ERR\_\-0\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-0\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-TIMEOUT\_\-ERR\_\-0\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-TIMEOUT\_\-ERR\_\-0\_\-MSK~0x400}}
+\label{pscip_8h_d98d269b9eaa6a9f38af4febda583d59}
+
+
+
+
+Definition at line 95 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_3877c08b4e5f0bff754160566c3b1f4b}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-TIMEOUT\_\-ERR\_\-1\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-1\_\-MSK}}
+\index{PSCIP\_\-TIMEOUT\_\-ERR\_\-1\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-1\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-TIMEOUT\_\-ERR\_\-1\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-TIMEOUT\_\-ERR\_\-1\_\-MSK~0x20}}
+\label{pscip_8h_3877c08b4e5f0bff754160566c3b1f4b}
+
+
+
+
+Definition at line 100 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_135787e357871ab2fb61970c5ef476cb}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-TIMEOUT\_\-ERR\_\-2\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-2\_\-MSK}}
+\index{PSCIP\_\-TIMEOUT\_\-ERR\_\-2\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-2\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-TIMEOUT\_\-ERR\_\-2\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-TIMEOUT\_\-ERR\_\-2\_\-MSK~0x1}}
+\label{pscip_8h_135787e357871ab2fb61970c5ef476cb}
+
+
+
+
+Definition at line 105 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_851e48c111466921614bb14c5840456e}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-TIMEOUT\_\-ERR\_\-3\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-3\_\-MSK}}
+\index{PSCIP\_\-TIMEOUT\_\-ERR\_\-3\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-3\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-TIMEOUT\_\-ERR\_\-3\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-TIMEOUT\_\-ERR\_\-3\_\-MSK~0x20}}
+\label{pscip_8h_851e48c111466921614bb14c5840456e}
+
+
+
+
+Definition at line 114 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_ef50a4f3848c14539a1ab4ee55ae428d}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-TIMEOUT\_\-ERR\_\-4\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-4\_\-MSK}}
+\index{PSCIP\_\-TIMEOUT\_\-ERR\_\-4\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-4\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-TIMEOUT\_\-ERR\_\-4\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-TIMEOUT\_\-ERR\_\-4\_\-MSK~0x1}}
+\label{pscip_8h_ef50a4f3848c14539a1ab4ee55ae428d}
+
+
+
+
+Definition at line 119 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat().\hypertarget{pscip_8h_a22e9fd240f74a49787710c3b218506c}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-TIMEOUT\_\-ERR\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-MSK}}
+\index{PSCIP\_\-TIMEOUT\_\-ERR\_\-MSK@{PSCIP\_\-TIMEOUT\_\-ERR\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-TIMEOUT\_\-ERR\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-TIMEOUT\_\-ERR\_\-MSK~0x1}}
+\label{pscip_8h_a22e9fd240f74a49787710c3b218506c}
+
+
+
+
+Definition at line 126 of file pscip.h.\hypertarget{pscip_8h_42916fdc194d01eb84928ba96b628cac}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-TOUT\_\-ERR@{PSCIP\_\-TOUT\_\-ERR}}
+\index{PSCIP\_\-TOUT\_\-ERR@{PSCIP\_\-TOUT\_\-ERR}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-TOUT\_\-ERR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-TOUT\_\-ERR~(PSCIP\_\-ERR\_\-OFFSET + 3)}}
+\label{pscip_8h_42916fdc194d01eb84928ba96b628cac}
+
+
+
+
+Definition at line 172 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), and k\_\-pscip\_\-wrwave().\hypertarget{pscip_8h_a3ff8458fc8540824a7e1d39d0122d16}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-TX\_\-ERR@{PSCIP\_\-TX\_\-ERR}}
+\index{PSCIP\_\-TX\_\-ERR@{PSCIP\_\-TX\_\-ERR}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-TX\_\-ERR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-TX\_\-ERR~(PSCIP\_\-ERR\_\-OFFSET + 7)}}
+\label{pscip_8h_a3ff8458fc8540824a7e1d39d0122d16}
+
+
+
+
+Definition at line 176 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), and k\_\-pscip\_\-wrwave().\hypertarget{pscip_8h_dc700fb2ec1ecb614cd0b743e1a7781a}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-TXERR\_\-MSK@{PSCIP\_\-TXERR\_\-MSK}}
+\index{PSCIP\_\-TXERR\_\-MSK@{PSCIP\_\-TXERR\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-TXERR\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-TXERR\_\-MSK~0x40}}
+\label{pscip_8h_dc700fb2ec1ecb614cd0b743e1a7781a}
+
+
+
+
+Definition at line 85 of file pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-errors(), IP\_\-DEBUG\_\-read\_\-FPGA\_\-stat(), pscip\_\-irq\_\-handler(), and pscip\_\-read\_\-proc().\hypertarget{pscip_8h_f564936bc290fbdda24a3f9ce25ea70d}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-WRHIPRIO@{PSCIP\_\-WRHIPRIO}}
+\index{PSCIP\_\-WRHIPRIO@{PSCIP\_\-WRHIPRIO}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-WRHIPRIO}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRHIPRIO~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 1, {\bf pscip\_\-t})}}
+\label{pscip_8h_f564936bc290fbdda24a3f9ce25ea70d}
+
+
+
+
+Definition at line 149 of file pscip.h.
+
+Referenced by main(), and pscip\_\-ioctl().\hypertarget{pscip_8h_6d8d8c48fe5e3166eb6718304beeb66c}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-WRHPRIO\_\-IDX@{PSCIP\_\-WRHPRIO\_\-IDX}}
+\index{PSCIP\_\-WRHPRIO\_\-IDX@{PSCIP\_\-WRHPRIO\_\-IDX}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-WRHPRIO\_\-IDX}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRHPRIO\_\-IDX~0}}
+\label{pscip_8h_6d8d8c48fe5e3166eb6718304beeb66c}
+
+
+
+
+Definition at line 132 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-rdlinkstat(), and pscip\_\-irq\_\-handler().\hypertarget{pscip_8h_145abb0528d0562f2d3e9180d2d8bdd7}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-WRITE@{PSCIP\_\-WRITE}}
+\index{PSCIP\_\-WRITE@{PSCIP\_\-WRITE}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-WRITE}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRITE~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 2, {\bf pscip\_\-t})}}
+\label{pscip_8h_145abb0528d0562f2d3e9180d2d8bdd7}
+
+
+
+
+Definition at line 150 of file pscip.h.
+
+Referenced by main(), and pscip\_\-ioctl().\hypertarget{pscip_8h_616ca64c5d899df40f7286c8e990a613}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-WRITE\_\-BUSY\_\-MSK@{PSCIP\_\-WRITE\_\-BUSY\_\-MSK}}
+\index{PSCIP\_\-WRITE\_\-BUSY\_\-MSK@{PSCIP\_\-WRITE\_\-BUSY\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-WRITE\_\-BUSY\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRITE\_\-BUSY\_\-MSK~0x2}}
+\label{pscip_8h_616ca64c5d899df40f7286c8e990a613}
+
+
+
+
+Definition at line 70 of file pscip.h.\hypertarget{pscip_8h_11834e1dd301ff195bf17f2d3006a9dc}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-WRITE\_\-IDX@{PSCIP\_\-WRITE\_\-IDX}}
+\index{PSCIP\_\-WRITE\_\-IDX@{PSCIP\_\-WRITE\_\-IDX}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-WRITE\_\-IDX}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRITE\_\-IDX~1}}
+\label{pscip_8h_11834e1dd301ff195bf17f2d3006a9dc}
+
+
+
+
+Definition at line 133 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-rdlinkstat(), and pscip\_\-irq\_\-handler().\hypertarget{pscip_8h_835190a56c8493939498802b5bed4194}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-WRITEIPREG@{PSCIP\_\-WRITEIPREG}}
+\index{PSCIP\_\-WRITEIPREG@{PSCIP\_\-WRITEIPREG}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-WRITEIPREG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRITEIPREG~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 10, {\bf pscip\_\-t})}}
+\label{pscip_8h_835190a56c8493939498802b5bed4194}
+
+
+
+
+Definition at line 165 of file pscip.h.
+
+Referenced by main(), and pscip\_\-ioctl().\hypertarget{pscip_8h_582748943d8ab2e1c25e39011824dde5}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-WRITEREAD\_\-MODE\_\-MSK@{PSCIP\_\-WRITEREAD\_\-MODE\_\-MSK}}
+\index{PSCIP\_\-WRITEREAD\_\-MODE\_\-MSK@{PSCIP\_\-WRITEREAD\_\-MODE\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-WRITEREAD\_\-MODE\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRITEREAD\_\-MODE\_\-MSK~0x80}}
+\label{pscip_8h_582748943d8ab2e1c25e39011824dde5}
+
+
+
+
+Definition at line 56 of file pscip.h.\hypertarget{pscip_8h_c644090d8b0ecb81e3fc1f37136fefcb}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-WRWAVE@{PSCIP\_\-WRWAVE}}
+\index{PSCIP\_\-WRWAVE@{PSCIP\_\-WRWAVE}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-WRWAVE}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRWAVE~\_\-IOW  (PSCIP\_\-IOCTL\_\-MAGIC, 4, {\bf pscip\_\-t})}}
+\label{pscip_8h_c644090d8b0ecb81e3fc1f37136fefcb}
+
+
+
+
+Definition at line 152 of file pscip.h.
+
+Referenced by main(), and pscip\_\-ioctl().\hypertarget{pscip_8h_d5ccc1baf89461e88d11ed2b816df3ad}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-WRWAVE\_\-BUSY\_\-MSK@{PSCIP\_\-WRWAVE\_\-BUSY\_\-MSK}}
+\index{PSCIP\_\-WRWAVE\_\-BUSY\_\-MSK@{PSCIP\_\-WRWAVE\_\-BUSY\_\-MSK}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-WRWAVE\_\-BUSY\_\-MSK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRWAVE\_\-BUSY\_\-MSK~0x8}}
+\label{pscip_8h_d5ccc1baf89461e88d11ed2b816df3ad}
+
+
+
+
+Definition at line 68 of file pscip.h.\hypertarget{pscip_8h_7ed4de6f363e00ae2367bee55519d56c}{
+\index{pscip.h@{pscip.h}!PSCIP\_\-WRWAVE\_\-IDX@{PSCIP\_\-WRWAVE\_\-IDX}}
+\index{PSCIP\_\-WRWAVE\_\-IDX@{PSCIP\_\-WRWAVE\_\-IDX}!pscip.h@{pscip.h}}
+\subsubsection[{PSCIP\_\-WRWAVE\_\-IDX}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRWAVE\_\-IDX~3}}
+\label{pscip_8h_7ed4de6f363e00ae2367bee55519d56c}
+
+
+
+
+Definition at line 135 of file pscip.h.
+
+Referenced by k\_\-pscip\_\-rdlinkstat(), and pscip\_\-irq\_\-handler().

@@ -1,0 +1,1683 @@
+\hypertarget{k__pscip_8h}{
+\section{Z:/Project/development/PSCIP/driver/k\_\-pscip.h File Reference}
+\label{k__pscip_8h}\index{Z:/Project/development/PSCIP/driver/k\_\-pscip.h@{Z:/Project/development/PSCIP/driver/k\_\-pscip.h}}
+}
+Defines interface with kernel, device structure, IP addresses and masks.  
+
+
+
+
+This graph shows which files directly or indirectly include this file:\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structnpscip___dev}{npscip\_\-Dev}
+\begin{CompactList}\small\item\em Structure to mantain internal device driver variables. \item\end{CompactList}\item 
+struct \hyperlink{struct_pci9030_local_conf}{Pci9030LocalConf}
+\item 
+struct \hyperlink{structnpscip___proc}{npscip\_\-Proc}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{k__pscip_8h_17a2c084ad1878710fc9ea040b325616}{PSCIP\_\-SIZE}~0x100
+\item 
+\#define \hyperlink{k__pscip_8h_9947a0d1688602f4dc893860a735f427}{PSCIP\_\-HPRIOWRITE\_\-REG}~0x0
+\item 
+\#define \hyperlink{k__pscip_8h_2ed3e95ec7802b507fe7a4baf8a1b050}{PSCIP\_\-HPRIOWRITE\_\-STAT}~0x1
+\item 
+\#define \hyperlink{k__pscip_8h_2350acab32f8f47a1708ac0bd7fe034e}{PSCIP\_\-HPRIOWRITE\_\-ADDR}~0x0
+\item 
+\#define \hyperlink{k__pscip_8h_3904d37e60b12f844bc7ba59402e7892}{PSCIP\_\-HPRIOWRITE\_\-DATA}~0x2
+\item 
+\#define \hyperlink{k__pscip_8h_6b51f0dfdb8aa61d7b431adac873545b}{PSCIP\_\-WRITE\_\-REG}~0x8
+\item 
+\#define \hyperlink{k__pscip_8h_9bfceff81a315238b2e5d11cd0cb6001}{PSCIP\_\-WRITE\_\-STAT}~0x9
+\item 
+\#define \hyperlink{k__pscip_8h_2351717fcaa0fcba2f0f6452aeab2ca3}{PSCIP\_\-WRITE\_\-ADDR}~0x8
+\item 
+\#define \hyperlink{k__pscip_8h_699285ba50e52aebd53f505d1b56b92c}{PSCIP\_\-WRITE\_\-DATA}~0xa
+\item 
+\#define \hyperlink{k__pscip_8h_d50d5bca2cd1e0b22545f582e4ba4b96}{PSCIP\_\-READ\_\-REG}~0x10
+\item 
+\#define \hyperlink{k__pscip_8h_46e302d9c15ee9a52a815e492e04c5a1}{PSCIP\_\-READ\_\-STAT}~0x11
+\item 
+\#define \hyperlink{k__pscip_8h_30433e05f36128a8bd32066a88b217b1}{PSCIP\_\-READ\_\-ADDR}~0x10
+\item 
+\#define \hyperlink{k__pscip_8h_8443e2099306ed280cd5fce5d4fd5153}{PSCIP\_\-READ\_\-DATA}~0x12
+\item 
+\#define \hyperlink{k__pscip_8h_4143874b4801c2712cd2890a5b44fd2b}{PSCIP\_\-WRWAVE\_\-REG}~0x18
+\item 
+\#define \hyperlink{k__pscip_8h_9984303282b43e7aaef39e1cb5509a9a}{PSCIP\_\-WRWAVE\_\-STAT}~0x19
+\item 
+\#define \hyperlink{k__pscip_8h_c9ab63ca4054ecd34d0a06858fddd10f}{PSCIP\_\-WRWAVE\_\-ADDR}~0x18
+\item 
+\#define \hyperlink{k__pscip_8h_d455e93628e55eab0f3f7ffcbedc3a41}{PSCIP\_\-WRWAVE\_\-DATA}~0x1a
+\item 
+\#define \hyperlink{k__pscip_8h_72880f1a05ba5202aa3cb5ffa23f260e}{PSCIP\_\-RDWAVE\_\-REG}~0x20
+\item 
+\#define \hyperlink{k__pscip_8h_584a387d5841c25dbd618db3f7849131}{PSCIP\_\-RDWAVE\_\-STAT}~0x20
+\item 
+\#define \hyperlink{k__pscip_8h_6f14eee01265e5c54df656963252bb4a}{PSCIP\_\-RDWAVE\_\-ADDR}~0x21
+\item 
+\#define \hyperlink{k__pscip_8h_1c6fc35d0b3484411a455c18d79e4edf}{PSCIP\_\-RDWAVE\_\-DATA}~0x22
+\item 
+\#define \hyperlink{k__pscip_8h_eb21c9465a5f33e394f038824ba4ff4b}{PSCIP\_\-BRK\_\-REG}~0x28
+\item 
+\#define \hyperlink{k__pscip_8h_ea8e2ff7860eff0aedf3ceccad6839a6}{PSCIP\_\-BRK\_\-STAT}~0x28
+\item 
+\#define \hyperlink{k__pscip_8h_a6322e938a87a052baf71b2e81661db8}{PSCIP\_\-BRK\_\-ADDR}~0x29
+\item 
+\#define \hyperlink{k__pscip_8h_d63759e421102f47b25d22c4d83928c1}{PSCIP\_\-BRK\_\-DATA}~0x2a
+\item 
+\#define \hyperlink{k__pscip_8h_fcd4ee1e36b654764338e0da3fe0f520}{PSCIP\_\-FPGA\_\-REG}~0x30
+\item 
+\#define \hyperlink{k__pscip_8h_20767063ef685d978abc47bb1a77d4e4}{PSCIP\_\-FPGA\_\-HIGH}~0x30
+\item 
+\#define \hyperlink{k__pscip_8h_7ee9e02c0c8147a345919f6119b33462}{PSCIP\_\-FPGA\_\-MID}~0x32
+\item 
+\#define \hyperlink{k__pscip_8h_01916daec2366ee3f9e0a501f5a1bb0e}{PSCIP\_\-FPGA\_\-LOW}~0x34
+\item 
+\#define \hyperlink{k__pscip_8h_9c3ad05bf61e3c490ec4ac1f88d766c7}{PSCIP\_\-REG\_\-STAT}~0x38
+\item 
+\#define \hyperlink{k__pscip_8h_97d0be6c6479b3690317e73bf3ca24b0}{PSCIP\_\-IVEC\_\-REG}~0x3A
+\item 
+\#define \hyperlink{k__pscip_8h_278f32a12a9bc2ed8a2aa96f3b9336b7}{PSCIP\_\-PROM\_\-OFFSET}~0x80 - 0x01
+\item 
+\#define \hyperlink{k__pscip_8h_5d7f77cebaee5bb31c9a7a0e14773db0}{PSCIP\_\-MODEL\_\-REG}~0xB + PSCIP\_\-PROM\_\-OFFSET
+\item 
+\#define \hyperlink{k__pscip_8h_e6dfd1bfbd7dbb35e27dfca79682f6de}{PSCIP\_\-MANIFAC\_\-REG}~0x9 + PSCIP\_\-PROM\_\-OFFSET
+\item 
+\#define \hyperlink{k__pscip_8h_15a1429f2a546f9367020b9eea6a89fa}{PSCIP\_\-ILEV\_\-REG}~0xC1
+\item 
+\#define \hyperlink{k__pscip_8h_c04df19697e467d1bf3083c30327613c}{PSCIP\_\-RESET\_\-REG}~0xC3
+\item 
+\#define \hyperlink{k__pscip_8h_b114655e8a3d807294cd1a61c76b7f2c}{PSCIP\_\-MANIFAC\_\-ID}~0xB
+\item 
+\#define \hyperlink{k__pscip_8h_7590087ecef44ea17a2e8fd8d31cb7eb}{PSCIP\_\-MODEL\_\-ID}~0x1B
+\item 
+\#define \hyperlink{k__pscip_8h_1220666adb0605be83393982240782d5}{PSCIP\_\-RESET\_\-MASK}~0x80
+\item 
+\#define \hyperlink{k__pscip_8h_f8ea1aac9274a4b8186fbad774101f12}{PSCIP\_\-PROC\_\-HPRIO}~1
+\item 
+\#define \hyperlink{k__pscip_8h_a539fb57611818294d956c43f4f36fed}{PSCIP\_\-PROC\_\-WRITE}~2
+\item 
+\#define \hyperlink{k__pscip_8h_b8c573e91fc17883ae9be6ef8b1b44a4}{PSCIP\_\-PROC\_\-WRWAVE}~3
+\item 
+\#define \hyperlink{k__pscip_8h_b16cf1ad810e0888ebf0be034dff7984}{PSCIP\_\-PROC\_\-RESET}~100
+\item 
+\#define \hyperlink{k__pscip_8h_f07b193002608800bf37d7ca6f87ae4c}{PSCIP\_\-IRQ\_\-REQUEST}~2
+\item 
+\#define \hyperlink{k__pscip_8h_09fc18ce009400255c60531645f0af1f}{PSCIP\_\-IRQ\_\-SERVED}~1
+\item 
+\#define \hyperlink{k__pscip_8h_7cc2868b418de2b3272d9592a0ada019}{PSCIP\_\-IRQ\_\-DONE}~0
+\item 
+\#define \hyperlink{k__pscip_8h_5cdc221ce76e4f919d3578e6ebc399ec}{PSCIP\_\-MAX\_\-DEV}~20
+\item 
+\#define \hyperlink{k__pscip_8h_438e3442e33d6017edf8047363240ea7}{PSCIP\_\-DEFAULT\_\-DEV}~8
+\item 
+\#define \hyperlink{k__pscip_8h_9e8c89e8fd87b59bd1cfdac8afeb7c26}{MAX\_\-NUMER\_\-OF\_\-IPs\_\-ON\_\-CARRIER}~2
+\item 
+\#define \hyperlink{k__pscip_8h_c587f09b95f8512e4867b40b2281d4bf}{PSCIP\_\-CHAN\_\-OFFSET}~0x40
+\item 
+\#define \hyperlink{k__pscip_8h_ab93bf964bfb3d8e1bef1afeb609f8c3}{PSCIP\_\-IP\_\-OFFSET}~0x100
+\item 
+\#define \hyperlink{k__pscip_8h_3d2827b32250e1f0538286b9b5617c66}{PSCIP\_\-BUSY\_\-TOUT}~150000
+\item 
+\#define \hyperlink{k__pscip_8h_2b355e1f6f0a22ac816ad3424c614c83}{PSCIP\_\-MAX\_\-READ}~100
+\item 
+\#define \hyperlink{k__pscip_8h_3d753f11c9438e66a7ea216e155f2afd}{PSCIP\_\-MAX\_\-CHAN}~2
+\item 
+\#define \hyperlink{k__pscip_8h_94c17ab355d288c787d55ed450a2ebf7}{PCI\_\-VENDOR\_\-ID\_\-TEWS}~0x1498
+\item 
+\#define \hyperlink{k__pscip_8h_a783eb0e561b015162aaa99b190f0ef3}{PCI\_\-DEVICE\_\-ID\_\-TCP221\_\-cPCI}~0x20D3
+\item 
+\#define \hyperlink{k__pscip_8h_30826571b2cb0d72623b0391a0b696d9}{PCI\_\-DEVICE\_\-ID\_\-TCPI100\_\-PCI}~0x3064
+\item 
+\#define \hyperlink{k__pscip_8h_2593d5810096e81bddd783d9e7ee7536}{IP\_\-REVISION\_\-ID}~0x00
+\item 
+\#define \hyperlink{k__pscip_8h_eac440c6ca117c2f9336c0100ad77f52}{IP\_\-A\_\-CONTROL}~0x02
+\item 
+\#define \hyperlink{k__pscip_8h_7b9310fa26effe64b0bedde78fb3ef30}{IP\_\-B\_\-CONTROL}~0x04
+\item 
+\#define \hyperlink{k__pscip_8h_5424e6fca5a995ae9e6db2a18220d9d8}{IP\_\-RESET}~0x0A
+\item 
+\#define \hyperlink{k__pscip_8h_710d2372491900bf0e47f78cba6dea41}{IP\_\-STATUS}~0x0C
+\item 
+\#define \hyperlink{k__pscip_8h_bb093c7de818e4e8598e453685c8d9bc}{IP\_\-INT1\_\-EN}~0x0080
+\item 
+\#define \hyperlink{k__pscip_8h_c685770cd1b806df4c6ce3e03464cc2b}{IP\_\-INT0\_\-EN}~0x0040
+\item 
+\#define \hyperlink{k__pscip_8h_fa7ac73c85658cd83de8af2492352d7d}{IP\_\-INT1\_\-SENSE}~0x0020
+\item 
+\#define \hyperlink{k__pscip_8h_04be3830d2c6ddd1f1a249f8831eff8e}{IP\_\-INT0\_\-SENSE}~0x0010
+\item 
+\#define \hyperlink{k__pscip_8h_315aa4f51a6bf4bf1752e66fbd2e2267}{IP\_\-ERR\_\-INT\_\-EN}~0x0008
+\item 
+\#define \hyperlink{k__pscip_8h_1b75289e4f3ca042693d66e352e57780}{IP\_\-TIME\_\-INT\_\-EN}~0x0004
+\item 
+\#define \hyperlink{k__pscip_8h_6de57ae100acbdd335532f32106f8d66}{IP\_\-RECOVER}~0x0002
+\item 
+\#define \hyperlink{k__pscip_8h_a924158415387f807f6657a3f1f0ec8d}{IP\_\-CLKRATE}~0x0001
+\item 
+\#define \hyperlink{k__pscip_8h_5b02bd6aef95d7e1ab550870a3156f35}{IPB\_\-RESET\_\-MASK}~0x0002
+\item 
+\#define \hyperlink{k__pscip_8h_2902af8f72b273f1da49e1303f1bf7fe}{IPA\_\-RESET\_\-MASK}~0x0001
+\item 
+\#define \hyperlink{k__pscip_8h_206b24bc5c9387d1afc691aa0a97cfce}{IP\_\-TIME\_\-B}~0x2000
+\item 
+\#define \hyperlink{k__pscip_8h_6c08f3d80ceded19916f1c4e857b8328}{IP\_\-TIME\_\-A}~0x1000
+\item 
+\#define \hyperlink{k__pscip_8h_5b61a8a76fc34f9971ba838c13d1f84c}{IP\_\-ERR\_\-B}~0x0200
+\item 
+\#define \hyperlink{k__pscip_8h_664d1b5c27e679db949b88cb1ba0abd1}{IP\_\-ERR\_\-A}~0x0100
+\item 
+\#define \hyperlink{k__pscip_8h_16402c9a462d0e2b2ee7b949c24dc949}{IP\_\-INT1\_\-B}~0x0008
+\item 
+\#define \hyperlink{k__pscip_8h_4a7e0091ff71311b086ba4e1cd5d7e6b}{IP\_\-INT0\_\-B}~0x0004
+\item 
+\#define \hyperlink{k__pscip_8h_cfb8d4e54d21a40ad6852880f4314404}{IP\_\-INT1\_\-A}~0x0002
+\item 
+\#define \hyperlink{k__pscip_8h_c0c10e3a1440904da2810e76917e209f}{IP\_\-INT0\_\-A}~0x0001
+\item 
+\#define \hyperlink{k__pscip_8h_7f47a9d20ebc301207c3339c7b3cf51f}{IP\_\-A\_\-IO\_\-SPACE}~0x00000000
+\item 
+\#define \hyperlink{k__pscip_8h_3e2d1b223924f569d660faef074947f5}{IP\_\-A\_\-ID\_\-SPACE}~0x00000080
+\item 
+\#define \hyperlink{k__pscip_8h_76d3232db02f5b8f9402db05ce25f597}{IP\_\-A\_\-INT\_\-SPACE}~0x000000C0
+\item 
+\#define \hyperlink{k__pscip_8h_358209a3225b0a2b4a327c3cacc671d6}{IP\_\-B\_\-IO\_\-SPACE}~0x00000100
+\item 
+\#define \hyperlink{k__pscip_8h_7d237aa697c952f5b1f40587fc7db898}{IP\_\-B\_\-ID\_\-SPACE}~0x00000180
+\item 
+\#define \hyperlink{k__pscip_8h_c15bb23981406e37bf42da975eebcaa7}{IP\_\-B\_\-INT\_\-SPACE}~0x000001C0
+\item 
+\#define \hyperlink{k__pscip_8h_628b89b61a77c48d95e1bef42c272446}{IP\_\-INT0\_\-ACK}~0x000000C0
+\item 
+\#define \hyperlink{k__pscip_8h_c9472f5d5c826d9e996cdfb4a66e1bd1}{IP\_\-INT1\_\-ACK}~0x000000C2
+\item 
+\#define \hyperlink{k__pscip_8h_7a6ac1cddeebd657ec0e84c66a852b7f}{PLX9030\_\-INTCSR\_\-LINTI1\_\-ENA}~0x0001
+\item 
+\#define \hyperlink{k__pscip_8h_2d0b200cb5d3e71ff43af9cf63b9806d}{PLX9030\_\-INTCSR\_\-LINTI1\_\-POL}~0x0002
+\item 
+\#define \hyperlink{k__pscip_8h_5a152fcf8bebb21c7500cb71e2dcbda6}{PLX9030\_\-INTCSR\_\-LINTI1\_\-STAT}~0x0004
+\item 
+\#define \hyperlink{k__pscip_8h_0c667d3586f4cf7b1ab74cef3f782cd4}{PLX9030\_\-INTCSR\_\-LINTI2\_\-ENA}~0x0008
+\item 
+\#define \hyperlink{k__pscip_8h_6e733dc5ca4964e27e5479eedfef6bf5}{PLX9030\_\-INTCSR\_\-LINTI2\_\-POL}~0x0010
+\item 
+\#define \hyperlink{k__pscip_8h_23ead937e15eab4b04fea33f3f0b4f30}{PLX9030\_\-INTCSR\_\-LINTI2\_\-STAT}~0x0020
+\item 
+\#define \hyperlink{k__pscip_8h_cbcdde282e655cb46199fb0182a7cd4e}{PLX9030\_\-INTCSR\_\-PCI\_\-IRQENA}~0x0040
+\item 
+\#define \hyperlink{k__pscip_8h_ebf176a8c4293bc1ebf67d4674f4cbef}{PLX9030\_\-INTCSR\_\-SWINT}~0x0080
+\item 
+\#define \hyperlink{k__pscip_8h_f38b9d525c0f29d5dd488e730242664a}{PLX9030\_\-INTCSR\_\-LINTI1\_\-SENA}~0x0100
+\item 
+\#define \hyperlink{k__pscip_8h_ffc7d2eddb54ba486a6a725eea2d7c8f}{PLX9030\_\-INTCSR\_\-LINTI2\_\-SENA}~0x0200
+\item 
+\#define \hyperlink{k__pscip_8h_7b0f144e6348f37e5dcebbb38afa46cf}{PLX9030\_\-INTCSR\_\-LINTI1\_\-ICLR}~0x0400
+\item 
+\#define \hyperlink{k__pscip_8h_d3d8a16881f6d48ac5172aecd45f521c}{PLX9030\_\-INTCSR\_\-LINTI2\_\-ICLR}~0x0800
+\item 
+\#define \hyperlink{k__pscip_8h_a93f0eb578d23995850d61f7d61c55c1}{FALSE}~0
+\item 
+\#define \hyperlink{k__pscip_8h_a8cecfc5c5c054d2875c03e77b7be15d}{TRUE}~1
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef struct \hyperlink{structnpscip___dev}{npscip\_\-Dev} $\ast$ \hyperlink{k__pscip_8h_82fda29b5007f3eddccb27f1cc6c4f69}{pscip\_\-Dev}
+\item 
+typedef struct \hyperlink{structnpscip___proc}{npscip\_\-Proc} $\ast$ \hyperlink{k__pscip_8h_18a9f927cf2411f77dd5efa68d43b911}{pscip\_\-Proc}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{k__pscip_8h_1f4a0125b6b4e93e8d1ce8eaa64ade3a}{k\_\-pscip\_\-wait\_\-linkdown} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$, int, \hyperlink{structnpscip___dev}{pscip\_\-Dev})
+\begin{CompactList}\small\item\em Wait after linkdown. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8h_3af02815f487a50e6c2e158ddda6feef}{k\_\-pscip\_\-wrhiprio} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$, int, \hyperlink{structnpscip___dev}{pscip\_\-Dev})
+\begin{CompactList}\small\item\em Execute high priority PS-current setting. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8h_5fba9a3c8d7ba024285df33d829dc29d}{k\_\-pscip\_\-write} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$, int, \hyperlink{structnpscip___dev}{pscip\_\-Dev})
+\begin{CompactList}\small\item\em Execute writing action. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8h_ad9e73f46f2f0c11f7bb83f716127966}{k\_\-pscip\_\-read} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$, int, \hyperlink{structnpscip___dev}{pscip\_\-Dev})
+\begin{CompactList}\small\item\em Execute reading action. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8h_7702409c600827ab974d1b0ec3a2c320}{k\_\-pscip\_\-wrwave} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$, int, \hyperlink{structnpscip___dev}{pscip\_\-Dev})
+\begin{CompactList}\small\item\em Write wave value. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8h_d2912e834745c4c49209453089b95723}{k\_\-pscip\_\-rdwave} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$, int, \hyperlink{structnpscip___dev}{pscip\_\-Dev})
+\begin{CompactList}\small\item\em Execute reading action Function reads data (2 words) of a waveform from given address in PS. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8h_22758dd73dc819aa396e6a55a444fd40}{k\_\-pscip\_\-wrstat} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$, int, \hyperlink{structnpscip___dev}{pscip\_\-Dev})
+\item 
+int \hyperlink{k__pscip_8h_7b951d2869c31000e1f48af5535522fb}{k\_\-pscip\_\-rdlinkstat} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$, int, \hyperlink{structnpscip___dev}{pscip\_\-Dev})
+\begin{CompactList}\small\item\em Read link status. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8h_e19a570cf3cd55e8aa657d8cdbf6559f}{k\_\-pscip\_\-rdfpgastat} (\hyperlink{structpscip__fpga__t}{pscip\_\-fpga\_\-t} $\ast$, int, \hyperlink{structnpscip___dev}{pscip\_\-Dev})
+\begin{CompactList}\small\item\em Read FPGA status register FPGA status register is for debugging purposes and reflects the error status of the FPGA. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8h_36cd2bf86b146201cd4e281452da9171}{k\_\-pscip\_\-rdstatistics} (\hyperlink{structpscip__stats__t}{pscip\_\-stats\_\-t} $\ast$, int, \hyperlink{structnpscip___dev}{pscip\_\-Dev})
+\begin{CompactList}\small\item\em Read transmission statistics. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8h_171ccee36d88fe5bfb43735bcc1deee2}{k\_\-pscip\_\-reset} (int, \hyperlink{structnpscip___dev}{pscip\_\-Dev})
+\begin{CompactList}\small\item\em Reset IP. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8h_af9fef4aaf709c65ab3b704e43fbfc5f}{k\_\-pscip\_\-clear\_\-err\_\-counter} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Clean error counter in FPGA status register. \item\end{CompactList}\item 
+int \hyperlink{k__pscip_8h_2e05daa62010e54bf8ee30a458db37d4}{k\_\-pscip\_\-dump\_\-all\_\-registers} (\hyperlink{structpscip__t}{pscip\_\-t} $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val}, int \hyperlink{pscipacq_8c_c3b08da755e3580f678c98552d066a18}{id\_\-pscip}, \hyperlink{structnpscip___dev}{pscip\_\-Dev} dev)
+\begin{CompactList}\small\item\em Dumps content of all the registers of both IPs on the carrier and of Local Space O (BADR 2) on the Carrier. \item\end{CompactList}\item 
+void \hyperlink{k__pscip_8h_2dab759a46d164a5ffb67021338afa8f}{IP\_\-read\_\-byte} (void $\ast$address, uint8\_\-t $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val})
+\begin{CompactList}\small\item\em Reads byte from the device. \item\end{CompactList}\item 
+void \hyperlink{k__pscip_8h_a45e2281c8ad6b553fae27e127629deb}{IP\_\-read\_\-word} (void $\ast$address, uint16\_\-t $\ast$\hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val})
+\begin{CompactList}\small\item\em Reads word from the device. \item\end{CompactList}\item 
+void \hyperlink{k__pscip_8h_fc42b873fc39adc8deeef3ad4264b880}{IP\_\-write\_\-byte} (void $\ast$address, uint8\_\-t \hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val})
+\begin{CompactList}\small\item\em Writing byte to the device. \item\end{CompactList}\item 
+void \hyperlink{k__pscip_8h_bb54cb7c8617283657252ad4c51feb9a}{IP\_\-write\_\-word} (void $\ast$address, uint16\_\-t \hyperlink{test__prog_8c_034d0a6e2de0ba1b729fc54e5ec15f04}{val})
+\begin{CompactList}\small\item\em Writing word to the device. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Defines interface with kernel, device structure, IP addresses and masks. 
+
+GG - 18.07.2005: First implementation
+
+22/10/2008 - Start of porting the driver :\begin{itemize}
+\item from 2.4.x to 2.6.x\item from VME to PCIGG \end{itemize}
+
+
+Definition in file \hyperlink{k__pscip_8h-source}{k\_\-pscip.h}.
+
+\subsection{Define Documentation}
+\hypertarget{k__pscip_8h_a93f0eb578d23995850d61f7d61c55c1}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!FALSE@{FALSE}}
+\index{FALSE@{FALSE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{FALSE}]{\setlength{\rightskip}{0pt plus 5cm}\#define FALSE~0}}
+\label{k__pscip_8h_a93f0eb578d23995850d61f7d61c55c1}
+
+
+
+
+Definition at line 175 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), and probe().\hypertarget{k__pscip_8h_eac440c6ca117c2f9336c0100ad77f52}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-A\_\-CONTROL@{IP\_\-A\_\-CONTROL}}
+\index{IP\_\-A\_\-CONTROL@{IP\_\-A\_\-CONTROL}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-A\_\-CONTROL}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-A\_\-CONTROL~0x02}}
+\label{k__pscip_8h_eac440c6ca117c2f9336c0100ad77f52}
+
+
+
+
+Definition at line 119 of file k\_\-pscip.h.
+
+Referenced by k\_\-irq\_\-disable(), and k\_\-irq\_\-enable().\hypertarget{k__pscip_8h_3e2d1b223924f569d660faef074947f5}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-A\_\-ID\_\-SPACE@{IP\_\-A\_\-ID\_\-SPACE}}
+\index{IP\_\-A\_\-ID\_\-SPACE@{IP\_\-A\_\-ID\_\-SPACE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-A\_\-ID\_\-SPACE}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-A\_\-ID\_\-SPACE~0x00000080}}
+\label{k__pscip_8h_3e2d1b223924f569d660faef074947f5}
+
+
+
+
+Definition at line 151 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_76d3232db02f5b8f9402db05ce25f597}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-A\_\-INT\_\-SPACE@{IP\_\-A\_\-INT\_\-SPACE}}
+\index{IP\_\-A\_\-INT\_\-SPACE@{IP\_\-A\_\-INT\_\-SPACE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-A\_\-INT\_\-SPACE}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-A\_\-INT\_\-SPACE~0x000000C0}}
+\label{k__pscip_8h_76d3232db02f5b8f9402db05ce25f597}
+
+
+
+
+Definition at line 152 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_7f47a9d20ebc301207c3339c7b3cf51f}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-A\_\-IO\_\-SPACE@{IP\_\-A\_\-IO\_\-SPACE}}
+\index{IP\_\-A\_\-IO\_\-SPACE@{IP\_\-A\_\-IO\_\-SPACE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-A\_\-IO\_\-SPACE}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-A\_\-IO\_\-SPACE~0x00000000}}
+\label{k__pscip_8h_7f47a9d20ebc301207c3339c7b3cf51f}
+
+
+
+
+Definition at line 150 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_7b9310fa26effe64b0bedde78fb3ef30}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-B\_\-CONTROL@{IP\_\-B\_\-CONTROL}}
+\index{IP\_\-B\_\-CONTROL@{IP\_\-B\_\-CONTROL}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-B\_\-CONTROL}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-B\_\-CONTROL~0x04}}
+\label{k__pscip_8h_7b9310fa26effe64b0bedde78fb3ef30}
+
+
+
+
+Definition at line 120 of file k\_\-pscip.h.
+
+Referenced by k\_\-irq\_\-disable(), and k\_\-irq\_\-enable().\hypertarget{k__pscip_8h_7d237aa697c952f5b1f40587fc7db898}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-B\_\-ID\_\-SPACE@{IP\_\-B\_\-ID\_\-SPACE}}
+\index{IP\_\-B\_\-ID\_\-SPACE@{IP\_\-B\_\-ID\_\-SPACE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-B\_\-ID\_\-SPACE}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-B\_\-ID\_\-SPACE~0x00000180}}
+\label{k__pscip_8h_7d237aa697c952f5b1f40587fc7db898}
+
+
+
+
+Definition at line 155 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_c15bb23981406e37bf42da975eebcaa7}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-B\_\-INT\_\-SPACE@{IP\_\-B\_\-INT\_\-SPACE}}
+\index{IP\_\-B\_\-INT\_\-SPACE@{IP\_\-B\_\-INT\_\-SPACE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-B\_\-INT\_\-SPACE}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-B\_\-INT\_\-SPACE~0x000001C0}}
+\label{k__pscip_8h_c15bb23981406e37bf42da975eebcaa7}
+
+
+
+
+Definition at line 156 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_358209a3225b0a2b4a327c3cacc671d6}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-B\_\-IO\_\-SPACE@{IP\_\-B\_\-IO\_\-SPACE}}
+\index{IP\_\-B\_\-IO\_\-SPACE@{IP\_\-B\_\-IO\_\-SPACE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-B\_\-IO\_\-SPACE}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-B\_\-IO\_\-SPACE~0x00000100}}
+\label{k__pscip_8h_358209a3225b0a2b4a327c3cacc671d6}
+
+
+
+
+Definition at line 154 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_a924158415387f807f6657a3f1f0ec8d}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-CLKRATE@{IP\_\-CLKRATE}}
+\index{IP\_\-CLKRATE@{IP\_\-CLKRATE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-CLKRATE}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-CLKRATE~0x0001}}
+\label{k__pscip_8h_a924158415387f807f6657a3f1f0ec8d}
+
+
+
+
+Definition at line 133 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg().\hypertarget{k__pscip_8h_664d1b5c27e679db949b88cb1ba0abd1}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-ERR\_\-A@{IP\_\-ERR\_\-A}}
+\index{IP\_\-ERR\_\-A@{IP\_\-ERR\_\-A}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-ERR\_\-A}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-ERR\_\-A~0x0100}}
+\label{k__pscip_8h_664d1b5c27e679db949b88cb1ba0abd1}
+
+
+
+
+Definition at line 143 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg().\hypertarget{k__pscip_8h_5b61a8a76fc34f9971ba838c13d1f84c}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-ERR\_\-B@{IP\_\-ERR\_\-B}}
+\index{IP\_\-ERR\_\-B@{IP\_\-ERR\_\-B}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-ERR\_\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-ERR\_\-B~0x0200}}
+\label{k__pscip_8h_5b61a8a76fc34f9971ba838c13d1f84c}
+
+
+
+
+Definition at line 142 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg().\hypertarget{k__pscip_8h_315aa4f51a6bf4bf1752e66fbd2e2267}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-ERR\_\-INT\_\-EN@{IP\_\-ERR\_\-INT\_\-EN}}
+\index{IP\_\-ERR\_\-INT\_\-EN@{IP\_\-ERR\_\-INT\_\-EN}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-ERR\_\-INT\_\-EN}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-ERR\_\-INT\_\-EN~0x0008}}
+\label{k__pscip_8h_315aa4f51a6bf4bf1752e66fbd2e2267}
+
+
+
+
+Definition at line 130 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg().\hypertarget{k__pscip_8h_c0c10e3a1440904da2810e76917e209f}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-INT0\_\-A@{IP\_\-INT0\_\-A}}
+\index{IP\_\-INT0\_\-A@{IP\_\-INT0\_\-A}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-INT0\_\-A}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-INT0\_\-A~0x0001}}
+\label{k__pscip_8h_c0c10e3a1440904da2810e76917e209f}
+
+
+
+
+Definition at line 147 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg(), and k\_\-if\_\-handle\_\-irq().\hypertarget{k__pscip_8h_628b89b61a77c48d95e1bef42c272446}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-INT0\_\-ACK@{IP\_\-INT0\_\-ACK}}
+\index{IP\_\-INT0\_\-ACK@{IP\_\-INT0\_\-ACK}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-INT0\_\-ACK}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-INT0\_\-ACK~0x000000C0}}
+\label{k__pscip_8h_628b89b61a77c48d95e1bef42c272446}
+
+
+
+
+Definition at line 157 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_4a7e0091ff71311b086ba4e1cd5d7e6b}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-INT0\_\-B@{IP\_\-INT0\_\-B}}
+\index{IP\_\-INT0\_\-B@{IP\_\-INT0\_\-B}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-INT0\_\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-INT0\_\-B~0x0004}}
+\label{k__pscip_8h_4a7e0091ff71311b086ba4e1cd5d7e6b}
+
+
+
+
+Definition at line 145 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg(), and k\_\-if\_\-handle\_\-irq().\hypertarget{k__pscip_8h_c685770cd1b806df4c6ce3e03464cc2b}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-INT0\_\-EN@{IP\_\-INT0\_\-EN}}
+\index{IP\_\-INT0\_\-EN@{IP\_\-INT0\_\-EN}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-INT0\_\-EN}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-INT0\_\-EN~0x0040}}
+\label{k__pscip_8h_c685770cd1b806df4c6ce3e03464cc2b}
+
+
+
+
+Definition at line 127 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg(), and k\_\-irq\_\-enable().\hypertarget{k__pscip_8h_04be3830d2c6ddd1f1a249f8831eff8e}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-INT0\_\-SENSE@{IP\_\-INT0\_\-SENSE}}
+\index{IP\_\-INT0\_\-SENSE@{IP\_\-INT0\_\-SENSE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-INT0\_\-SENSE}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-INT0\_\-SENSE~0x0010}}
+\label{k__pscip_8h_04be3830d2c6ddd1f1a249f8831eff8e}
+
+
+
+
+Definition at line 129 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg().\hypertarget{k__pscip_8h_cfb8d4e54d21a40ad6852880f4314404}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-INT1\_\-A@{IP\_\-INT1\_\-A}}
+\index{IP\_\-INT1\_\-A@{IP\_\-INT1\_\-A}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-INT1\_\-A}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-INT1\_\-A~0x0002}}
+\label{k__pscip_8h_cfb8d4e54d21a40ad6852880f4314404}
+
+
+
+
+Definition at line 146 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg(), and k\_\-if\_\-handle\_\-irq().\hypertarget{k__pscip_8h_c9472f5d5c826d9e996cdfb4a66e1bd1}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-INT1\_\-ACK@{IP\_\-INT1\_\-ACK}}
+\index{IP\_\-INT1\_\-ACK@{IP\_\-INT1\_\-ACK}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-INT1\_\-ACK}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-INT1\_\-ACK~0x000000C2}}
+\label{k__pscip_8h_c9472f5d5c826d9e996cdfb4a66e1bd1}
+
+
+
+
+Definition at line 158 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_16402c9a462d0e2b2ee7b949c24dc949}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-INT1\_\-B@{IP\_\-INT1\_\-B}}
+\index{IP\_\-INT1\_\-B@{IP\_\-INT1\_\-B}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-INT1\_\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-INT1\_\-B~0x0008}}
+\label{k__pscip_8h_16402c9a462d0e2b2ee7b949c24dc949}
+
+
+
+
+Definition at line 144 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg(), and k\_\-if\_\-handle\_\-irq().\hypertarget{k__pscip_8h_bb093c7de818e4e8598e453685c8d9bc}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-INT1\_\-EN@{IP\_\-INT1\_\-EN}}
+\index{IP\_\-INT1\_\-EN@{IP\_\-INT1\_\-EN}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-INT1\_\-EN}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-INT1\_\-EN~0x0080}}
+\label{k__pscip_8h_bb093c7de818e4e8598e453685c8d9bc}
+
+
+
+
+Definition at line 126 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg(), and k\_\-irq\_\-enable().\hypertarget{k__pscip_8h_fa7ac73c85658cd83de8af2492352d7d}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-INT1\_\-SENSE@{IP\_\-INT1\_\-SENSE}}
+\index{IP\_\-INT1\_\-SENSE@{IP\_\-INT1\_\-SENSE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-INT1\_\-SENSE}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-INT1\_\-SENSE~0x0020}}
+\label{k__pscip_8h_fa7ac73c85658cd83de8af2492352d7d}
+
+
+
+
+Definition at line 128 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg().\hypertarget{k__pscip_8h_6de57ae100acbdd335532f32106f8d66}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-RECOVER@{IP\_\-RECOVER}}
+\index{IP\_\-RECOVER@{IP\_\-RECOVER}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-RECOVER}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-RECOVER~0x0002}}
+\label{k__pscip_8h_6de57ae100acbdd335532f32106f8d66}
+
+
+
+
+Definition at line 132 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg().\hypertarget{k__pscip_8h_5424e6fca5a995ae9e6db2a18220d9d8}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-RESET@{IP\_\-RESET}}
+\index{IP\_\-RESET@{IP\_\-RESET}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-RESET}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-RESET~0x0A}}
+\label{k__pscip_8h_5424e6fca5a995ae9e6db2a18220d9d8}
+
+
+
+
+Definition at line 121 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-reset().\hypertarget{k__pscip_8h_2593d5810096e81bddd783d9e7ee7536}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-REVISION\_\-ID@{IP\_\-REVISION\_\-ID}}
+\index{IP\_\-REVISION\_\-ID@{IP\_\-REVISION\_\-ID}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-REVISION\_\-ID}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-REVISION\_\-ID~0x00}}
+\label{k__pscip_8h_2593d5810096e81bddd783d9e7ee7536}
+
+
+
+
+Definition at line 118 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_710d2372491900bf0e47f78cba6dea41}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-STATUS@{IP\_\-STATUS}}
+\index{IP\_\-STATUS@{IP\_\-STATUS}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-STATUS}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-STATUS~0x0C}}
+\label{k__pscip_8h_710d2372491900bf0e47f78cba6dea41}
+
+
+
+
+Definition at line 122 of file k\_\-pscip.h.
+
+Referenced by k\_\-if\_\-handle\_\-irq().\hypertarget{k__pscip_8h_6c08f3d80ceded19916f1c4e857b8328}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-TIME\_\-A@{IP\_\-TIME\_\-A}}
+\index{IP\_\-TIME\_\-A@{IP\_\-TIME\_\-A}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-TIME\_\-A}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-TIME\_\-A~0x1000}}
+\label{k__pscip_8h_6c08f3d80ceded19916f1c4e857b8328}
+
+
+
+
+Definition at line 141 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg().\hypertarget{k__pscip_8h_206b24bc5c9387d1afc691aa0a97cfce}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-TIME\_\-B@{IP\_\-TIME\_\-B}}
+\index{IP\_\-TIME\_\-B@{IP\_\-TIME\_\-B}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-TIME\_\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-TIME\_\-B~0x2000}}
+\label{k__pscip_8h_206b24bc5c9387d1afc691aa0a97cfce}
+
+
+
+
+Definition at line 140 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg().\hypertarget{k__pscip_8h_1b75289e4f3ca042693d66e352e57780}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-TIME\_\-INT\_\-EN@{IP\_\-TIME\_\-INT\_\-EN}}
+\index{IP\_\-TIME\_\-INT\_\-EN@{IP\_\-TIME\_\-INT\_\-EN}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-TIME\_\-INT\_\-EN}]{\setlength{\rightskip}{0pt plus 5cm}\#define IP\_\-TIME\_\-INT\_\-EN~0x0004}}
+\label{k__pscip_8h_1b75289e4f3ca042693d66e352e57780}
+
+
+
+
+Definition at line 131 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_2902af8f72b273f1da49e1303f1bf7fe}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IPA\_\-RESET\_\-MASK@{IPA\_\-RESET\_\-MASK}}
+\index{IPA\_\-RESET\_\-MASK@{IPA\_\-RESET\_\-MASK}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IPA\_\-RESET\_\-MASK}]{\setlength{\rightskip}{0pt plus 5cm}\#define IPA\_\-RESET\_\-MASK~0x0001}}
+\label{k__pscip_8h_2902af8f72b273f1da49e1303f1bf7fe}
+
+
+
+
+Definition at line 137 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg().\hypertarget{k__pscip_8h_5b02bd6aef95d7e1ab550870a3156f35}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IPB\_\-RESET\_\-MASK@{IPB\_\-RESET\_\-MASK}}
+\index{IPB\_\-RESET\_\-MASK@{IPB\_\-RESET\_\-MASK}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IPB\_\-RESET\_\-MASK}]{\setlength{\rightskip}{0pt plus 5cm}\#define IPB\_\-RESET\_\-MASK~0x0002}}
+\label{k__pscip_8h_5b02bd6aef95d7e1ab550870a3156f35}
+
+
+
+
+Definition at line 136 of file k\_\-pscip.h.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-IP\_\-interface\_\-reg().\hypertarget{k__pscip_8h_9e8c89e8fd87b59bd1cfdac8afeb7c26}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!MAX\_\-NUMER\_\-OF\_\-IPs\_\-ON\_\-CARRIER@{MAX\_\-NUMER\_\-OF\_\-IPs\_\-ON\_\-CARRIER}}
+\index{MAX\_\-NUMER\_\-OF\_\-IPs\_\-ON\_\-CARRIER@{MAX\_\-NUMER\_\-OF\_\-IPs\_\-ON\_\-CARRIER}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{MAX\_\-NUMER\_\-OF\_\-IPs\_\-ON\_\-CARRIER}]{\setlength{\rightskip}{0pt plus 5cm}\#define MAX\_\-NUMER\_\-OF\_\-IPs\_\-ON\_\-CARRIER~2}}
+\label{k__pscip_8h_9e8c89e8fd87b59bd1cfdac8afeb7c26}
+
+
+
+
+Definition at line 93 of file k\_\-pscip.h.
+
+Referenced by probe().\hypertarget{k__pscip_8h_a783eb0e561b015162aaa99b190f0ef3}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PCI\_\-DEVICE\_\-ID\_\-TCP221\_\-cPCI@{PCI\_\-DEVICE\_\-ID\_\-TCP221\_\-cPCI}}
+\index{PCI\_\-DEVICE\_\-ID\_\-TCP221\_\-cPCI@{PCI\_\-DEVICE\_\-ID\_\-TCP221\_\-cPCI}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PCI\_\-DEVICE\_\-ID\_\-TCP221\_\-cPCI}]{\setlength{\rightskip}{0pt plus 5cm}\#define PCI\_\-DEVICE\_\-ID\_\-TCP221\_\-cPCI~0x20D3}}
+\label{k__pscip_8h_a783eb0e561b015162aaa99b190f0ef3}
+
+
+
+
+Definition at line 113 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_30826571b2cb0d72623b0391a0b696d9}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PCI\_\-DEVICE\_\-ID\_\-TCPI100\_\-PCI@{PCI\_\-DEVICE\_\-ID\_\-TCPI100\_\-PCI}}
+\index{PCI\_\-DEVICE\_\-ID\_\-TCPI100\_\-PCI@{PCI\_\-DEVICE\_\-ID\_\-TCPI100\_\-PCI}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PCI\_\-DEVICE\_\-ID\_\-TCPI100\_\-PCI}]{\setlength{\rightskip}{0pt plus 5cm}\#define PCI\_\-DEVICE\_\-ID\_\-TCPI100\_\-PCI~0x3064}}
+\label{k__pscip_8h_30826571b2cb0d72623b0391a0b696d9}
+
+
+
+
+Definition at line 114 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_94c17ab355d288c787d55ed450a2ebf7}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PCI\_\-VENDOR\_\-ID\_\-TEWS@{PCI\_\-VENDOR\_\-ID\_\-TEWS}}
+\index{PCI\_\-VENDOR\_\-ID\_\-TEWS@{PCI\_\-VENDOR\_\-ID\_\-TEWS}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PCI\_\-VENDOR\_\-ID\_\-TEWS}]{\setlength{\rightskip}{0pt plus 5cm}\#define PCI\_\-VENDOR\_\-ID\_\-TEWS~0x1498}}
+\label{k__pscip_8h_94c17ab355d288c787d55ed450a2ebf7}
+
+
+
+
+Definition at line 112 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_7a6ac1cddeebd657ec0e84c66a852b7f}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-LINTI1\_\-ENA@{PLX9030\_\-INTCSR\_\-LINTI1\_\-ENA}}
+\index{PLX9030\_\-INTCSR\_\-LINTI1\_\-ENA@{PLX9030\_\-INTCSR\_\-LINTI1\_\-ENA}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-LINTI1\_\-ENA}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-LINTI1\_\-ENA~0x0001}}
+\label{k__pscip_8h_7a6ac1cddeebd657ec0e84c66a852b7f}
+
+
+
+
+Definition at line 162 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_7b0f144e6348f37e5dcebbb38afa46cf}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-LINTI1\_\-ICLR@{PLX9030\_\-INTCSR\_\-LINTI1\_\-ICLR}}
+\index{PLX9030\_\-INTCSR\_\-LINTI1\_\-ICLR@{PLX9030\_\-INTCSR\_\-LINTI1\_\-ICLR}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-LINTI1\_\-ICLR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-LINTI1\_\-ICLR~0x0400}}
+\label{k__pscip_8h_7b0f144e6348f37e5dcebbb38afa46cf}
+
+
+
+
+Definition at line 172 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_2d0b200cb5d3e71ff43af9cf63b9806d}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-LINTI1\_\-POL@{PLX9030\_\-INTCSR\_\-LINTI1\_\-POL}}
+\index{PLX9030\_\-INTCSR\_\-LINTI1\_\-POL@{PLX9030\_\-INTCSR\_\-LINTI1\_\-POL}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-LINTI1\_\-POL}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-LINTI1\_\-POL~0x0002}}
+\label{k__pscip_8h_2d0b200cb5d3e71ff43af9cf63b9806d}
+
+
+
+
+Definition at line 163 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_f38b9d525c0f29d5dd488e730242664a}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-LINTI1\_\-SENA@{PLX9030\_\-INTCSR\_\-LINTI1\_\-SENA}}
+\index{PLX9030\_\-INTCSR\_\-LINTI1\_\-SENA@{PLX9030\_\-INTCSR\_\-LINTI1\_\-SENA}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-LINTI1\_\-SENA}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-LINTI1\_\-SENA~0x0100}}
+\label{k__pscip_8h_f38b9d525c0f29d5dd488e730242664a}
+
+
+
+
+Definition at line 170 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_5a152fcf8bebb21c7500cb71e2dcbda6}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-LINTI1\_\-STAT@{PLX9030\_\-INTCSR\_\-LINTI1\_\-STAT}}
+\index{PLX9030\_\-INTCSR\_\-LINTI1\_\-STAT@{PLX9030\_\-INTCSR\_\-LINTI1\_\-STAT}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-LINTI1\_\-STAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-LINTI1\_\-STAT~0x0004}}
+\label{k__pscip_8h_5a152fcf8bebb21c7500cb71e2dcbda6}
+
+
+
+
+Definition at line 164 of file k\_\-pscip.h.
+
+Referenced by pscip\_\-irq\_\-handler().\hypertarget{k__pscip_8h_0c667d3586f4cf7b1ab74cef3f782cd4}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-LINTI2\_\-ENA@{PLX9030\_\-INTCSR\_\-LINTI2\_\-ENA}}
+\index{PLX9030\_\-INTCSR\_\-LINTI2\_\-ENA@{PLX9030\_\-INTCSR\_\-LINTI2\_\-ENA}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-LINTI2\_\-ENA}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-LINTI2\_\-ENA~0x0008}}
+\label{k__pscip_8h_0c667d3586f4cf7b1ab74cef3f782cd4}
+
+
+
+
+Definition at line 165 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_d3d8a16881f6d48ac5172aecd45f521c}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-LINTI2\_\-ICLR@{PLX9030\_\-INTCSR\_\-LINTI2\_\-ICLR}}
+\index{PLX9030\_\-INTCSR\_\-LINTI2\_\-ICLR@{PLX9030\_\-INTCSR\_\-LINTI2\_\-ICLR}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-LINTI2\_\-ICLR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-LINTI2\_\-ICLR~0x0800}}
+\label{k__pscip_8h_d3d8a16881f6d48ac5172aecd45f521c}
+
+
+
+
+Definition at line 173 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_6e733dc5ca4964e27e5479eedfef6bf5}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-LINTI2\_\-POL@{PLX9030\_\-INTCSR\_\-LINTI2\_\-POL}}
+\index{PLX9030\_\-INTCSR\_\-LINTI2\_\-POL@{PLX9030\_\-INTCSR\_\-LINTI2\_\-POL}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-LINTI2\_\-POL}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-LINTI2\_\-POL~0x0010}}
+\label{k__pscip_8h_6e733dc5ca4964e27e5479eedfef6bf5}
+
+
+
+
+Definition at line 166 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_ffc7d2eddb54ba486a6a725eea2d7c8f}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-LINTI2\_\-SENA@{PLX9030\_\-INTCSR\_\-LINTI2\_\-SENA}}
+\index{PLX9030\_\-INTCSR\_\-LINTI2\_\-SENA@{PLX9030\_\-INTCSR\_\-LINTI2\_\-SENA}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-LINTI2\_\-SENA}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-LINTI2\_\-SENA~0x0200}}
+\label{k__pscip_8h_ffc7d2eddb54ba486a6a725eea2d7c8f}
+
+
+
+
+Definition at line 171 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_23ead937e15eab4b04fea33f3f0b4f30}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-LINTI2\_\-STAT@{PLX9030\_\-INTCSR\_\-LINTI2\_\-STAT}}
+\index{PLX9030\_\-INTCSR\_\-LINTI2\_\-STAT@{PLX9030\_\-INTCSR\_\-LINTI2\_\-STAT}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-LINTI2\_\-STAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-LINTI2\_\-STAT~0x0020}}
+\label{k__pscip_8h_23ead937e15eab4b04fea33f3f0b4f30}
+
+
+
+
+Definition at line 167 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_cbcdde282e655cb46199fb0182a7cd4e}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-PCI\_\-IRQENA@{PLX9030\_\-INTCSR\_\-PCI\_\-IRQENA}}
+\index{PLX9030\_\-INTCSR\_\-PCI\_\-IRQENA@{PLX9030\_\-INTCSR\_\-PCI\_\-IRQENA}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-PCI\_\-IRQENA}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-PCI\_\-IRQENA~0x0040}}
+\label{k__pscip_8h_cbcdde282e655cb46199fb0182a7cd4e}
+
+
+
+
+Definition at line 168 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_ebf176a8c4293bc1ebf67d4674f4cbef}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PLX9030\_\-INTCSR\_\-SWINT@{PLX9030\_\-INTCSR\_\-SWINT}}
+\index{PLX9030\_\-INTCSR\_\-SWINT@{PLX9030\_\-INTCSR\_\-SWINT}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PLX9030\_\-INTCSR\_\-SWINT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PLX9030\_\-INTCSR\_\-SWINT~0x0080}}
+\label{k__pscip_8h_ebf176a8c4293bc1ebf67d4674f4cbef}
+
+
+
+
+Definition at line 169 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_a6322e938a87a052baf71b2e81661db8}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-BRK\_\-ADDR@{PSCIP\_\-BRK\_\-ADDR}}
+\index{PSCIP\_\-BRK\_\-ADDR@{PSCIP\_\-BRK\_\-ADDR}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-BRK\_\-ADDR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BRK\_\-ADDR~0x29}}
+\label{k__pscip_8h_a6322e938a87a052baf71b2e81661db8}
+
+
+
+
+Definition at line 49 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_d63759e421102f47b25d22c4d83928c1}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-BRK\_\-DATA@{PSCIP\_\-BRK\_\-DATA}}
+\index{PSCIP\_\-BRK\_\-DATA@{PSCIP\_\-BRK\_\-DATA}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-BRK\_\-DATA}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BRK\_\-DATA~0x2a}}
+\label{k__pscip_8h_d63759e421102f47b25d22c4d83928c1}
+
+
+
+
+Definition at line 50 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_eb21c9465a5f33e394f038824ba4ff4b}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-BRK\_\-REG@{PSCIP\_\-BRK\_\-REG}}
+\index{PSCIP\_\-BRK\_\-REG@{PSCIP\_\-BRK\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-BRK\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BRK\_\-REG~0x28}}
+\label{k__pscip_8h_eb21c9465a5f33e394f038824ba4ff4b}
+
+
+
+
+Definition at line 47 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_ea8e2ff7860eff0aedf3ceccad6839a6}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-BRK\_\-STAT@{PSCIP\_\-BRK\_\-STAT}}
+\index{PSCIP\_\-BRK\_\-STAT@{PSCIP\_\-BRK\_\-STAT}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-BRK\_\-STAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BRK\_\-STAT~0x28}}
+\label{k__pscip_8h_ea8e2ff7860eff0aedf3ceccad6839a6}
+
+
+
+
+Definition at line 48 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_3d2827b32250e1f0538286b9b5617c66}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-BUSY\_\-TOUT@{PSCIP\_\-BUSY\_\-TOUT}}
+\index{PSCIP\_\-BUSY\_\-TOUT@{PSCIP\_\-BUSY\_\-TOUT}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-BUSY\_\-TOUT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-BUSY\_\-TOUT~150000}}
+\label{k__pscip_8h_3d2827b32250e1f0538286b9b5617c66}
+
+
+
+
+Definition at line 102 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), and k\_\-pscip\_\-wrwave().\hypertarget{k__pscip_8h_c587f09b95f8512e4867b40b2281d4bf}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-CHAN\_\-OFFSET@{PSCIP\_\-CHAN\_\-OFFSET}}
+\index{PSCIP\_\-CHAN\_\-OFFSET@{PSCIP\_\-CHAN\_\-OFFSET}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-CHAN\_\-OFFSET}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-CHAN\_\-OFFSET~0x40}}
+\label{k__pscip_8h_c587f09b95f8512e4867b40b2281d4bf}
+
+
+
+
+Definition at line 99 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-dump\_\-all\_\-registers(), and probe().\hypertarget{k__pscip_8h_438e3442e33d6017edf8047363240ea7}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-DEFAULT\_\-DEV@{PSCIP\_\-DEFAULT\_\-DEV}}
+\index{PSCIP\_\-DEFAULT\_\-DEV@{PSCIP\_\-DEFAULT\_\-DEV}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-DEFAULT\_\-DEV}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-DEFAULT\_\-DEV~8}}
+\label{k__pscip_8h_438e3442e33d6017edf8047363240ea7}
+
+
+
+
+Definition at line 92 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module().\hypertarget{k__pscip_8h_20767063ef685d978abc47bb1a77d4e4}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-FPGA\_\-HIGH@{PSCIP\_\-FPGA\_\-HIGH}}
+\index{PSCIP\_\-FPGA\_\-HIGH@{PSCIP\_\-FPGA\_\-HIGH}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-FPGA\_\-HIGH}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-FPGA\_\-HIGH~0x30}}
+\label{k__pscip_8h_20767063ef685d978abc47bb1a77d4e4}
+
+
+
+
+Definition at line 53 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-clear\_\-err\_\-counter(), k\_\-pscip\_\-rdfpgastat(), k\_\-pscip\_\-wait\_\-linkdown(), and pscip\_\-irq\_\-handler().\hypertarget{k__pscip_8h_01916daec2366ee3f9e0a501f5a1bb0e}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-FPGA\_\-LOW@{PSCIP\_\-FPGA\_\-LOW}}
+\index{PSCIP\_\-FPGA\_\-LOW@{PSCIP\_\-FPGA\_\-LOW}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-FPGA\_\-LOW}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-FPGA\_\-LOW~0x34}}
+\label{k__pscip_8h_01916daec2366ee3f9e0a501f5a1bb0e}
+
+
+
+
+Definition at line 55 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-clear\_\-err\_\-counter(), k\_\-pscip\_\-rdfpgastat(), k\_\-pscip\_\-wait\_\-linkdown(), and pscip\_\-irq\_\-handler().\hypertarget{k__pscip_8h_7ee9e02c0c8147a345919f6119b33462}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-FPGA\_\-MID@{PSCIP\_\-FPGA\_\-MID}}
+\index{PSCIP\_\-FPGA\_\-MID@{PSCIP\_\-FPGA\_\-MID}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-FPGA\_\-MID}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-FPGA\_\-MID~0x32}}
+\label{k__pscip_8h_7ee9e02c0c8147a345919f6119b33462}
+
+
+
+
+Definition at line 54 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdfpgastat(), and pscip\_\-irq\_\-handler().\hypertarget{k__pscip_8h_fcd4ee1e36b654764338e0da3fe0f520}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-FPGA\_\-REG@{PSCIP\_\-FPGA\_\-REG}}
+\index{PSCIP\_\-FPGA\_\-REG@{PSCIP\_\-FPGA\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-FPGA\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-FPGA\_\-REG~0x30}}
+\label{k__pscip_8h_fcd4ee1e36b654764338e0da3fe0f520}
+
+
+
+
+Definition at line 52 of file k\_\-pscip.h.
+
+Referenced by pscip\_\-ioctl().\hypertarget{k__pscip_8h_2350acab32f8f47a1708ac0bd7fe034e}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-HPRIOWRITE\_\-ADDR@{PSCIP\_\-HPRIOWRITE\_\-ADDR}}
+\index{PSCIP\_\-HPRIOWRITE\_\-ADDR@{PSCIP\_\-HPRIOWRITE\_\-ADDR}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-HPRIOWRITE\_\-ADDR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-HPRIOWRITE\_\-ADDR~0x0}}
+\label{k__pscip_8h_2350acab32f8f47a1708ac0bd7fe034e}
+
+
+
+
+Definition at line 24 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_3904d37e60b12f844bc7ba59402e7892}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-HPRIOWRITE\_\-DATA@{PSCIP\_\-HPRIOWRITE\_\-DATA}}
+\index{PSCIP\_\-HPRIOWRITE\_\-DATA@{PSCIP\_\-HPRIOWRITE\_\-DATA}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-HPRIOWRITE\_\-DATA}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-HPRIOWRITE\_\-DATA~0x2}}
+\label{k__pscip_8h_3904d37e60b12f844bc7ba59402e7892}
+
+
+
+
+Definition at line 25 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-wrhiprio().\hypertarget{k__pscip_8h_9947a0d1688602f4dc893860a735f427}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-HPRIOWRITE\_\-REG@{PSCIP\_\-HPRIOWRITE\_\-REG}}
+\index{PSCIP\_\-HPRIOWRITE\_\-REG@{PSCIP\_\-HPRIOWRITE\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-HPRIOWRITE\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-HPRIOWRITE\_\-REG~0x0}}
+\label{k__pscip_8h_9947a0d1688602f4dc893860a735f427}
+
+
+
+
+Definition at line 22 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-wrhiprio().\hypertarget{k__pscip_8h_2ed3e95ec7802b507fe7a4baf8a1b050}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-HPRIOWRITE\_\-STAT@{PSCIP\_\-HPRIOWRITE\_\-STAT}}
+\index{PSCIP\_\-HPRIOWRITE\_\-STAT@{PSCIP\_\-HPRIOWRITE\_\-STAT}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-HPRIOWRITE\_\-STAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-HPRIOWRITE\_\-STAT~0x1}}
+\label{k__pscip_8h_2ed3e95ec7802b507fe7a4baf8a1b050}
+
+
+
+
+Definition at line 23 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdlinkstat(), and k\_\-pscip\_\-wrhiprio().\hypertarget{k__pscip_8h_15a1429f2a546f9367020b9eea6a89fa}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-ILEV\_\-REG@{PSCIP\_\-ILEV\_\-REG}}
+\index{PSCIP\_\-ILEV\_\-REG@{PSCIP\_\-ILEV\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-ILEV\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-ILEV\_\-REG~0xC1}}
+\label{k__pscip_8h_15a1429f2a546f9367020b9eea6a89fa}
+
+
+
+
+Definition at line 68 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_ab93bf964bfb3d8e1bef1afeb609f8c3}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-IP\_\-OFFSET@{PSCIP\_\-IP\_\-OFFSET}}
+\index{PSCIP\_\-IP\_\-OFFSET@{PSCIP\_\-IP\_\-OFFSET}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-IP\_\-OFFSET}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-IP\_\-OFFSET~0x100}}
+\label{k__pscip_8h_ab93bf964bfb3d8e1bef1afeb609f8c3}
+
+
+
+
+Definition at line 100 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-dump\_\-all\_\-registers(), and probe().\hypertarget{k__pscip_8h_7cc2868b418de2b3272d9592a0ada019}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-IRQ\_\-DONE@{PSCIP\_\-IRQ\_\-DONE}}
+\index{PSCIP\_\-IRQ\_\-DONE@{PSCIP\_\-IRQ\_\-DONE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-IRQ\_\-DONE}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-IRQ\_\-DONE~0}}
+\label{k__pscip_8h_7cc2868b418de2b3272d9592a0ada019}
+
+
+
+
+Definition at line 88 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), and k\_\-pscip\_\-wrwave().\hypertarget{k__pscip_8h_f07b193002608800bf37d7ca6f87ae4c}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-IRQ\_\-REQUEST@{PSCIP\_\-IRQ\_\-REQUEST}}
+\index{PSCIP\_\-IRQ\_\-REQUEST@{PSCIP\_\-IRQ\_\-REQUEST}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-IRQ\_\-REQUEST}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-IRQ\_\-REQUEST~2}}
+\label{k__pscip_8h_f07b193002608800bf37d7ca6f87ae4c}
+
+
+
+
+Definition at line 86 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), and k\_\-pscip\_\-wrwave().\hypertarget{k__pscip_8h_09fc18ce009400255c60531645f0af1f}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-IRQ\_\-SERVED@{PSCIP\_\-IRQ\_\-SERVED}}
+\index{PSCIP\_\-IRQ\_\-SERVED@{PSCIP\_\-IRQ\_\-SERVED}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-IRQ\_\-SERVED}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-IRQ\_\-SERVED~1}}
+\label{k__pscip_8h_09fc18ce009400255c60531645f0af1f}
+
+
+
+
+Definition at line 87 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-irq\_\-handler().\hypertarget{k__pscip_8h_97d0be6c6479b3690317e73bf3ca24b0}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-IVEC\_\-REG@{PSCIP\_\-IVEC\_\-REG}}
+\index{PSCIP\_\-IVEC\_\-REG@{PSCIP\_\-IVEC\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-IVEC\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-IVEC\_\-REG~0x3A}}
+\label{k__pscip_8h_97d0be6c6479b3690317e73bf3ca24b0}
+
+
+
+
+Definition at line 59 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_b114655e8a3d807294cd1a61c76b7f2c}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-MANIFAC\_\-ID@{PSCIP\_\-MANIFAC\_\-ID}}
+\index{PSCIP\_\-MANIFAC\_\-ID@{PSCIP\_\-MANIFAC\_\-ID}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-MANIFAC\_\-ID}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-MANIFAC\_\-ID~0xB}}
+\label{k__pscip_8h_b114655e8a3d807294cd1a61c76b7f2c}
+
+
+
+
+Definition at line 70 of file k\_\-pscip.h.
+
+Referenced by checkmem\_\-device().\hypertarget{k__pscip_8h_e6dfd1bfbd7dbb35e27dfca79682f6de}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-MANIFAC\_\-REG@{PSCIP\_\-MANIFAC\_\-REG}}
+\index{PSCIP\_\-MANIFAC\_\-REG@{PSCIP\_\-MANIFAC\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-MANIFAC\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-MANIFAC\_\-REG~0x9 + PSCIP\_\-PROM\_\-OFFSET}}
+\label{k__pscip_8h_e6dfd1bfbd7dbb35e27dfca79682f6de}
+
+
+
+
+Definition at line 67 of file k\_\-pscip.h.
+
+Referenced by checkmem\_\-device().\hypertarget{k__pscip_8h_3d753f11c9438e66a7ea216e155f2afd}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-MAX\_\-CHAN@{PSCIP\_\-MAX\_\-CHAN}}
+\index{PSCIP\_\-MAX\_\-CHAN@{PSCIP\_\-MAX\_\-CHAN}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-MAX\_\-CHAN}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-MAX\_\-CHAN~2}}
+\label{k__pscip_8h_3d753f11c9438e66a7ea216e155f2afd}
+
+
+
+
+Definition at line 109 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module(), and pscip\_\-read\_\-proc().\hypertarget{k__pscip_8h_5cdc221ce76e4f919d3578e6ebc399ec}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-MAX\_\-DEV@{PSCIP\_\-MAX\_\-DEV}}
+\index{PSCIP\_\-MAX\_\-DEV@{PSCIP\_\-MAX\_\-DEV}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-MAX\_\-DEV}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-MAX\_\-DEV~20}}
+\label{k__pscip_8h_5cdc221ce76e4f919d3578e6ebc399ec}
+
+
+
+
+Definition at line 91 of file k\_\-pscip.h.
+
+Referenced by init\_\-pscip\_\-module().\hypertarget{k__pscip_8h_2b355e1f6f0a22ac816ad3424c614c83}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-MAX\_\-READ@{PSCIP\_\-MAX\_\-READ}}
+\index{PSCIP\_\-MAX\_\-READ@{PSCIP\_\-MAX\_\-READ}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-MAX\_\-READ}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-MAX\_\-READ~100}}
+\label{k__pscip_8h_2b355e1f6f0a22ac816ad3424c614c83}
+
+
+
+
+Definition at line 106 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_7590087ecef44ea17a2e8fd8d31cb7eb}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-MODEL\_\-ID@{PSCIP\_\-MODEL\_\-ID}}
+\index{PSCIP\_\-MODEL\_\-ID@{PSCIP\_\-MODEL\_\-ID}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-MODEL\_\-ID}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-MODEL\_\-ID~0x1B}}
+\label{k__pscip_8h_7590087ecef44ea17a2e8fd8d31cb7eb}
+
+
+
+
+Definition at line 71 of file k\_\-pscip.h.
+
+Referenced by checkmem\_\-device().\hypertarget{k__pscip_8h_5d7f77cebaee5bb31c9a7a0e14773db0}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-MODEL\_\-REG@{PSCIP\_\-MODEL\_\-REG}}
+\index{PSCIP\_\-MODEL\_\-REG@{PSCIP\_\-MODEL\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-MODEL\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-MODEL\_\-REG~0xB + PSCIP\_\-PROM\_\-OFFSET}}
+\label{k__pscip_8h_5d7f77cebaee5bb31c9a7a0e14773db0}
+
+
+
+
+Definition at line 66 of file k\_\-pscip.h.
+
+Referenced by checkmem\_\-device().\hypertarget{k__pscip_8h_f8ea1aac9274a4b8186fbad774101f12}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-PROC\_\-HPRIO@{PSCIP\_\-PROC\_\-HPRIO}}
+\index{PSCIP\_\-PROC\_\-HPRIO@{PSCIP\_\-PROC\_\-HPRIO}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-PROC\_\-HPRIO}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PROC\_\-HPRIO~1}}
+\label{k__pscip_8h_f8ea1aac9274a4b8186fbad774101f12}
+
+
+
+
+Definition at line 77 of file k\_\-pscip.h.
+
+Referenced by pscip\_\-write\_\-proc().\hypertarget{k__pscip_8h_b16cf1ad810e0888ebf0be034dff7984}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-PROC\_\-RESET@{PSCIP\_\-PROC\_\-RESET}}
+\index{PSCIP\_\-PROC\_\-RESET@{PSCIP\_\-PROC\_\-RESET}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-PROC\_\-RESET}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PROC\_\-RESET~100}}
+\label{k__pscip_8h_b16cf1ad810e0888ebf0be034dff7984}
+
+
+
+
+Definition at line 80 of file k\_\-pscip.h.
+
+Referenced by pscip\_\-write\_\-proc().\hypertarget{k__pscip_8h_a539fb57611818294d956c43f4f36fed}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-PROC\_\-WRITE@{PSCIP\_\-PROC\_\-WRITE}}
+\index{PSCIP\_\-PROC\_\-WRITE@{PSCIP\_\-PROC\_\-WRITE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-PROC\_\-WRITE}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PROC\_\-WRITE~2}}
+\label{k__pscip_8h_a539fb57611818294d956c43f4f36fed}
+
+
+
+
+Definition at line 78 of file k\_\-pscip.h.
+
+Referenced by pscip\_\-write\_\-proc().\hypertarget{k__pscip_8h_b8c573e91fc17883ae9be6ef8b1b44a4}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-PROC\_\-WRWAVE@{PSCIP\_\-PROC\_\-WRWAVE}}
+\index{PSCIP\_\-PROC\_\-WRWAVE@{PSCIP\_\-PROC\_\-WRWAVE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-PROC\_\-WRWAVE}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PROC\_\-WRWAVE~3}}
+\label{k__pscip_8h_b8c573e91fc17883ae9be6ef8b1b44a4}
+
+
+
+
+Definition at line 79 of file k\_\-pscip.h.
+
+Referenced by pscip\_\-write\_\-proc().\hypertarget{k__pscip_8h_278f32a12a9bc2ed8a2aa96f3b9336b7}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-PROM\_\-OFFSET@{PSCIP\_\-PROM\_\-OFFSET}}
+\index{PSCIP\_\-PROM\_\-OFFSET@{PSCIP\_\-PROM\_\-OFFSET}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-PROM\_\-OFFSET}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-PROM\_\-OFFSET~0x80 - 0x01}}
+\label{k__pscip_8h_278f32a12a9bc2ed8a2aa96f3b9336b7}
+
+
+
+
+Definition at line 65 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_6f14eee01265e5c54df656963252bb4a}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-RDWAVE\_\-ADDR@{PSCIP\_\-RDWAVE\_\-ADDR}}
+\index{PSCIP\_\-RDWAVE\_\-ADDR@{PSCIP\_\-RDWAVE\_\-ADDR}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-RDWAVE\_\-ADDR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RDWAVE\_\-ADDR~0x21}}
+\label{k__pscip_8h_6f14eee01265e5c54df656963252bb4a}
+
+
+
+
+Definition at line 44 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_1c6fc35d0b3484411a455c18d79e4edf}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-RDWAVE\_\-DATA@{PSCIP\_\-RDWAVE\_\-DATA}}
+\index{PSCIP\_\-RDWAVE\_\-DATA@{PSCIP\_\-RDWAVE\_\-DATA}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-RDWAVE\_\-DATA}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RDWAVE\_\-DATA~0x22}}
+\label{k__pscip_8h_1c6fc35d0b3484411a455c18d79e4edf}
+
+
+
+
+Definition at line 45 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave().\hypertarget{k__pscip_8h_72880f1a05ba5202aa3cb5ffa23f260e}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-RDWAVE\_\-REG@{PSCIP\_\-RDWAVE\_\-REG}}
+\index{PSCIP\_\-RDWAVE\_\-REG@{PSCIP\_\-RDWAVE\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-RDWAVE\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RDWAVE\_\-REG~0x20}}
+\label{k__pscip_8h_72880f1a05ba5202aa3cb5ffa23f260e}
+
+
+
+
+Definition at line 42 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdwave().\hypertarget{k__pscip_8h_584a387d5841c25dbd618db3f7849131}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-RDWAVE\_\-STAT@{PSCIP\_\-RDWAVE\_\-STAT}}
+\index{PSCIP\_\-RDWAVE\_\-STAT@{PSCIP\_\-RDWAVE\_\-STAT}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-RDWAVE\_\-STAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RDWAVE\_\-STAT~0x20}}
+\label{k__pscip_8h_584a387d5841c25dbd618db3f7849131}
+
+
+
+
+Definition at line 43 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdlinkstat(), and k\_\-pscip\_\-rdwave().\hypertarget{k__pscip_8h_30433e05f36128a8bd32066a88b217b1}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-READ\_\-ADDR@{PSCIP\_\-READ\_\-ADDR}}
+\index{PSCIP\_\-READ\_\-ADDR@{PSCIP\_\-READ\_\-ADDR}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-READ\_\-ADDR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-READ\_\-ADDR~0x10}}
+\label{k__pscip_8h_30433e05f36128a8bd32066a88b217b1}
+
+
+
+
+Definition at line 34 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-read().\hypertarget{k__pscip_8h_8443e2099306ed280cd5fce5d4fd5153}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-READ\_\-DATA@{PSCIP\_\-READ\_\-DATA}}
+\index{PSCIP\_\-READ\_\-DATA@{PSCIP\_\-READ\_\-DATA}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-READ\_\-DATA}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-READ\_\-DATA~0x12}}
+\label{k__pscip_8h_8443e2099306ed280cd5fce5d4fd5153}
+
+
+
+
+Definition at line 35 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-read().\hypertarget{k__pscip_8h_d50d5bca2cd1e0b22545f582e4ba4b96}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-READ\_\-REG@{PSCIP\_\-READ\_\-REG}}
+\index{PSCIP\_\-READ\_\-REG@{PSCIP\_\-READ\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-READ\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-READ\_\-REG~0x10}}
+\label{k__pscip_8h_d50d5bca2cd1e0b22545f582e4ba4b96}
+
+
+
+
+Definition at line 32 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-read().\hypertarget{k__pscip_8h_46e302d9c15ee9a52a815e492e04c5a1}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-READ\_\-STAT@{PSCIP\_\-READ\_\-STAT}}
+\index{PSCIP\_\-READ\_\-STAT@{PSCIP\_\-READ\_\-STAT}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-READ\_\-STAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-READ\_\-STAT~0x11}}
+\label{k__pscip_8h_46e302d9c15ee9a52a815e492e04c5a1}
+
+
+
+
+Definition at line 33 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdlinkstat(), and k\_\-pscip\_\-read().\hypertarget{k__pscip_8h_9c3ad05bf61e3c490ec4ac1f88d766c7}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-REG\_\-STAT@{PSCIP\_\-REG\_\-STAT}}
+\index{PSCIP\_\-REG\_\-STAT@{PSCIP\_\-REG\_\-STAT}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-REG\_\-STAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-REG\_\-STAT~0x38}}
+\label{k__pscip_8h_9c3ad05bf61e3c490ec4ac1f88d766c7}
+
+
+
+
+Definition at line 57 of file k\_\-pscip.h.
+
+Referenced by pscip\_\-irq\_\-handler().\hypertarget{k__pscip_8h_1220666adb0605be83393982240782d5}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-RESET\_\-MASK@{PSCIP\_\-RESET\_\-MASK}}
+\index{PSCIP\_\-RESET\_\-MASK@{PSCIP\_\-RESET\_\-MASK}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-RESET\_\-MASK}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RESET\_\-MASK~0x80}}
+\label{k__pscip_8h_1220666adb0605be83393982240782d5}
+
+
+
+
+Definition at line 72 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_c04df19697e467d1bf3083c30327613c}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-RESET\_\-REG@{PSCIP\_\-RESET\_\-REG}}
+\index{PSCIP\_\-RESET\_\-REG@{PSCIP\_\-RESET\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-RESET\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-RESET\_\-REG~0xC3}}
+\label{k__pscip_8h_c04df19697e467d1bf3083c30327613c}
+
+
+
+
+Definition at line 69 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_17a2c084ad1878710fc9ea040b325616}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-SIZE@{PSCIP\_\-SIZE}}
+\index{PSCIP\_\-SIZE@{PSCIP\_\-SIZE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-SIZE~0x100}}
+\label{k__pscip_8h_17a2c084ad1878710fc9ea040b325616}
+
+
+
+
+Definition at line 16 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_2351717fcaa0fcba2f0f6452aeab2ca3}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-WRITE\_\-ADDR@{PSCIP\_\-WRITE\_\-ADDR}}
+\index{PSCIP\_\-WRITE\_\-ADDR@{PSCIP\_\-WRITE\_\-ADDR}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-WRITE\_\-ADDR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRITE\_\-ADDR~0x8}}
+\label{k__pscip_8h_2351717fcaa0fcba2f0f6452aeab2ca3}
+
+
+
+
+Definition at line 29 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_699285ba50e52aebd53f505d1b56b92c}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-WRITE\_\-DATA@{PSCIP\_\-WRITE\_\-DATA}}
+\index{PSCIP\_\-WRITE\_\-DATA@{PSCIP\_\-WRITE\_\-DATA}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-WRITE\_\-DATA}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRITE\_\-DATA~0xa}}
+\label{k__pscip_8h_699285ba50e52aebd53f505d1b56b92c}
+
+
+
+
+Definition at line 30 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-write().\hypertarget{k__pscip_8h_6b51f0dfdb8aa61d7b431adac873545b}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-WRITE\_\-REG@{PSCIP\_\-WRITE\_\-REG}}
+\index{PSCIP\_\-WRITE\_\-REG@{PSCIP\_\-WRITE\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-WRITE\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRITE\_\-REG~0x8}}
+\label{k__pscip_8h_6b51f0dfdb8aa61d7b431adac873545b}
+
+
+
+
+Definition at line 27 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-write().\hypertarget{k__pscip_8h_9bfceff81a315238b2e5d11cd0cb6001}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-WRITE\_\-STAT@{PSCIP\_\-WRITE\_\-STAT}}
+\index{PSCIP\_\-WRITE\_\-STAT@{PSCIP\_\-WRITE\_\-STAT}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-WRITE\_\-STAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRITE\_\-STAT~0x9}}
+\label{k__pscip_8h_9bfceff81a315238b2e5d11cd0cb6001}
+
+
+
+
+Definition at line 28 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdlinkstat(), and k\_\-pscip\_\-write().\hypertarget{k__pscip_8h_c9ab63ca4054ecd34d0a06858fddd10f}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-WRWAVE\_\-ADDR@{PSCIP\_\-WRWAVE\_\-ADDR}}
+\index{PSCIP\_\-WRWAVE\_\-ADDR@{PSCIP\_\-WRWAVE\_\-ADDR}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-WRWAVE\_\-ADDR}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRWAVE\_\-ADDR~0x18}}
+\label{k__pscip_8h_c9ab63ca4054ecd34d0a06858fddd10f}
+
+
+
+
+Definition at line 39 of file k\_\-pscip.h.\hypertarget{k__pscip_8h_d455e93628e55eab0f3f7ffcbedc3a41}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-WRWAVE\_\-DATA@{PSCIP\_\-WRWAVE\_\-DATA}}
+\index{PSCIP\_\-WRWAVE\_\-DATA@{PSCIP\_\-WRWAVE\_\-DATA}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-WRWAVE\_\-DATA}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRWAVE\_\-DATA~0x1a}}
+\label{k__pscip_8h_d455e93628e55eab0f3f7ffcbedc3a41}
+
+
+
+
+Definition at line 40 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-wrwave().\hypertarget{k__pscip_8h_4143874b4801c2712cd2890a5b44fd2b}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-WRWAVE\_\-REG@{PSCIP\_\-WRWAVE\_\-REG}}
+\index{PSCIP\_\-WRWAVE\_\-REG@{PSCIP\_\-WRWAVE\_\-REG}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-WRWAVE\_\-REG}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRWAVE\_\-REG~0x18}}
+\label{k__pscip_8h_4143874b4801c2712cd2890a5b44fd2b}
+
+
+
+
+Definition at line 37 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-wrwave().\hypertarget{k__pscip_8h_9984303282b43e7aaef39e1cb5509a9a}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!PSCIP\_\-WRWAVE\_\-STAT@{PSCIP\_\-WRWAVE\_\-STAT}}
+\index{PSCIP\_\-WRWAVE\_\-STAT@{PSCIP\_\-WRWAVE\_\-STAT}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{PSCIP\_\-WRWAVE\_\-STAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define PSCIP\_\-WRWAVE\_\-STAT~0x19}}
+\label{k__pscip_8h_9984303282b43e7aaef39e1cb5509a9a}
+
+
+
+
+Definition at line 38 of file k\_\-pscip.h.
+
+Referenced by k\_\-pscip\_\-rdlinkstat(), and k\_\-pscip\_\-wrwave().\hypertarget{k__pscip_8h_a8cecfc5c5c054d2875c03e77b7be15d}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!TRUE@{TRUE}}
+\index{TRUE@{TRUE}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{TRUE}]{\setlength{\rightskip}{0pt plus 5cm}\#define TRUE~1}}
+\label{k__pscip_8h_a8cecfc5c5c054d2875c03e77b7be15d}
+
+
+
+
+Definition at line 176 of file k\_\-pscip.h.
+
+Referenced by probe().
+
+\subsection{Typedef Documentation}
+\hypertarget{k__pscip_8h_82fda29b5007f3eddccb27f1cc6c4f69}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!pscip\_\-Dev@{pscip\_\-Dev}}
+\index{pscip\_\-Dev@{pscip\_\-Dev}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{pscip\_\-Dev}]{\setlength{\rightskip}{0pt plus 5cm}typedef  struct {\bf npscip\_\-Dev} $\ast$ {\bf pscip\_\-Dev}}}
+\label{k__pscip_8h_82fda29b5007f3eddccb27f1cc6c4f69}
+
+
+\hypertarget{k__pscip_8h_18a9f927cf2411f77dd5efa68d43b911}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!pscip\_\-Proc@{pscip\_\-Proc}}
+\index{pscip\_\-Proc@{pscip\_\-Proc}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{pscip\_\-Proc}]{\setlength{\rightskip}{0pt plus 5cm}typedef  struct {\bf npscip\_\-Proc} $\ast$ {\bf pscip\_\-Proc}}}
+\label{k__pscip_8h_18a9f927cf2411f77dd5efa68d43b911}
+
+
+
+
+\subsection{Function Documentation}
+\hypertarget{k__pscip_8h_2dab759a46d164a5ffb67021338afa8f}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-read\_\-byte@{IP\_\-read\_\-byte}}
+\index{IP\_\-read\_\-byte@{IP\_\-read\_\-byte}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-read\_\-byte}]{\setlength{\rightskip}{0pt plus 5cm}void IP\_\-read\_\-byte (void $\ast$ {\em address}, \/  uint8\_\-t $\ast$ {\em val})}}
+\label{k__pscip_8h_2dab759a46d164a5ffb67021338afa8f}
+
+
+Reads byte from the device. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$address}]- virtual address of the register to be read \item[{\em $\ast$val}]- structure containing information about the channel/link we are using \end{description}
+\end{Desc}
+
+
+Definition at line 35 of file k\_\-pscip.c.
+
+Referenced by checkmem\_\-device(), k\_\-pscip\_\-rdlinkstat(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-ioctl().\hypertarget{k__pscip_8h_a45e2281c8ad6b553fae27e127629deb}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-read\_\-word@{IP\_\-read\_\-word}}
+\index{IP\_\-read\_\-word@{IP\_\-read\_\-word}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-read\_\-word}]{\setlength{\rightskip}{0pt plus 5cm}void IP\_\-read\_\-word (void $\ast$ {\em address}, \/  uint16\_\-t $\ast$ {\em val})}}
+\label{k__pscip_8h_a45e2281c8ad6b553fae27e127629deb}
+
+
+Reads word from the device. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$address}]- virtual address of the register to be read \item[{\em $\ast$val}]- structure containing information about the channel/link we are using \end{description}
+\end{Desc}
+
+
+Definition at line 47 of file k\_\-pscip.c.
+
+Referenced by k\_\-if\_\-handle\_\-irq(), k\_\-pscip\_\-dump\_\-all\_\-registers(), k\_\-pscip\_\-rdfpgastat(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wait\_\-linkdown(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-irq\_\-handler().\hypertarget{k__pscip_8h_fc42b873fc39adc8deeef3ad4264b880}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-write\_\-byte@{IP\_\-write\_\-byte}}
+\index{IP\_\-write\_\-byte@{IP\_\-write\_\-byte}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-write\_\-byte}]{\setlength{\rightskip}{0pt plus 5cm}void IP\_\-write\_\-byte (void $\ast$ {\em address}, \/  uint8\_\-t {\em val})}}
+\label{k__pscip_8h_fc42b873fc39adc8deeef3ad4264b880}
+
+
+Writing byte to the device. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$address}]- virtual address of the register to be writen to \item[{\em $\ast$val}]- structure containing information about the channel/link we are using \end{description}
+\end{Desc}
+
+
+Definition at line 60 of file k\_\-pscip.c.
+
+Referenced by k\_\-pscip\_\-clear\_\-err\_\-counter(), and pscip\_\-ioctl().\hypertarget{k__pscip_8h_bb54cb7c8617283657252ad4c51feb9a}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!IP\_\-write\_\-word@{IP\_\-write\_\-word}}
+\index{IP\_\-write\_\-word@{IP\_\-write\_\-word}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{IP\_\-write\_\-word}]{\setlength{\rightskip}{0pt plus 5cm}void IP\_\-write\_\-word (void $\ast$ {\em address}, \/  uint16\_\-t {\em val})}}
+\label{k__pscip_8h_bb54cb7c8617283657252ad4c51feb9a}
+
+
+Writing word to the device. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$address}]- virtual address of the register to be writen to \item[{\em $\ast$val}]- structure containing information about the channel/link we are using \end{description}
+\end{Desc}
+
+
+Definition at line 73 of file k\_\-pscip.c.
+
+Referenced by k\_\-irq\_\-disable(), k\_\-irq\_\-enable(), k\_\-pscip\_\-clear\_\-err\_\-counter(), k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-reset(), k\_\-pscip\_\-wait\_\-linkdown(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), k\_\-pscip\_\-wrwave(), and pscip\_\-irq\_\-handler().\hypertarget{k__pscip_8h_af9fef4aaf709c65ab3b704e43fbfc5f}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-clear\_\-err\_\-counter@{k\_\-pscip\_\-clear\_\-err\_\-counter}}
+\index{k\_\-pscip\_\-clear\_\-err\_\-counter@{k\_\-pscip\_\-clear\_\-err\_\-counter}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-clear\_\-err\_\-counter}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-clear\_\-err\_\-counter ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_af9fef4aaf709c65ab3b704e43fbfc5f}
+
+
+Clean error counter in FPGA status register. 
+
+Error coutner indicates the number of errors which occured (ex. due to transmition error). The couter is clean before every read/write function from/to PS
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 951 of file k\_\-pscip.c.
+
+References pscip\_\-t::chan, IP\_\-write\_\-byte(), IP\_\-write\_\-word(), num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-ERRCLEAR\_\-MSK, PSCIP\_\-FPGA\_\-HIGH, and PSCIP\_\-FPGA\_\-LOW.
+
+Referenced by pscip\_\-ioctl().\hypertarget{k__pscip_8h_2e05daa62010e54bf8ee30a458db37d4}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-dump\_\-all\_\-registers@{k\_\-pscip\_\-dump\_\-all\_\-registers}}
+\index{k\_\-pscip\_\-dump\_\-all\_\-registers@{k\_\-pscip\_\-dump\_\-all\_\-registers}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-dump\_\-all\_\-registers}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-dump\_\-all\_\-registers ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_2e05daa62010e54bf8ee30a458db37d4}
+
+
+Dumps content of all the registers of both IPs on the carrier and of Local Space O (BADR 2) on the Carrier. 
+
+Local Space 0 contains IP A/B control registers, revision ID and status register. It does not metter which IP calles the function, it always dumps information for entire carrier address I/O space used for interfacing IPs IF \_\-\_\-DEBUG\_\-\_\- defined, it also interprets content of registers in FPGA status register of calling IP and content of PCI Carrier Status register
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 974 of file k\_\-pscip.c.
+
+References pscip\_\-t::chan, IP\_\-read\_\-word(), npscip\_\-Dev::IPnumber, npscip\_\-Dev::pIP\_\-IOspace, npscip\_\-Dev::pIPinterfaceReg, npscip\_\-Dev::pPCIinterfaceReg, PSCIP\_\-CHAN\_\-OFFSET, and PSCIP\_\-IP\_\-OFFSET.
+
+Referenced by pscip\_\-ioctl().\hypertarget{k__pscip_8h_e19a570cf3cd55e8aa657d8cdbf6559f}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-rdfpgastat@{k\_\-pscip\_\-rdfpgastat}}
+\index{k\_\-pscip\_\-rdfpgastat@{k\_\-pscip\_\-rdfpgastat}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-rdfpgastat}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-rdfpgastat ({\bf pscip\_\-fpga\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_e19a570cf3cd55e8aa657d8cdbf6559f}
+
+
+Read FPGA status register FPGA status register is for debugging purposes and reflects the error status of the FPGA. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure reflecting status registers in FPGA - is filled with IP debug information \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 849 of file k\_\-pscip.c.
+
+References pscip\_\-fpga\_\-t::channel, pscip\_\-fpga\_\-t::high\_\-data, IP\_\-read\_\-word(), pscip\_\-fpga\_\-t::low\_\-data, pscip\_\-fpga\_\-t::mid\_\-data, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-FPGA\_\-HIGH, PSCIP\_\-FPGA\_\-LOW, and PSCIP\_\-FPGA\_\-MID.
+
+Referenced by IP\_\-DEBUG\_\-read\_\-errors(), pscip\_\-ioctl(), and pscip\_\-read\_\-proc().\hypertarget{k__pscip_8h_7b951d2869c31000e1f48af5535522fb}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-rdlinkstat@{k\_\-pscip\_\-rdlinkstat}}
+\index{k\_\-pscip\_\-rdlinkstat@{k\_\-pscip\_\-rdlinkstat}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-rdlinkstat}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-rdlinkstat ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_7b951d2869c31000e1f48af5535522fb}
+
+
+Read link status. 
+
+Reads FPGA status register \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure reflecting status registers in FPGA - is filled with IP debug information \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 803 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-t::data, IP\_\-read\_\-byte(), num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-HPRIOWRITE\_\-STAT, PSCIP\_\-PARAM\_\-ERR, PSCIP\_\-RDWAVE\_\-IDX, PSCIP\_\-RDWAVE\_\-STAT, PSCIP\_\-READ\_\-IDX, PSCIP\_\-READ\_\-STAT, PSCIP\_\-WRHPRIO\_\-IDX, PSCIP\_\-WRITE\_\-IDX, PSCIP\_\-WRITE\_\-STAT, PSCIP\_\-WRWAVE\_\-IDX, and PSCIP\_\-WRWAVE\_\-STAT.
+
+Referenced by pscip\_\-ioctl().\hypertarget{k__pscip_8h_36cd2bf86b146201cd4e281452da9171}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-rdstatistics@{k\_\-pscip\_\-rdstatistics}}
+\index{k\_\-pscip\_\-rdstatistics@{k\_\-pscip\_\-rdstatistics}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-rdstatistics}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-rdstatistics ({\bf pscip\_\-stats\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_36cd2bf86b146201cd4e281452da9171}
+
+
+Read transmission statistics. 
+
+Retursn to the user all the information about errors stored in device structure during operation of the driver. It does not read informatin from IP but rather from device structure flags.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure filled with the information about errors \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 884 of file k\_\-pscip.c.
+
+References \_\-\_\-DEBUG\_\-\_\-, pscip\_\-stats\_\-t::channel, pscip\_\-stats\_\-t::err\_\-flag, pscip\_\-stats\_\-t::link\_\-err\_\-flag, pscip\_\-stats\_\-t::linkdown\_\-cnt, num\_\-pscip, pscip\_\-stats\_\-t::rx, npscip\_\-Dev::stats, pscip\_\-stats\_\-t::tx, and pscip\_\-stats\_\-t::txerr\_\-cnt.
+
+Referenced by pscip\_\-ioctl().\hypertarget{k__pscip_8h_d2912e834745c4c49209453089b95723}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-rdwave@{k\_\-pscip\_\-rdwave}}
+\index{k\_\-pscip\_\-rdwave@{k\_\-pscip\_\-rdwave}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-rdwave}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-rdwave ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_d2912e834745c4c49209453089b95723}
+
+
+Execute reading action Function reads data (2 words) of a waveform from given address in PS. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 693 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-stats\_\-t::cntrl\_\-stat, pscip\_\-t::data, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-byte(), IP\_\-read\_\-word(), IP\_\-write\_\-word(), npscip\_\-Dev::irqflag, k\_\-pscip\_\-wait\_\-linkdown(), npscip\_\-Dev::lock, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-BUSY\_\-TOUT, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-ERROR\_\-MSK, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-IRQ\_\-DONE, PSCIP\_\-IRQ\_\-REQUEST, PSCIP\_\-IRQ\_\-SERVED, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINK\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-RDWAVE\_\-DATA, PSCIP\_\-RDWAVE\_\-REG, PSCIP\_\-RDWAVE\_\-STAT, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TOUT\_\-ERR, PSCIP\_\-TX\_\-ERR, npscip\_\-Dev::queue, queue\_\-flag, pscip\_\-stats\_\-t::rx, pscip\_\-t::stat, and npscip\_\-Dev::stats.
+
+Referenced by pscip\_\-ioctl().\hypertarget{k__pscip_8h_ad9e73f46f2f0c11f7bb83f716127966}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-read@{k\_\-pscip\_\-read}}
+\index{k\_\-pscip\_\-read@{k\_\-pscip\_\-read}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-read}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-read ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_ad9e73f46f2f0c11f7bb83f716127966}
+
+
+Execute reading action. 
+
+Function reads data (2 words) from a given address in PS
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 431 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-stats\_\-t::cntrl\_\-stat, pscip\_\-t::data, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-byte(), IP\_\-read\_\-word(), IP\_\-write\_\-word(), npscip\_\-Dev::irqflag, k\_\-pscip\_\-wait\_\-linkdown(), npscip\_\-Dev::lock, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-BUSY\_\-TOUT, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-ERROR\_\-MSK, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-IRQ\_\-DONE, PSCIP\_\-IRQ\_\-REQUEST, PSCIP\_\-IRQ\_\-SERVED, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINK\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-READ\_\-ADDR, PSCIP\_\-READ\_\-DATA, PSCIP\_\-READ\_\-REG, PSCIP\_\-READ\_\-STAT, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TOUT\_\-ERR, PSCIP\_\-TX\_\-ERR, npscip\_\-Dev::queue, queue\_\-flag, pscip\_\-stats\_\-t::rx, pscip\_\-t::stat, and npscip\_\-Dev::stats.
+
+Referenced by pscip\_\-ioctl(), and pscip\_\-thread().\hypertarget{k__pscip_8h_171ccee36d88fe5bfb43735bcc1deee2}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-reset@{k\_\-pscip\_\-reset}}
+\index{k\_\-pscip\_\-reset@{k\_\-pscip\_\-reset}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-reset (int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_171ccee36d88fe5bfb43735bcc1deee2}
+
+
+Reset IP. 
+
+This is a hardware reset which is triggered from the Carrier.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 919 of file k\_\-pscip.c.
+
+References IP\_\-RESET, IP\_\-write\_\-word(), npscip\_\-Dev::IPnumber, num\_\-pscip, and npscip\_\-Dev::pIPinterfaceReg.
+
+Referenced by pscip\_\-ioctl(), and pscip\_\-write\_\-proc().\hypertarget{k__pscip_8h_1f4a0125b6b4e93e8d1ce8eaa64ade3a}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-wait\_\-linkdown@{k\_\-pscip\_\-wait\_\-linkdown}}
+\index{k\_\-pscip\_\-wait\_\-linkdown@{k\_\-pscip\_\-wait\_\-linkdown}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-wait\_\-linkdown}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-wait\_\-linkdown ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_1f4a0125b6b4e93e8d1ce8eaa64ade3a}
+
+
+Wait after linkdown. 
+
+Wait some seconds after a linkdown event, maybe to avoid requesting data after a local control unit reboot
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 92 of file k\_\-pscip.c.
+
+References pscip\_\-t::chan, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-word(), IP\_\-write\_\-word(), pscip\_\-stats\_\-t::linkdown\_\-cnt, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-ERRCLEAR\_\-MSK, PSCIP\_\-ERRCNT\_\-MSK, PSCIP\_\-FPGA\_\-HIGH, PSCIP\_\-FPGA\_\-LOW, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-LINKDOWN\_\-TOUT, npscip\_\-Dev::stats, and npscip\_\-Dev::tv.
+
+Referenced by k\_\-pscip\_\-rdwave(), k\_\-pscip\_\-read(), k\_\-pscip\_\-wrhiprio(), k\_\-pscip\_\-write(), and k\_\-pscip\_\-wrwave().\hypertarget{k__pscip_8h_3af02815f487a50e6c2e158ddda6feef}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-wrhiprio@{k\_\-pscip\_\-wrhiprio}}
+\index{k\_\-pscip\_\-wrhiprio@{k\_\-pscip\_\-wrhiprio}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-wrhiprio}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-wrhiprio ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_3af02815f487a50e6c2e158ddda6feef}
+
+
+Execute high priority PS-current setting. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 163 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-stats\_\-t::cntrl\_\-stat, pscip\_\-t::data, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-byte(), IP\_\-read\_\-word(), IP\_\-write\_\-word(), npscip\_\-Dev::irqflag, k\_\-pscip\_\-wait\_\-linkdown(), npscip\_\-Dev::lock, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-BUSY\_\-TOUT, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-ECHO\_\-MSK, PSCIP\_\-ERROR\_\-MSK, PSCIP\_\-HPRIOWRITE\_\-DATA, PSCIP\_\-HPRIOWRITE\_\-REG, PSCIP\_\-HPRIOWRITE\_\-STAT, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-IRQ\_\-DONE, PSCIP\_\-IRQ\_\-REQUEST, PSCIP\_\-IRQ\_\-SERVED, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINK\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-MISMATCH\_\-ERR, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TOUT\_\-ERR, PSCIP\_\-TX\_\-ERR, npscip\_\-Dev::queue, queue\_\-flag, pscip\_\-t::stat, npscip\_\-Dev::stats, and pscip\_\-stats\_\-t::tx.
+
+Referenced by pscip\_\-ioctl(), and pscip\_\-write\_\-proc().\hypertarget{k__pscip_8h_5fba9a3c8d7ba024285df33d829dc29d}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-write@{k\_\-pscip\_\-write}}
+\index{k\_\-pscip\_\-write@{k\_\-pscip\_\-write}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-write}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-write ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_5fba9a3c8d7ba024285df33d829dc29d}
+
+
+Execute writing action. 
+
+The function writes given data (2 words) to given address in the PS, the information is passed with a given status.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 303 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-stats\_\-t::cntrl\_\-stat, pscip\_\-t::data, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-byte(), IP\_\-read\_\-word(), IP\_\-write\_\-word(), npscip\_\-Dev::irqflag, k\_\-pscip\_\-wait\_\-linkdown(), npscip\_\-Dev::lock, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-BUSY\_\-TOUT, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-ECHO\_\-MSK, PSCIP\_\-ERROR\_\-MSK, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-IRQ\_\-DONE, PSCIP\_\-IRQ\_\-REQUEST, PSCIP\_\-IRQ\_\-SERVED, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINK\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-MISMATCH\_\-ERR, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TOUT\_\-ERR, PSCIP\_\-TX\_\-ERR, PSCIP\_\-WRITE\_\-DATA, PSCIP\_\-WRITE\_\-REG, PSCIP\_\-WRITE\_\-STAT, npscip\_\-Dev::queue, queue\_\-flag, pscip\_\-t::stat, npscip\_\-Dev::stats, and pscip\_\-stats\_\-t::tx.
+
+Referenced by pscip\_\-ioctl(), and pscip\_\-write\_\-proc().\hypertarget{k__pscip_8h_22758dd73dc819aa396e6a55a444fd40}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-wrstat@{k\_\-pscip\_\-wrstat}}
+\index{k\_\-pscip\_\-wrstat@{k\_\-pscip\_\-wrstat}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-wrstat}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-wrstat ({\bf pscip\_\-t} $\ast$, \/  int, \/  {\bf pscip\_\-Dev})}}
+\label{k__pscip_8h_22758dd73dc819aa396e6a55a444fd40}
+
+
+\hypertarget{k__pscip_8h_7702409c600827ab974d1b0ec3a2c320}{
+\index{k\_\-pscip.h@{k\_\-pscip.h}!k\_\-pscip\_\-wrwave@{k\_\-pscip\_\-wrwave}}
+\index{k\_\-pscip\_\-wrwave@{k\_\-pscip\_\-wrwave}!k_pscip.h@{k\_\-pscip.h}}
+\subsubsection[{k\_\-pscip\_\-wrwave}]{\setlength{\rightskip}{0pt plus 5cm}int k\_\-pscip\_\-wrwave ({\bf pscip\_\-t} $\ast$ {\em val}, \/  int {\em id\_\-pscip}, \/  {\bf pscip\_\-Dev} {\em dev})}}
+\label{k__pscip_8h_7702409c600827ab974d1b0ec3a2c320}
+
+
+Write wave value. 
+
+Function writes datat (2 words) of waveform to given address in PS
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$val}]- structure containing information about the channel/link we are using \item[{\em id\_\-pscip}]- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used \item[{\em dev}]- device structure contaning informatin about the device (IP) \end{description}
+\end{Desc}
+
+
+Definition at line 561 of file k\_\-pscip.c.
+
+References pscip\_\-t::address, pscip\_\-t::chan, pscip\_\-stats\_\-t::cntrl\_\-stat, pscip\_\-t::data, pscip\_\-stats\_\-t::err\_\-flag, IP\_\-read\_\-byte(), IP\_\-read\_\-word(), IP\_\-write\_\-word(), npscip\_\-Dev::irqflag, k\_\-pscip\_\-wait\_\-linkdown(), npscip\_\-Dev::lock, num\_\-pscip, npscip\_\-Dev::pIP\_\-IOspace, PSCIP\_\-BUSY\_\-TOUT, PSCIP\_\-DSP\_\-MSK, PSCIP\_\-ECHO\_\-MSK, PSCIP\_\-ERROR\_\-MSK, PSCIP\_\-INPUTBUF\_\-MSK, PSCIP\_\-IRQ\_\-DONE, PSCIP\_\-IRQ\_\-REQUEST, PSCIP\_\-IRQ\_\-SERVED, PSCIP\_\-LINK\_\-ERR, PSCIP\_\-LINK\_\-MSK, PSCIP\_\-LINKDOWN\_\-MSK, PSCIP\_\-MISMATCH\_\-ERR, PSCIP\_\-REMLOC\_\-MSK, PSCIP\_\-TOUT\_\-ERR, PSCIP\_\-TX\_\-ERR, PSCIP\_\-WRWAVE\_\-DATA, PSCIP\_\-WRWAVE\_\-REG, PSCIP\_\-WRWAVE\_\-STAT, npscip\_\-Dev::queue, queue\_\-flag, pscip\_\-t::stat, npscip\_\-Dev::stats, and pscip\_\-stats\_\-t::tx.
+
+Referenced by pscip\_\-ioctl(), and pscip\_\-write\_\-proc().
