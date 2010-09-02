@@ -6,11 +6,13 @@
 //
 // project :	PSI power supplies
 //
-// $Author:  Maciej Lipinski $
+// $Author$
 //
-// $Revision:  1.0 $
+// $Revision$
 //
 // $Log:  $
+// $URL$
+// $Rev$
 //
 // copyleft :     ALBA Synchrotron Facility
 //                Edifici Ciencies Nord. Modul C-3 central.
@@ -44,8 +46,8 @@
 //using namespace Tango;
 
 /**
- * @author      $Author: Maciej Lipinski         $
- * @version     $Revision:  1.0 $
+ * @author      $Author$
+ * @version     $Revision$
  */
 
  //     Add your own constants definitions here.
@@ -617,14 +619,14 @@ public :
  *	You can choose the kind of connection the DS "talks" with PSC:
  *	0 -> fiber
  *	1 -> serial (RS232)
- *	
+ *
  *	To run RS232 you need to create pySerial DS
  */
 	Tango::DevShort	connectionType;
 /**
  *	scaling factor ( f ):
  *	Iref = f * ( I_idal + o )
- *	
+ *
  */
 	Tango::DevFloat	currentFactor;
 //@}
@@ -855,65 +857,65 @@ public :
  */
 	virtual Tango::ConstDevString	dev_status();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	on();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	off();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	reset();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	reset_interlocks();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	disable_interlocks();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	enable_interlocks();
 /**
- * 
+ *
  *	@return	Interlocks Status
  *	@exception DevFailed
  */
 	Tango::DevString	interlock_status();
 /**
- * 
+ *
  *	@param	argin	Register address and return format (f-float,i-integer,x-hex, by default x), ex input: 0x00 x - address 0, return value hex
  *	@return	Data, hexadecimal
  *	@exception DevFailed
  */
 	Tango::DevString	read__psc_register(Tango::DevString);
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	stop_software_waveform();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	start_software_waveform();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	connect();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	update();
