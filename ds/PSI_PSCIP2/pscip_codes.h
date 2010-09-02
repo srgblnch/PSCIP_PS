@@ -8,21 +8,20 @@
 #define RS232_PRIORITY_ERROR			0x0E
 
 static const char psc_communication_alba_errmsg[][PSCIP_SIZE_MSG] = {
-    "Echo value doesn't match",						//"0x00",
-    "Remote control disabled",						//"0x01",
-    "Generic reading error",						//"0x02",
-    "Data timeout",									//"0x03",
-    "Input buffer full",							//"0x04",
-    "Dsp stopped",									//"0x05",
-    "Link is down",									//"0x06",
-    "Transmission error",							//"0x07",
-    "Parameter error",								//"0x08",
+    "echo value does not match",						//"0x00",
+    "remote control disabled",						//"0x01",
+    "generic reading error",						//"0x02",
+    "data timeout",									//"0x03",
+    "input buffer full",							//"0x04",
+    "DSP stopped",									//"0x05",
+    "link is down",									//"0x06",
+    "transmission error",							//"0x07",
+    "parameter error",								//"0x08",
     "PCI bus error",								//"0x09",
-    "Connection to pySerial failed",				//"0x0A",
-    "Serial connection error (RS232)", 				//"0x0B",
-    "Unknown value of ConnectionType property",		//"0x0C"
-    "Could not open communication device",			//"0x0D"
+    "connection to Serial failed",				//"0x0A",
+    "serial connection error (RS232)", 				//"0x0B",
+    "unknown value of ConnectionType property",		//"0x0C"
+    "could not open communication device",			//"0x0D"
     "RS232 priority error"							//"0x0E"
-
 };
 
