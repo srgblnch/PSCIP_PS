@@ -581,11 +581,18 @@ void PSI_PCClass::attribute_factory(vector<Tango::Attr *> &att_list)
 {
 	//	Attribute : CurrentSetpoint
 	CurrentSetpointAttrib	*current_setpoint = new CurrentSetpointAttrib();
+	Tango::UserDefaultAttrProp	current_setpoint_prop;
+	current_setpoint_prop.set_delta_val("0.000001");
+	current_setpoint->set_default_properties(current_setpoint_prop);
+	current_setpoint->set_polling_period(200);
 	att_list.push_back(current_setpoint);
 
 	//	Attribute : Voltage
 	VoltageAttrib	*voltage = new VoltageAttrib();
-	voltage->set_polling_period(500);
+	Tango::UserDefaultAttrProp	voltage_prop;
+	voltage_prop.set_delta_val("0.01");
+	voltage->set_default_properties(voltage_prop);
+	voltage->set_polling_period(200);
 	att_list.push_back(voltage);
 
 	//	Attribute : RemoteMode
@@ -594,7 +601,10 @@ void PSI_PCClass::attribute_factory(vector<Tango::Attr *> &att_list)
 
 	//	Attribute : Current
 	CurrentAttrib	*current = new CurrentAttrib();
-	current->set_polling_period(500);
+	Tango::UserDefaultAttrProp	current_prop;
+	current_prop.set_delta_val("0.01");
+	current->set_default_properties(current_prop);
+	current->set_polling_period(200);
 	att_list.push_back(current);
 
 	//	Attribute : CurrentOffset
