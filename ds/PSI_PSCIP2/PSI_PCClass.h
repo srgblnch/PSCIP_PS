@@ -89,6 +89,18 @@ public:
 	{return (static_cast<PSI_PC *>(dev))->is_SoftwareWaveform_allowed(ty);}
 };
 
+class VAttrib: public Tango::Attr
+{
+public:
+	VAttrib():Attr("V", Tango::DEV_FLOAT, Tango::READ) {};
+	~VAttrib() {};
+	
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+	{(static_cast<PSI_PC *>(dev))->read_V(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+	{return (static_cast<PSI_PC *>(dev))->is_V_allowed(ty);}
+};
+
 class IAttrib: public Tango::Attr
 {
 public:

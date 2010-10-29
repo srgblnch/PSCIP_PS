@@ -583,6 +583,7 @@ public :
 		Tango::DevDouble	attr_CurrentOffset_write;
 		Tango::DevDouble	*attr_I_read;
 		Tango::DevDouble	attr_I_write;
+		Tango::DevFloat	*attr_V_read;
 		Tango::DevDouble	*attr_SoftwareWaveform_read;
 		Tango::DevDouble	attr_SoftwareWaveform_write;
 		Tango::DevShort	*attr_ErrorCodes_read;
@@ -619,14 +620,14 @@ public :
  *	You can choose the kind of connection the DS "talks" with PSC:
  *	0 -> fiber
  *	1 -> serial (RS232)
- *
+ *	
  *	To run RS232 you need to create pySerial DS
  */
 	Tango::DevShort	connectionType;
 /**
  *	scaling factor ( f ):
  *	Iref = f * ( I_idal + o )
- *
+ *	
  */
 	Tango::DevFloat	currentFactor;
 //@}
@@ -737,6 +738,10 @@ public :
  */
 	virtual void write_I(Tango::WAttribute &attr);
 /**
+ *	Extract real attribute values for V acquisition result.
+ */
+	virtual void read_V(Tango::Attribute &attr);
+/**
  *	Extract real attribute values for SoftwareWaveform acquisition result.
  */
 	virtual void read_SoftwareWaveform(Tango::Attribute &attr);
@@ -780,6 +785,10 @@ public :
  *	Read/Write allowed for I attribute.
  */
 	virtual bool is_I_allowed(Tango::AttReqType type);
+/**
+ *	Read/Write allowed for V attribute.
+ */
+	virtual bool is_V_allowed(Tango::AttReqType type);
 /**
  *	Read/Write allowed for SoftwareWaveform attribute.
  */
@@ -857,65 +866,65 @@ public :
  */
 	virtual Tango::ConstDevString	dev_status();
 /**
- *
+ * 
  *	@exception DevFailed
  */
 	void	on();
 /**
- *
+ * 
  *	@exception DevFailed
  */
 	void	off();
 /**
- *
+ * 
  *	@exception DevFailed
  */
 	void	reset();
 /**
- *
+ * 
  *	@exception DevFailed
  */
 	void	reset_interlocks();
 /**
- *
+ * 
  *	@exception DevFailed
  */
 	void	disable_interlocks();
 /**
- *
+ * 
  *	@exception DevFailed
  */
 	void	enable_interlocks();
 /**
- *
+ * 
  *	@return	Interlocks Status
  *	@exception DevFailed
  */
 	Tango::DevString	interlock_status();
 /**
- *
+ * 
  *	@param	argin	Register address and return format (f-float,i-integer,x-hex, by default x), ex input: 0x00 x - address 0, return value hex
  *	@return	Data, hexadecimal
  *	@exception DevFailed
  */
 	Tango::DevString	read__psc_register(Tango::DevString);
 /**
- *
+ * 
  *	@exception DevFailed
  */
 	void	stop_software_waveform();
 /**
- *
+ * 
  *	@exception DevFailed
  */
 	void	start_software_waveform();
 /**
- *
+ * 
  *	@exception DevFailed
  */
 	void	connect();
 /**
- *
+ * 
  *	@exception DevFailed
  */
 	void	update();

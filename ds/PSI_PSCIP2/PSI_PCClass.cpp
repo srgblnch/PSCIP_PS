@@ -582,6 +582,8 @@ void PSI_PCClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Attribute : CurrentSetpoint
 	CurrentSetpointAttrib	*current_setpoint = new CurrentSetpointAttrib();
 	Tango::UserDefaultAttrProp	current_setpoint_prop;
+	current_setpoint_prop.set_label("Current Setpoint");
+	current_setpoint_prop.set_unit("A");
 	current_setpoint_prop.set_delta_val("0.000001");
 	current_setpoint->set_default_properties(current_setpoint_prop);
 	current_setpoint->set_polling_period(200);
@@ -590,6 +592,7 @@ void PSI_PCClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Attribute : Voltage
 	VoltageAttrib	*voltage = new VoltageAttrib();
 	Tango::UserDefaultAttrProp	voltage_prop;
+	voltage_prop.set_unit("V");
 	voltage_prop.set_delta_val("0.01");
 	voltage->set_default_properties(voltage_prop);
 	voltage->set_polling_period(200);
@@ -602,6 +605,7 @@ void PSI_PCClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Attribute : Current
 	CurrentAttrib	*current = new CurrentAttrib();
 	Tango::UserDefaultAttrProp	current_prop;
+	current_prop.set_label("A");
 	current_prop.set_delta_val("0.01");
 	current->set_default_properties(current_prop);
 	current->set_polling_period(200);
@@ -609,6 +613,10 @@ void PSI_PCClass::attribute_factory(vector<Tango::Attr *> &att_list)
 
 	//	Attribute : CurrentOffset
 	CurrentOffsetAttrib	*current_offset = new CurrentOffsetAttrib();
+	Tango::UserDefaultAttrProp	current_offset_prop;
+	current_offset_prop.set_label("Current Offset");
+	current_offset_prop.set_unit("A");
+	current_offset->set_default_properties(current_offset_prop);
 	current_offset->set_memorized();
 	current_offset->set_memorized_init(true);
 	att_list.push_back(current_offset);
@@ -620,6 +628,14 @@ void PSI_PCClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	i->set_default_properties(i_prop);
 	i->set_disp_level(Tango::EXPERT);
 	att_list.push_back(i);
+
+	//	Attribute : V
+	VAttrib	*v = new VAttrib();
+	Tango::UserDefaultAttrProp	v_prop;
+	v_prop.set_unit("V");
+	v->set_default_properties(v_prop);
+	v->set_disp_level(Tango::EXPERT);
+	att_list.push_back(v);
 
 	//	Attribute : SoftwareWaveform
 	SoftwareWaveformAttrib	*software_waveform = new SoftwareWaveformAttrib();

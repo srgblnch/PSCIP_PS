@@ -462,6 +462,18 @@ void PSI_PC::read_attr_hardware(vector<long> &attr_list)
 }
 //+----------------------------------------------------------------------------
 //
+// method : 		PSI_PC::read_V
+// 
+// description : 	Extract real attribute values for V acquisition result.
+//
+//-----------------------------------------------------------------------------
+void PSI_PC::read_V(Tango::Attribute &attr)
+{
+	DEBUG_STREAM << "PSI_PC::read_V(Tango::Attribute &attr) entering... "<< endl;
+}
+
+//+----------------------------------------------------------------------------
+//
 // method :             PSI_PC::read_SoftwareWaveform
 //
 // description :        Extract real attribute values for SoftwareWaveform acquisition result.
@@ -2436,6 +2448,7 @@ void PSI_PC::update()
 {
     update_state();
 }
+
 
 
 
