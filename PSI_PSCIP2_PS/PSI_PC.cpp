@@ -1131,22 +1131,22 @@ void PSI_PC::update_state(void)
                     PSC_state = Tango::ON;
             break;
         case PS_ADC_CAL:
-            s_dev_state << "init";
+            s_dev_state << "wait";
             s_info << "calibrating adc..." ;
             PSC_state = Tango::INIT;
             break;
         case PS_TRANSIENT:
-            s_dev_state << "init";
+            s_dev_state << "wait";
             s_info << "transient" ;
             PSC_state = Tango::INIT;
             break;
         case PS_DOWNLOAD_DATA:
-            s_dev_state << "init";
+            s_dev_state << "wait";
             s_info << "downloading data...";
             PSC_state = Tango::INIT;
             break;
         case PS_SAVE_DATA:
-            s_dev_state << "init";
+            s_dev_state << "wait";
             s_info << "saving data..." ;
             PSC_state = Tango::INIT;
             break;
