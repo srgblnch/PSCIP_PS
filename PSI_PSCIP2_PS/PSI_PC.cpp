@@ -1241,11 +1241,11 @@ void PSI_PC::update_state(void)
             s_info << ", ";
         }
         const char * msg = 0;
-        if (psc_err == 0x85)
+        if (psc_err == PSC_ERR_EXTERNAL1)
         {
             msg = interlock1.c_str();
         }
-        else if (psc_err != 0x86)
+        else if (psc_err == PSC_ERR_EXTERNAL2)
         {
             msg = interlock2.c_str();
         }
