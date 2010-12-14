@@ -462,14 +462,40 @@ void PSI_PC::read_attr_hardware(vector<long> &attr_list)
 }
 //+----------------------------------------------------------------------------
 //
+// method : 		PSI_PC::read_ErrorCode
+//
+// description : 	Extract real attribute values for ErrorCode acquisition result.
+//
+//-----------------------------------------------------------------------------
+void PSI_PC::read_ErrorCode(Tango::Attribute &attr)
+{
+	DEBUG_STREAM << "PSI_PC::read_ErrorCode(Tango::Attribute &attr) entering... "<< endl;
+}
+
+//+----------------------------------------------------------------------------
+//
 // method : 		PSI_PC::read_V
-// 
+//
 // description : 	Extract real attribute values for V acquisition result.
 //
 //-----------------------------------------------------------------------------
 void PSI_PC::read_V(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "PSI_PC::read_V(Tango::Attribute &attr) entering... "<< endl;
+        DEBUG_STREAM << "PSI_PC::read_V(Tango::Attribute &attr) entering... "<< endl;
+        int data;
+        try
+        {
+                psc_read(channel,0x0, PSC_VOLTAGE, &data);
+        }
+        catch(Tango::DevFailed &e)
+        {
+                Tango::Except::re_throw_exception(e,
+                        (const char *)"Command failed",
+                        (const char *)"Error from psc",
+                        (const char *) "PSI_PC::read_Voltage()", Tango::ERR);
+        }
+        *attr_Voltage_read = reinterpret_cast<float &>(data);
+        attr.set_value(attr_Voltage_read);
 }
 
 //+----------------------------------------------------------------------------
@@ -667,7 +693,6 @@ void PSI_PC::write_CurrentSetpoint(Tango::WAttribute &attr)
 //-----------------------------------------------------------------------------
 void PSI_PC::read_Voltage(Tango::Attribute &attr)
 {
-
         int data;
         try
         {
@@ -1092,7 +1117,7 @@ void PSI_PC::update_state(void)
     Tango::DevState PSC_state;
     /******** PC control status ********/
 
-    int data = 0;
+    int devstate = 0;
     try
     {
         psc_read(channel, 0x0, PSC_DEVSTATE, &data);
@@ -1113,8 +1138,7 @@ void PSI_PC::update_state(void)
     }
 
 
-
-    switch(data) {
+    switch(devstate) {
         case PS_MONITOR:
             s_dev_state << "monitor mode" ;
             PSC_state = Tango::INIT;
@@ -1160,7 +1184,7 @@ void PSI_PC::update_state(void)
             PSC_state = Tango::ALARM;
             break;
         default:
-            s_dev_state << "failure to analyze state" << data;
+            s_dev_state << "failure to analyze state" << devstate;
             PSC_state = Tango::FAULT;
     }
 
@@ -1443,13 +1467,13 @@ void PSI_PC::psc_write_serial(pscip_t *pval)
         Tango::DevVarCharArray in;
         in.length(6);
         val = (pscip_t *) pval;
-                                                                                        //printf("we write this data and don't care more:\n");
+        // we write this data and don't care more
         in[0] = val->stat;
-                                                                                        //printf("we want to write state: 0x%x \n", val->stat);
+        // we want to write state: 0x%x \n", val->stat);
         in[1] = val->address;
-                                                                                        //printf("we want to write  address: 0x%x \n", val->address);
+        // writes  address: 0x%x \n", val->address);
+        // 4 data bytes: 0x%x \n", val->data);
         in[2] = (0xFF & (val->data) );
-                                                                                        //printf("we want to write  data: 0x%x \n", val->data);
         in[3] = ( 0xFF & (val->data) >> 8 );
         in[4] = ( 0xFF & (val->data) >> 16 );
         in[5] = ( 0xFF & (val->data) >> 24 );
@@ -1474,14 +1498,14 @@ void PSI_PC::psc_write_serial(pscip_t *pval)
                 cmd_stream << " stat=0x" << setbase (16) << ((long) (val->stat));
                 cmd_stream << " data=0x" << setbase (16) << ((long) (val->data)) << ends;
                 psc_modify_and_re_throw_exception(
-                                                                                e,                                                                                                                                      //exception to be modify
-                                                                                "Serial communication error(RS232),try reseting PySerial msg : ",       //string modifying description message
-                                                                                "PySerial failed ",                                                                                             //info string
-                                                                                 cmd_stream.str(),                                                                                                      //cmd_string, describtion string
-                                                                                "PSI_PC::psc_write_serial",                                                                                     // name of the function in which exception occured
-                                                                                SERIAL_COMMUNICATION_ERROR                                                                                      //communication error code
-                                                                                );
-        }
+                    e,                                                                      // exception to be modify
+                    "Serial communication error(RS232),try reseting PySerial msg : ",       // string modifying description message
+                    "PySerial failed ",                                                     // info string
+                        cmd_stream.str(),                                                   // cmd_string, description string
+                    "PSI_PC::psc_write_serial",                                             // name of the function in which exception occured
+                    SERIAL_COMMUNICATION_ERROR                                              //communication error code
+                    );
+}
 
         try{
                 val->stat = (*devBuf)[0];
@@ -1513,34 +1537,29 @@ void PSI_PC::psc_write_serial(pscip_t *pval)
 
 void PSI_PC::psc_write_fiber(pscip_t *pval)
 {
-        DEBUG_STREAM << "PSI_PC::psc_write_fiber(): entering... !" << endl;
-        int err;
-        pscip_t *val;
-        val = pval;
+    DEBUG_STREAM << "PSI_PC::psc_write_fiber(): entering... !" << endl;
+    pscip_t *val;
+    val = pval;
+    int err = ioctl(fd, PSCIP_WRITE, val);
+    if (err)
+    {
+        TangoSys_MemStream out_stream, cmd_stream;
+        ErrorsValue[ERR_PSI_IP] =  err - PSCIP_IOCTL_MAGIC;
+        out_stream << psc_get_communication_alba_errmsg(err - PSCIP_IOCTL_MAGIC) << ends;
+        cmd_stream << "Error when setting psc:";
+        cmd_stream << " chan=0x" << setbase (16) << ((long) (val->chan));
+        cmd_stream << " addr=0x" << setbase (16) << ((long) (val->address));
+        cmd_stream << " stat=0x" << setbase (16) << ((long) (val->stat));
+        cmd_stream << " data=0x" << setbase (16) << ((long) (val->data)) << ends;
+        ERROR_STREAM << cmd_stream.str() << endl;
 
-        if ((err = ioctl(fd, PSCIP_WRITE, val)))
-        {
+        add_errmsg(psc_get_communication_alba_errmsg(err - PSCIP_IOCTL_MAGIC));
 
-
-                TangoSys_MemStream out_stream, cmd_stream;
-                ErrorsValue[ERR_PSI_IP] =  err - PSCIP_IOCTL_MAGIC;
-                out_stream << psc_get_communication_alba_errmsg(err - PSCIP_IOCTL_MAGIC) << ends;
-                cmd_stream << "Error when setting psc:";
-                cmd_stream << " chan=0x" << setbase (16) << ((long) (val->chan));
-                cmd_stream << " addr=0x" << setbase (16) << ((long) (val->address));
-                cmd_stream << " stat=0x" << setbase (16) << ((long) (val->stat));
-                cmd_stream << " data=0x" << setbase (16) << ((long) (val->data)) << ends;
-                ERROR_STREAM << cmd_stream.str() << endl;
-
-                add_errmsg(psc_get_communication_alba_errmsg(err - PSCIP_IOCTL_MAGIC));
-
-                Tango::Except::throw_exception(
-                        cmd_stream.str(),
-                        out_stream.str(),
-                        (const char *) "PSI_PC::psc_write_fiber", Tango::ERR);
-        }
-
-
+        Tango::Except::throw_exception(
+                cmd_stream.str(),
+                out_stream.str(),
+                (const char *) "PSI_PC::psc_write_fiber", Tango::ERR);
+    }
 }
 
 void PSI_PC::psc_read_serial(pscip_t *pval)
@@ -1752,13 +1771,7 @@ double PSI_PC::readCurrentSetpointFromDevice()
                         (const char *) "PSI_PC::readCurrentSetpointFromDevice()", Tango::ERR);
         }
 
-/**
-COMMAND : no idea why it works and how - taken from electra DS, if you can offer something better, you are welcome.....:)
-        *attr_ScalingFactor_read = (double) *(float*)(&val.data);
-*/
-        return_value = *(float*)(&data);
-
-        return return_value;
+        return reinterpret_cast<float&>(data);;
 }
 //+------------------------------------------------------------------
 /**
@@ -1806,7 +1819,7 @@ void PSI_PC::check_connection_to_PySerial()
                 }
                 catch(Tango::DevFailed &e)
                 {
-                        INFO_STREAM<< "dev already openned"<<endl;
+                        ERROR_STREAM<< "dev already openned"<<endl;
                         //change here -> check whether the device is open, if open OK, otherwise throw excetion
                         //!!!!!!!!!!!!!!!!!!!
 
@@ -2136,14 +2149,6 @@ Tango::DevString PSI_PC::interlock_status()
 }
 
 
-
-
-
-
-
-
-
-
 //+------------------------------------------------------------------
 /**
  *      method: PSI_PC::read__psc_register
@@ -2431,10 +2436,6 @@ void PSI_PC::connect()
 }
 
 
-
-
-
-
 //+------------------------------------------------------------------
 /**
  *	method:	PSI_PC::update
@@ -2448,6 +2449,7 @@ void PSI_PC::update()
 {
     update_state();
 }
+
 
 
 

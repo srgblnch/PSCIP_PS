@@ -192,6 +192,38 @@ bool PSI_PC::is_Errors_allowed(Tango::AttReqType type)
 }
 //+----------------------------------------------------------------------------
 //
+// method :             PSI_PC::is_V_allowed
+//
+// description :        Read/Write allowed for V attribute.
+//
+//-----------------------------------------------------------------------------
+bool PSI_PC::is_V_allowed(Tango::AttReqType type)
+{
+        if (get_state() == Tango::UNKNOWN       ||
+                get_state() == Tango::INIT)
+        {
+                //      End of Generated Code
+
+                //      Re-Start of Generated Code
+                return false;
+        }
+        return true;
+}
+
+//+----------------------------------------------------------------------------
+//
+// method :             PSI_PC::is_V_allowed
+//
+// description :        Read/Write allowed for V attribute.
+//
+//-----------------------------------------------------------------------------
+bool PSI_PC::is_ErrorCode_allowed(Tango::AttReqType type)
+{
+    return true;
+}
+
+//+----------------------------------------------------------------------------
+//
 // method :             PSI_PC::is_SoftwareWaveform_allowed
 //
 // description :        Read/Write allowed for SoftwareWaveform attribute.

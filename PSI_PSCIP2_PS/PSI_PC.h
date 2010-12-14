@@ -584,6 +584,7 @@ public :
 		Tango::DevDouble	*attr_I_read;
 		Tango::DevDouble	attr_I_write;
 		Tango::DevFloat	*attr_V_read;
+		Tango::DevLong	*attr_ErrorCode_read;
 		Tango::DevDouble	*attr_SoftwareWaveform_read;
 		Tango::DevDouble	attr_SoftwareWaveform_write;
 		Tango::DevShort	*attr_ErrorCodes_read;
@@ -742,6 +743,10 @@ public :
  */
 	virtual void read_V(Tango::Attribute &attr);
 /**
+ *	Extract real attribute values for ErrorCode acquisition result.
+ */
+	virtual void read_ErrorCode(Tango::Attribute &attr);
+/**
  *	Extract real attribute values for SoftwareWaveform acquisition result.
  */
 	virtual void read_SoftwareWaveform(Tango::Attribute &attr);
@@ -789,6 +794,10 @@ public :
  *	Read/Write allowed for V attribute.
  */
 	virtual bool is_V_allowed(Tango::AttReqType type);
+/**
+ *	Read/Write allowed for ErrorCode attribute.
+ */
+	virtual bool is_ErrorCode_allowed(Tango::AttReqType type);
 /**
  *	Read/Write allowed for SoftwareWaveform attribute.
  */

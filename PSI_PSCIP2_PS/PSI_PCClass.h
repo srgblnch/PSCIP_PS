@@ -89,6 +89,18 @@ public:
 	{return (static_cast<PSI_PC *>(dev))->is_SoftwareWaveform_allowed(ty);}
 };
 
+class ErrorCodeAttrib: public Tango::Attr
+{
+public:
+	ErrorCodeAttrib():Attr("ErrorCode", Tango::DEV_LONG, Tango::READ) {};
+	~ErrorCodeAttrib() {};
+	
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+	{(static_cast<PSI_PC *>(dev))->read_ErrorCode(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+	{return (static_cast<PSI_PC *>(dev))->is_ErrorCode_allowed(ty);}
+};
+
 class VAttrib: public Tango::Attr
 {
 public:

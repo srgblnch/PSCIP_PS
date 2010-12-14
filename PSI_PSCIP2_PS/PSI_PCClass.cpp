@@ -637,6 +637,10 @@ void PSI_PCClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	v->set_disp_level(Tango::EXPERT);
 	att_list.push_back(v);
 
+	//	Attribute : ErrorCode
+	ErrorCodeAttrib	*error_code = new ErrorCodeAttrib();
+	att_list.push_back(error_code);
+
 	//	Attribute : SoftwareWaveform
 	SoftwareWaveformAttrib	*software_waveform = new SoftwareWaveformAttrib();
 	att_list.push_back(software_waveform);
