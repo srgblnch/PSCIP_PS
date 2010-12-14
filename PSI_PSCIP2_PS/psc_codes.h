@@ -55,7 +55,7 @@
 #define PSC_PWRON_ACDC    0x8a /* Kempower contattore */
 #define PSC_KEMP_ALARM    0x8b /* Kempower allarme */
 #define PSC_CURSET        0x90
-#define PSC_CURREF                0x96 /* Reference current*/
+#define PSC_CURREF        0x96 /* Reference current*/
 #define PSC_CURRENT       0x9c
 #define PSC_VOLTAGE       0x9d
 #define PSC_LOADRES       0x9e
@@ -77,6 +77,10 @@
 #define PSC_INTERLOCK1_BIT (1<<1)
 #define PSC_INTERLOCK2_BIT (1<<14)
 #define PSC_INTERLOCK_BITS (PSC_INTERLOCK1_BIT | PSC_INTERLOCK2_BIT)
+
+static const int PSC_ERR_EXTERNAL1 = 0x85;
+static const int PSC_ERR_EXTERNAL2 = 0x86;
+
 
 static const unsigned long communication_delay = 10000; //used in serial communication mainly
 
