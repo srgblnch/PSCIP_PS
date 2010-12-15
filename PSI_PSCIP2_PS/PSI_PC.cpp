@@ -202,9 +202,6 @@ void PSI_PC::init_device()
         attr_Voltage_read = 0;
         attr_RemoteMode_read = 0;
 
-        attr_CurrentOffset_read = new Tango::DevDouble;
-        *attr_CurrentOffset_read = OFFSET_VALUE;
-
         set_change_event("State", true);
         set_change_event("Status", true);
         set_state(Tango::UNKNOWN);
@@ -215,37 +212,35 @@ void PSI_PC::init_device()
         // Initialise variables to default values
         //--------------------------------------------
 
-        try {
-                attr_I_read = new Tango::DevDouble;
-                *attr_I_read = 0.0;
+        attr_I_read = new Tango::DevDouble;
+        *attr_I_read = 0.0;
 
-                attr_CurrentSetpoint_read = new Tango::DevDouble;
-                *attr_CurrentSetpoint_read = 0;
+        attr_CurrentSetpoint_read = new Tango::DevDouble;
+        *attr_CurrentSetpoint_read = 0;
 
-                attr_Current_read = new Tango::DevDouble;
-                *attr_Current_read = 0;
+        attr_Current_read = new Tango::DevDouble;
+        *attr_Current_read = 0;
 
-                attr_Voltage_read = new Tango::DevDouble;
-                *attr_Voltage_read = 0;
+        attr_Voltage_read = new Tango::DevDouble;
+        *attr_Voltage_read = 0;
 
-                attr_RemoteMode_read = new Tango::DevBoolean;
-                *attr_RemoteMode_read = true;
+        attr_RemoteMode_read = new Tango::DevBoolean;
+        *attr_RemoteMode_read = true;
 
-                attr_Errors_read = new Tango::DevString[MAX_NUM_OF_DETECTED_ERRMSGS];
-                numo_ErrorMsgs = 0;
+        attr_Errors_read = new Tango::DevString[MAX_NUM_OF_DETECTED_ERRMSGS];
+        numo_ErrorMsgs = 0;
 
-                for(int i = 0; i < MAX_NUM_OF_DETECTED_ERRMSGS; i++) {
-                        attr_Errors_read[i] = CORBA::string_dup("");
-                        if (attr_Errors_read[i] == 0)
-                                throw std::bad_alloc();
-                }
-        } catch (std::bad_alloc &ba) {
-                Tango::Except::throw_exception (
-                                        "OUT OF MEMORY",
-                                        "out of memory error",
-                                        "PSI_PC::init_device()");
+        attr_ErrorCode_read = new Tango::DevLong;
+        *attr_ErrorCode_read = -1;
+
+        attr_CurrentOffset_read = new Tango::DevDouble;
+        *attr_CurrentOffset_read = OFFSET_VALUE;
+
+        for(int i = 0; i < MAX_NUM_OF_DETECTED_ERRMSGS; i++) {
+                attr_Errors_read[i] = CORBA::string_dup("");
+                if (attr_Errors_read[i] == 0)
+                        throw std::bad_alloc();
         }
-
 
         for(int i = 0; i < PSC_DS_ALBA_ERRMSG; i++)
                 ErrorsValue[i] = 0;
@@ -470,6 +465,7 @@ void PSI_PC::read_attr_hardware(vector<long> &attr_list)
 void PSI_PC::read_ErrorCode(Tango::Attribute &attr)
 {
 	DEBUG_STREAM << "PSI_PC::read_ErrorCode(Tango::Attribute &attr) entering... "<< endl;
+	attr.set_value(attr_ErrorCode_read);
 }
 
 //+----------------------------------------------------------------------------
@@ -728,7 +724,7 @@ void PSI_PC::read_ErrorCodes(Tango::Attribute &attr)
 {
         DEBUG_STREAM << "PSI_PC::read_Error(Tango::Attribute &attr) entering... "<< endl;
 
-        attr.set_value(attr_ErrorCodes_read,PSC_DS_ALBA_ERRMSG);
+        attr.set_value(attr_ErrorCodes_read, PSC_DS_ALBA_ERRMSG);
 
 }
 
@@ -935,7 +931,7 @@ void PSI_PC::clear_errors_in_IP()
                 cmd_stream << " chan=0x" << setbase (16) << ((long) (val.chan));
 
                 psc_throw_exception(
-                                                        "An attempt to access IP and clear its errors failed",                          //info string
+                                                        "attempt to access IP and clear its errors failed",                          //info string
                                                         cmd_stream.str(),                               //describtion string
                                                         "Psc::reset_interlockss_in_IP",         // name of the function in which exception occured
                                                         err  - PSCIP_IOCTL_MAGIC
@@ -1059,13 +1055,13 @@ void PSI_PC::psc_write(int channel, char status, char address, int data)
         val.address = address;
         val.data = data;
 
-        if(connectionType == FiberConnection)
+        if (connectionType == FiberConnection)
         {
 
                 psc_write_fiber(&val);
 
         }
-        else if(connectionType == SerialConnection)
+        else if (connectionType == SerialConnection)
         {
 //              check_connection_to_PySerial();
 
@@ -1120,7 +1116,7 @@ void PSI_PC::update_state(void)
     int devstate = 0;
     try
     {
-        psc_read(channel, 0x0, PSC_DEVSTATE, &data);
+        psc_read(channel, 0x0, PSC_DEVSTATE, &devstate);
     }
     catch(Tango::DevFailed &e)
     {
@@ -1223,6 +1219,7 @@ void PSI_PC::update_state(void)
         /* takes into account only last byte */
         psc_err &= 0xff;
         ErrorsValue[ERR_PSI_PSC] = psc_err;
+        *attr_ErrorCode_read = devstate << 16 | psc_err;
     }
     catch(Tango::DevFailed &e)
     {
@@ -1535,31 +1532,10 @@ void PSI_PC::psc_write_serial(pscip_t *pval)
 
 }
 
-void PSI_PC::psc_write_fiber(pscip_t *pval)
+void PSI_PC::psc_write_fiber(pscip_t *val)
 {
-    DEBUG_STREAM << "PSI_PC::psc_write_fiber(): entering... !" << endl;
-    pscip_t *val;
-    val = pval;
     int err = ioctl(fd, PSCIP_WRITE, val);
-    if (err)
-    {
-        TangoSys_MemStream out_stream, cmd_stream;
-        ErrorsValue[ERR_PSI_IP] =  err - PSCIP_IOCTL_MAGIC;
-        out_stream << psc_get_communication_alba_errmsg(err - PSCIP_IOCTL_MAGIC) << ends;
-        cmd_stream << "Error when setting psc:";
-        cmd_stream << " chan=0x" << setbase (16) << ((long) (val->chan));
-        cmd_stream << " addr=0x" << setbase (16) << ((long) (val->address));
-        cmd_stream << " stat=0x" << setbase (16) << ((long) (val->stat));
-        cmd_stream << " data=0x" << setbase (16) << ((long) (val->data)) << ends;
-        ERROR_STREAM << cmd_stream.str() << endl;
-
-        add_errmsg(psc_get_communication_alba_errmsg(err - PSCIP_IOCTL_MAGIC));
-
-        Tango::Except::throw_exception(
-                cmd_stream.str(),
-                out_stream.str(),
-                (const char *) "PSI_PC::psc_write_fiber", Tango::ERR);
-    }
+    handle_comm_error_fiber(err, val, "write fiber");
 }
 
 void PSI_PC::psc_read_serial(pscip_t *pval)
@@ -1637,28 +1613,23 @@ void PSI_PC::psc_read_serial(pscip_t *pval)
         }
 }
 
+void PSI_PC::handle_comm_error_fiber(int err, pscip_t *val, const char * origin)
+{
+    if (!err) return;
+    TangoSys_MemStream cmd_stream;
+    cmd_stream << "Error when reading psc:"
+               << " chan=0x" << setbase (16) << val->chan
+               << " addr=0x" << setbase (16) << (long)val->address
+               << " stat=0x" << setbase (16) << (long)val->stat;
+    ERROR_STREAM << cmd_stream.str() << endl;
+    psc_throw_exception("FO communication error",
+        cmd_stream.str(), origin, err - PSCIP_IOCTL_MAGIC);
+}
+
 void PSI_PC::psc_read_fiber(pscip_t *pval)
 {
-        int err;
-        pscip_t *val;
-        val = (pscip_t *) pval;
-        if ((err = ioctl(fd, PSCIP_READ, val)))
-        {
-                TangoSys_MemStream cmd_stream;
-                cmd_stream << "Error when reading psc:";
-                cmd_stream << " chan=0x" << setbase (16) << ((long) (val->chan));
-                cmd_stream << " addr=0x" << setbase (16) << ((long) (val->address));
-                cmd_stream << " stat=0x" << setbase (16) << ((long) (val->stat));
-
-                psc_throw_exception(
-                                                        "Failed to read from PSC though fiber",                                 //info string
-                                                        cmd_stream.str(),                               //describtion string
-                                                        "PSI_PC::psc_read_fiber",               // name of the function in which exception occured
-                                                        err - PSCIP_IOCTL_MAGIC
-                                                        );
-
-
-        }
+    int err = ioctl(fd, PSCIP_READ, pval);
+    handle_comm_error_fiber(err, pval, "read fiber");
 }
 
 
@@ -1954,25 +1925,26 @@ void PSI_PC::psc_re_throw_exception(
  */
 //+------------------------------------------------------------------
 void PSI_PC::psc_throw_exception(
-                                                                                string info_s,                          //info string
-                                                                                string cmd_s,                           //describtion string
-                                                                                string function_name,           // name of the function in which exception occured
-                                                                                int err_code
-                                                                                )
+        string user_msg,    // message shown to user via exception handling
+        string debuginfo,  // information with debugging information
+        string origin,  // origin
+        int err_code,
+        int err_type
+        )
 {
+    const char * alba_errmsg = psc_get_communication_alba_errmsg(err_code);
+    ERROR_STREAM << debuginfo << " in " << origin << ": " << alba_errmsg << endl;
+    ErrorsValue[err_type] = err_code;
+    *attr_ErrorCode_read = -0x80000000 | err_type << 28 | err_code;
 
-                INFO_STREAM << cmd_s << endl;
-                ErrorsValue[ERR_PSI_IP] =  err_code ;
-                TangoSys_MemStream out_stream, cmd_stream;
-                out_stream << psc_get_communication_alba_errmsg(err_code ) << ends;
-                cmd_stream << cmd_s;
+    TangoSys_MemStream desc_stream;
+    desc_stream << user_msg << ": " << alba_errmsg << ends;
+    add_errmsg(alba_errmsg);
 
-                add_errmsg(psc_get_communication_alba_errmsg(err_code ));
-
-                Tango::Except::throw_exception(
-                        cmd_stream.str(),
-                        out_stream.str(),
-                        (const char *) function_name.c_str(), Tango::ERR);
+    Tango::Except::throw_exception(
+            "ERROR",
+            user_msg,
+            origin, Tango::ERR);
 
 }
 //+------------------------------------------------------------------
@@ -2130,14 +2102,14 @@ Tango::DevString PSI_PC::interlock_status()
                  Tango::Except::re_throw_exception(e,
                          (const char *)"Reading PSC failed",
                          (const char *)"Error from psc",
-                         (const char *) "Psc::interlocks_status()", Tango::ERR);
+                         (const char *)"Psc::interlocks_status()", Tango::ERR);
         }
 
-        if((data & 0xFFFF) == 0xE070)
+        if ((data & 0xFFFF) == 0xE070)
         {
                 strcpy(argout, "Interlocks disabled");
         }
-        else if((data & 0xFFFF) == 0xF877)
+        else if ((data & 0xFFFF) == 0xF877)
         {
                 strcpy(argout, "Interlocks enabled");
         }

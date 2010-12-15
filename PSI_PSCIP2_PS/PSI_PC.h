@@ -621,14 +621,14 @@ public :
  *	You can choose the kind of connection the DS "talks" with PSC:
  *	0 -> fiber
  *	1 -> serial (RS232)
- *	
+ *
  *	To run RS232 you need to create pySerial DS
  */
 	Tango::DevShort	connectionType;
 /**
  *	scaling factor ( f ):
  *	Iref = f * ( I_idal + o )
- *	
+ *
  */
 	Tango::DevFloat	currentFactor;
 //@}
@@ -875,65 +875,65 @@ public :
  */
 	virtual Tango::ConstDevString	dev_status();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	on();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	off();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	reset();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	reset_interlocks();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	disable_interlocks();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	enable_interlocks();
 /**
- * 
+ *
  *	@return	Interlocks Status
  *	@exception DevFailed
  */
 	Tango::DevString	interlock_status();
 /**
- * 
+ *
  *	@param	argin	Register address and return format (f-float,i-integer,x-hex, by default x), ex input: 0x00 x - address 0, return value hex
  *	@return	Data, hexadecimal
  *	@exception DevFailed
  */
 	Tango::DevString	read__psc_register(Tango::DevString);
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	stop_software_waveform();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	start_software_waveform();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	connect();
 /**
- * 
+ *
  *	@exception DevFailed
  */
 	void	update();
@@ -969,8 +969,11 @@ protected :
         void do_software_waveform();
 
         /* Functions */
-        double readCurrentSetpointFromDevice();                                                         /**<  Reads value of the current which should be set by the device  */
-        void update_state(void);                                                                                        /**< Reads PSC state and sets it in DS. */
+        /**  Reads value of the current which should be set by the device  */
+        double readCurrentSetpointFromDevice();
+        /** reads information from the hardware in order to update State and
+          * Status */
+        void update_state(void);
         void psc_write(int channel, char status, char address, int data);       /**< General function for writing to PSC (regardless of the communicatino medium)   */
         void psc_read(int channel, char status, char address, int *data);       /**<  General funciton for reading from PSC (regardless of the communicatio medium)  */
         void psc_read_serial(pscip_t *pval);                                                                    /**<  Reading using RS232  */
@@ -988,27 +991,40 @@ protected :
         const char * add_errmsg(const char *msg_to_add);                                                                /**<   Adding error message (regardless the  source) to the error table which is shown to the user */
         Tango::DevState  read_PySerial_state();                                                         /** < reads state of PySerial DS */
         void check_connection_to_PySerial();                                                            /** < checks the connection with PySerial, to be more precise, checks the state of PySerial and tries to reopen it if it is in OFF state, if there is an error while reading state of PySerial, it also tries reopenning PySerial, if reopening fails an exception is thrown */
-        void psc_modify_and_re_throw_exception(                                                         /** < rethrows exception for communication failure/error changing text in the description of caught exception, it is used to notify the user that the exception comes from another device server (PySerial) */
-                                                                                Tango::DevFailed &e,            //exception to be modify
-                                                                                string modify_s,                        //string modifying description message
-                                                                                string info_s,                          //info string
-                                                                                string cmd_s,                           //cmd string
-                                                                                string function_name,           // name of the function in which exception occured
-                                                                                int err_code
-                                                                                );
-        void psc_re_throw_exception(                                                                            /** < rethrows exception for communication failure/error */
-                                                                                Tango::DevFailed &e,            //exception to be modify
-                                                                                string info_s,                          //info string
-                                                                                string cmd_s,                           //describtion string
-                                                                                string function_name,           // name of the function in which exception occured
-                                                                                int err_code
-                                                                );
+        /** rethrows exception for communication failure/error changing text
+            in the description of caught exception, it is used to notify the
+            user that the exception comes from another device server (PySerial)
+        */
+        void psc_modify_and_re_throw_exception(
+            Tango::DevFailed &e,            //exception to be modify
+            string modify_s,                // string modifying description message
+            string info_s,                  // info string
+            string cmd_s,                   // cmd string
+            string function_name,           // name of the function in which exception occured
+            int err_code
+        );
+
+         /** rethrows exception for communication failure/error */
+        void psc_re_throw_exception(
+            Tango::DevFailed &e,            //exception to be modify
+            string info_s,                          //info string
+            string cmd_s,                           //describtion string
+            string function_name,           // name of the function in which exception occured
+            int err_code
+        );
         void psc_throw_exception(                                                                                       /** < creates and throws exception for communication failure/error */
-                                                                                string info_s,                          //info string
-                                                                                string cmd_s,                           //describtion string
-                                                                                string function_name,           // name of the function in which exception occured
-                                                                                int err_code
-                                                                                );
+            string info_s,                          //info string
+            string cmd_s,                           //describtion string
+            string function_name,           // name of the function in which exception occured
+            int err_code,
+            int err_type = ERR_PSI_IP
+        );
+        /** checks error code of ioctls for F/O communication */
+        void handle_comm_error_fiber(
+            int err,
+            pscip_t *val,
+            const char * origin
+        );
 
 };
 

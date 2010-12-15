@@ -66,8 +66,8 @@
 #define PSC_RD2_VDC_LINK  0xa9 /* Kempower Bending ch2 */
 
 
-#define ERR_PSI_IP              0
-#define ERR_PSI_PSC             1
+#define ERR_PSI_IP      0
+#define ERR_PSI_PSC     1
 #define ERR_INT_TEMP    2
 #define ERR_INT_FLOW    3
 #define ERR_INT_OTHER   4
@@ -80,6 +80,10 @@
 
 static const int PSC_ERR_EXTERNAL1 = 0x85;
 static const int PSC_ERR_EXTERNAL2 = 0x86;
+static const int PSC_ERR_EXTERNAL3 = 0x87;
+static const int PSC_ERR_EXTERNAL4 = 0x88;
+static const int PSC_ERR_INIT = -1;
+static const int PSC_ERR_RW = -2;
 
 
 static const unsigned long communication_delay = 10000; //used in serial communication mainly
