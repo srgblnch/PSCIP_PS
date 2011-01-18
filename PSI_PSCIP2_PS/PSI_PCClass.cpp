@@ -63,9 +63,9 @@ namespace PSI_PC_ns
 //+----------------------------------------------------------------------------
 //
 // method : 		UpdateCmd::execute()
-// 
+//
 // description : 	method to trigger the execution of the command.
-//                PLEASE DO NOT MODIFY this method core without pogo   
+//                PLEASE DO NOT MODIFY this method core without pogo
 //
 // in : - device : The device on which the command must be executed
 //		- in_any : The command input data
@@ -605,7 +605,7 @@ void PSI_PCClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Attribute : Current
 	CurrentAttrib	*current = new CurrentAttrib();
 	Tango::UserDefaultAttrProp	current_prop;
-	current_prop.set_label("A");
+	current_prop.set_unit("A");
 	current_prop.set_delta_val("0.01");
 	current->set_default_properties(current_prop);
 	current->set_polling_period(200);
