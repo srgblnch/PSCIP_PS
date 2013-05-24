@@ -1,0 +1,149 @@
+1)
+detected by: Maciej Lipinski
+how to cause:
+	- PSC converter OFF, the state read in jive: OFF
+	- unplag fiber optic connection (I did at transition board but should have no influence where)
+	- wait
+	- read "error" attribute in jive
+		- the reading should give resutl:
+			Read[0]		7
+			Read[1]		0
+			Read[2]		0
+			Read[3]		0
+	- try to execute command "clearError"
+		- there should be an error (0x03 or transmition)
+	- trying to execute command "reset" also couse error however the hardware reset is performed, the error is cause because the reset command also calles clearError
+
+how to come back to normal work
+	- execute reset one/few times, maybe on/off and clearError
+
+remarks:
+	- it seems it's a driver error because when dumping the registers of IP using my application it seems that the value in the registers is correct, although the driver returns message : "transmision error"
+
+
+2)
+ detected: Maciej Lipinski
+how to cause:
+-	turn on Device Server when the control of Power Supply is not granted to fiber optic connection (it can be granted using Serial connection)
+-	but when trying to repeat in above mentioned condtion everything ok.....????
+-	computer hangs
+
+how to come back to normal:
+-	 restart PC
+
+remarks:
+-	probably the reason is in driver (low probability of Tango DS to hang the PC
+- 	it not happens when trying to write (send commnad) to Power Supply from simple terminal interface
+-
+3)
+detected by Maciej Lipinski
+how to cause
+	- discovered when trying to develope a testbanch for IP (connecting two IP togother and simulating reading/writing)
+	- connect IP 0 and 1 togother by fiber
+	- call ./test_read 0
+	- kernel oops (see below)
+how to come to normal work
+	- reset PC
+remarks:
+	- logfile:
+an 26 17:15:11 ctalpha kernel:
+Jan 26 17:15:11 ctalpha syslog-ng[2491]: Changing permissions on special file /dev/xconsole
+Jan 26 17:15:11 ctalpha syslog-ng[2491]: Changing permissions on special file /dev/tty10
+Jan 26 17:15:11 ctalpha kernel: ************ PSCI driver ***********
+Jan 26 17:15:11 ctalpha kernel: * for kernel 2.6 and PCI interface *
+Jan 26 17:15:11 ctalpha kernel: *     very development version     *
+Jan 26 17:15:11 ctalpha kernel: ************************************
+Jan 26 17:15:11 ctalpha kernel:
+Jan 26 17:15:11 ctalpha kernel: DEBUG_M: init_pscip_module() - beginning
+Jan 26 17:15:11 ctalpha kernel: DEBUG_M: pscip_procfs_register - beginning
+Jan 26 17:15:11 ctalpha kernel: DEBUG_M: pscip_procfs_register - end
+Jan 26 17:15:11 ctalpha kernel: DEBUG_M: probe() - beginning
+Jan 26 17:15:11 ctalpha kernel: 		DEBUG: pscip_get_PCI_info() - beginning
+Jan 26 17:15:11 ctalpha kernel: 		  ************ PSCI driver ***********
+Jan 26 17:15:11 ctalpha kernel: 		  *	Reading information about	  *
+Jan 26 17:15:11 ctalpha kernel: 		  *   (compact)PCI carrier from reg. *
+Jan 26 17:15:11 ctalpha kernel: 		  ************************************
+Jan 26 17:15:11 ctalpha kernel: 		 DEBUG: vendor id (should be 1498) 0x1498
+Jan 26 17:15:11 ctalpha kernel: 		t DEBUG: device id(should be 0x3064): 0x3064
+Jan 26 17:15:11 ctalpha kernel: 		 DEBUG: status (should be 0x0280): 0x280
+Jan 26 17:15:11 ctalpha kernel: 		 DEBUG: revision id (should be 0x00): 0x0
+Jan 26 17:15:11 ctalpha kernel: 		 DEBUG: subsystem vendor ID (0x0B ??): 0x1498
+Jan 26 17:15:11 ctalpha kernel: 		 DEBUG: subsystem ID (0x1B??): 0x300a
+Jan 26 17:15:11 ctalpha kernel: 		 DEBUG: interrupt line number: 5
+Jan 26 17:15:11 ctalpha kernel: 		 DEBUG: pscip_get_PCI_info() - end
+Jan 26 17:15:11 ctalpha kernel:
+Jan 26 17:15:11 ctalpha kernel: pscip: The IPs on the Carrier nr 0 will be represented by:
+Jan 26 17:15:11 ctalpha kernel:  		Major number: 254, minor numbers: 0 and 1.
+Jan 26 17:15:11 ctalpha kernel:  		In the /proc/driver IPs will be represented bb:
+Jan 26 17:15:11 ctalpha kernel:  		/dev/pscip0  and /dev/pscip1 nodes
+Jan 26 17:15:11 ctalpha kernel:
+Jan 26 17:15:11 ctalpha kernel: ACPI: PCI Interrupt 0000:03:06.0[A] -> GSI 17 (level, low) -> IRQ 193
+Jan 26 17:15:11 ctalpha kernel: 		 DEBUG_K: readb(): 0x1b
+Jan 26 17:15:11 ctalpha kernel: 		 DEBUG_K: readb(): 0xb
+Jan 26 17:15:11 ctalpha kernel:
+Jan 26 17:15:11 ctalpha kernel: IP was detected in the slot 0 on the Carrier number 0
+Jan 26 17:15:11 ctalpha kernel:
+Jan 26 17:15:11 ctalpha kernel: DEBUG_M: init_pscip() - beginning
+Jan 26 17:15:11 ctalpha kernel: DEBUG_M: spin waitqueue initialized 1
+Jan 26 17:15:11 ctalpha kernel: DEBUG_M: init_pscip() - end
+Jan 26 17:15:11 ctalpha kernel: 		 DEBUG_K: readb(): 0x1b
+Jan 26 17:15:11 ctalpha kernel: 		 DEBUG_K: readb(): 0xb
+Jan 26 17:15:11 ctalpha kernel:
+Jan 26 17:15:11 ctalpha kernel: IP was detected in the slot 1 on the Carrier number 0
+Jan 26 17:15:11 ctalpha kernel:
+Jan 26 17:15:11 ctalpha kernel: DEBUG_M: init_pscip() - beginning
+Jan 26 17:15:11 ctalpha kernel: DEBUG_M: spin waitqueue initialized 1
+Jan 26 17:15:11 ctalpha kernel: DEBUG_M: init_pscip() - end
+Jan 26 17:15:11 ctalpha kernel: DEBUG_M: probe() - end
+Jan 26 17:15:11 ctalpha kernel:
+Jan 26 17:15:11 ctalpha kernel:  The module pscip has been successfully inserted
+Jan 26 17:15:12 ctalpha kernel: The module is represented by Major Nuber: 254 and minor numbers:	0 to 1
+Jan 26 17:15:12 ctalpha kernel:
+Jan 26 17:15:12 ctalpha kernel: DEBUG_M: init_pscip_module() - end, the device has been registered with device major number: 254
+Jan 26 17:15:26 ctalpha sudo: mlipinski : TTY=pts/3 ; PWD=/development/PSCIP/driver ; USER=root ; COMMAND=./test_read 1
+Jan 26 17:15:26 ctalpha kernel: DEBUG_M: pscip_open() - start
+Jan 26 17:15:26 ctalpha kernel: Openned device with name: pscip1, carrier number: 0, IP number: 1,IP number on the carrier: 1
+Jan 26 17:15:26 ctalpha kernel: DEBUG_M: pscip_assign_irq() - beginning
+Jan 26 17:15:26 ctalpha kernel: DEBUG_M: pscip_assign_irq() - end
+Jan 26 17:15:26 ctalpha kernel: 		 DEBUG_K: k_irq_enable() - beginning
+Jan 26 17:15:26 ctalpha kernel: 		 DEBUG_K: writew(): 0xc0
+Jan 26 17:15:26 ctalpha kernel: 		 DEBUG_K: k_irq_enable() - end
+Jan 26 17:15:26 ctalpha kernel: DEBUG_M: pscip_open() - end
+Jan 26 17:15:26 ctalpha kernel: DEBUG_M: pscip_ioctl() beginnig
+Jan 26 17:15:26 ctalpha kernel: DEBUG_M: --	 Reading - beginning 	--
+Jan 26 17:15:26 ctalpha kernel: 		 DEBUG_K: k_pscip_read() - beginning
+Jan 26 17:15:26 ctalpha kernel: 		 DEBUG_K: k_pscip_wait_linkdown() - beginning
+Jan 26 17:15:26 ctalpha kernel: BUG: unable to handle kernel paging request at virtual address 1925ad78
+Jan 26 17:15:26 ctalpha kernel:  printing eip:
+Jan 26 17:15:26 ctalpha kernel: f9130f2d
+Jan 26 17:15:26 ctalpha kernel: *pde = 00000000
+Jan 26 17:15:26 ctalpha kernel: Oops: 0000 [#1]
+Jan 26 17:15:26 ctalpha kernel: SMP
+Jan 26 17:15:26 ctalpha kernel: last sysfs file: /devices/pci0000:00/0000:00:00.0/resource
+Jan 26 17:15:26 ctalpha kernel: Modules linked in: pscip nfs lockd nfs_acl sunrpc autofs4 snd_pcm_oss snd_mixer_oss snd_seq snd_seq_device af_packet rocket button battery ac apparmor aamatch_pcre reiserfs loop dm_mod e100 e1000 mii i2c_i801 i2c_core ide_cd intel_agp cdrom snd_intel8x0 snd_ac97_codec snd_ac97_bus snd_pcm snd_timer snd soundcore snd_page_alloc i8xx_tco agpgart ehci_hcd shpchp pci_hotplug uhci_hcd usbcore parport_pc lp parport ext3 mbcache jbd edd fan piix thermal processor ide_disk ide_core
+Jan 26 17:15:26 ctalpha kernel: CPU:    0
+Jan 26 17:15:26 ctalpha kernel: EIP:    0060:[<f9130f2d>]    Tainted: G     U VLI
+Jan 26 17:15:26 ctalpha kernel: EFLAGS: 00010286   (2.6.18.8-0.9-default #1)
+Jan 26 17:15:26 ctalpha kernel: EIP is at k_pscip_wait_linkdown+0x38/0x110 [pscip]
+Jan 26 17:15:26 ctalpha kernel: eax: 08048218   ebx: e2285eb2   ecx: 00000046   edx: e2285eb2
+Jan 26 17:15:26 ctalpha kernel: esi: f913a3b4   edi: e2285f40   ebp: e2285f40   esp: e2285ea4
+Jan 26 17:15:26 ctalpha kernel: ds: 007b   es: 007b   ss: 0068
+Jan 26 17:15:26 ctalpha kernel: Process test_read (pid: 6346, ti=e2284000 task=c1a1ad90 task.ti=e2284000)
+Jan 26 17:15:26 ctalpha kernel: Stack: f91353d0 bfd28a50 e2285f40 c0120d43 ffffffff e2285f40 bfd28a50 f9131da9
+Jan 26 17:15:26 ctalpha kernel:        f9135dde 000000b8 f913a3b4 c0127eda 004a55f5 00000000 e2285f54 497de19e
+Jan 26 17:15:26 ctalpha kernel:        c00f1b03 f913a3b4 e2285f40 bfd28a50 c00f1b03 f9132e9b f91365df c140d3a0
+Jan 26 17:15:26 ctalpha kernel: Call Trace:
+Jan 26 17:15:26 ctalpha kernel:  [<c0120d43>] printk+0x1b/0x1f
+Jan 26 17:15:26 ctalpha kernel:  [<f9131da9>] k_pscip_read+0x44/0x30b [pscip]
+Jan 26 17:15:26 ctalpha kernel:  [<c0127eda>] do_gettimeofday+0x31/0xcc
+Jan 26 17:15:26 ctalpha kernel:  [<f9132e9b>] pscip_ioctl+0x1f4/0x5cb [pscip]
+Jan 26 17:15:26 ctalpha kernel:  [<c0154c07>] __handle_mm_fault+0x47c/0x871
+Jan 26 17:15:26 ctalpha kernel:  [<c017434d>] do_ioctl+0x4d/0x63
+Jan 26 17:15:26 ctalpha kernel:  [<c01745ad>] vfs_ioctl+0x24a/0x25c
+Jan 26 17:15:26 ctalpha kernel:  [<c017460b>] sys_ioctl+0x4c/0x65
+Jan 26 17:15:26 ctalpha kernel:  [<c0103d5d>] sysenter_past_esp+0x56/0x79
+Jan 26 17:15:26 ctalpha kernel: Code: 04 24 d0 53 13 f9 e8 1b fe fe c6 85 db 78 14 3b 1d 0c a2 13 f9 7d 0c 69 c3 94 01 00 00 8d b0 20 a2 13 f9 8b 07 8d 5c 24 0e 89 da <8b> 84 86 64 01 00 00 83 c0 30 e8 d4 f9 ff ff 8b 07 89 da 8b 84
+Jan 26 17:15:26 ctalpha kernel: EIP: [<f9130f2d>] k_pscip_wait_linkdown+0x38/0x110 [pscip] SS:ESP 0068:e2285ea4
+Jan 26 17:15:26 ctalpha kernel:  <1>DEBUG_M: pscip_release() - beginnig
+Jan 26 17:15:55 ctalpha sudo: mlipinski : TTY=pts/11 ; PWD=/development/PSCIP/driver ; USER=root ; COMMAND=./test_write 0
+Jan 26 17:1

@@ -1,0 +1,13 @@
+1) 
+detected: Maciej Lipinski
+how to cause:
+-	turn on Device Server when the control of Power Supply is not granted to fiber optic connection (it can be granted using Serial connection) 
+-	but when trying to repeat in above mentioned condtion everything ok.....????
+-	computer hangs
+
+how to come back to normal:
+-	 restart PC
+	
+remarks:
+-	probably the reason is in driver (low probability of Tango DS to hang the PC
+- 	it not happens when trying to write (send commnad) to Power Supply from simple terminal interface
