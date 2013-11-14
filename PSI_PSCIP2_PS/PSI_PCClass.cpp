@@ -677,6 +677,8 @@ void PSI_PCClass::get_class_property()
 	//------------------------------------------------------------------
 	cl_prop.push_back(Tango::DbDatum("Interlock1"));
 	cl_prop.push_back(Tango::DbDatum("Interlock2"));
+	cl_prop.push_back(Tango::DbDatum("Interlock3"));
+	cl_prop.push_back(Tango::DbDatum("Interlock4"));
 
 	//	Call database and extract values
 	//--------------------------------------------
@@ -708,6 +710,32 @@ void PSI_PCClass::get_class_property()
 		{
 			def_prop  >>  interlock2;
 			cl_prop[i]  <<  interlock2;
+		}
+	}
+
+	//	Try to extract Interlock3 value
+	if (cl_prop[++i].is_empty()==false)	cl_prop[i]  >>  interlock3;
+	else
+	{
+		//	Check default value for Interlock3
+		def_prop = get_default_class_property(cl_prop[i].name);
+		if (def_prop.is_empty()==false)
+		{
+			def_prop  >>  interlock3;
+			cl_prop[i]  <<  interlock3;
+		}
+	}
+
+	//	Try to extract Interlock4 value
+	if (cl_prop[++i].is_empty()==false)	cl_prop[i]  >>  interlock4;
+	else
+	{
+		//	Check default value for Interlock4
+		def_prop = get_default_class_property(cl_prop[i].name);
+		if (def_prop.is_empty()==false)
+		{
+			def_prop  >>  interlock4;
+			cl_prop[i]  <<  interlock4;
 		}
 	}
 
@@ -754,6 +782,36 @@ void PSI_PCClass::set_default_property()
 	prop_def  = "external interlock 2";
 	vect_data.clear();
 	vect_data.push_back("external interlock 2");
+	if (prop_def.length()>0)
+	{
+		Tango::DbDatum	data(prop_name);
+		data << vect_data ;
+		cl_def_prop.push_back(data);
+		add_wiz_class_prop(prop_name, prop_desc,  prop_def);
+	}
+	else
+		add_wiz_class_prop(prop_name, prop_desc);
+
+	prop_name = "Interlock3";
+	prop_desc = "message to be shown for External Interlock 3";
+	prop_def  = "External Interlock 3";
+	vect_data.clear();
+	vect_data.push_back("External Interlock 3");
+	if (prop_def.length()>0)
+	{
+		Tango::DbDatum	data(prop_name);
+		data << vect_data ;
+		cl_def_prop.push_back(data);
+		add_wiz_class_prop(prop_name, prop_desc,  prop_def);
+	}
+	else
+		add_wiz_class_prop(prop_name, prop_desc);
+
+	prop_name = "Interlock4";
+	prop_desc = "message to be shown for external interlock 4";
+	prop_def  = "External Interlock 4";
+	vect_data.clear();
+	vect_data.push_back("External Interlock 4");
 	if (prop_def.length()>0)
 	{
 		Tango::DbDatum	data(prop_name);
@@ -857,6 +915,36 @@ void PSI_PCClass::set_default_property()
 	prop_def  = "1";
 	vect_data.clear();
 	vect_data.push_back("1");
+	if (prop_def.length()>0)
+	{
+		Tango::DbDatum	data(prop_name);
+		data << vect_data ;
+		dev_def_prop.push_back(data);
+		add_wiz_dev_prop(prop_name, prop_desc,  prop_def);
+	}
+	else
+		add_wiz_dev_prop(prop_name, prop_desc);
+
+	prop_name = "Interlock3";
+	prop_desc = "message to be shown for External Interlock 3";
+	prop_def  = "External Interlock 3";
+	vect_data.clear();
+	vect_data.push_back("External Interlock 3");
+	if (prop_def.length()>0)
+	{
+		Tango::DbDatum	data(prop_name);
+		data << vect_data ;
+		dev_def_prop.push_back(data);
+		add_wiz_dev_prop(prop_name, prop_desc,  prop_def);
+	}
+	else
+		add_wiz_dev_prop(prop_name, prop_desc);
+
+	prop_name = "Interlock4";
+	prop_desc = "message to be shown for external interlock 4";
+	prop_def  = "External Interlock 4";
+	vect_data.clear();
+	vect_data.push_back("External Interlock 4");
 	if (prop_def.length()>0)
 	{
 		Tango::DbDatum	data(prop_name);

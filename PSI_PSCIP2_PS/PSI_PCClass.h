@@ -502,6 +502,14 @@ public:
  *	message to be shown for external interlock 2
  */
 	string	interlock2;
+/**
+ *	message to be shown for External Interlock 3
+ */
+	string	interlock3;
+/**
+ *	message to be shown for external interlock 4
+ */
+	string	interlock4;
 
 //	add your own data members here
 //------------------------------------

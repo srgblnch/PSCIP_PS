@@ -38,6 +38,7 @@
 #include "pscip_codes.h"
 
 #include <vector>
+#include <time.h>
 
 #define MAX_NUM_OF_DETECTED_ERRMSGS 20
 #define FiberConnection                         0
@@ -57,7 +58,7 @@
 */
 
 #define OFFSET_VALUE            0.0
-
+#define TIME_TO_NEXT_RECON      5.0 /* seconds */
 
 #define PS_MONITOR            0 /* standby */
 #define PS_DEVICE_OFF         1 /* off */
@@ -631,6 +632,14 @@ public :
  *	
  */
 	Tango::DevFloat	currentFactor;
+/**
+ *	message to be shown for External Interlock 3
+ */
+	string	interlock3;
+/**
+ *	message to be shown for external interlock 4
+ */
+	string	interlock4;
 //@}
 
 /**@name Constructors
@@ -959,6 +968,7 @@ protected :
         int numo_ErrorMsgs;                                                                              /** Number of error message in attr_ErrorMsgs_read */
         short ErrorsValue[PSC_DS_ALBA_ERRMSG];                                                          /**< Array holding values of errors. By default 0 means OK*/
         char psc_errmsg[256][PSCIP_SIZE_MSG];                                                           /**< PSCIP_SIZE_MSG defined in pscip.h */
+        time_t last_comm_error;
         Tango::DeviceProxy *device;                                                                                     /**<  Proxy Used for serial communication  */
 
         std::vector<Tango::DevDouble> m_softwareWaveform;

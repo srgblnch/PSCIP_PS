@@ -78,10 +78,10 @@
 #define PSC_INTERLOCK2_BIT (1<<14)
 #define PSC_INTERLOCK_BITS (PSC_INTERLOCK1_BIT | PSC_INTERLOCK2_BIT)
 
-static const int PSC_ERR_EXTERNAL1 = 0x85;
-static const int PSC_ERR_EXTERNAL2 = 0x86;
-static const int PSC_ERR_EXTERNAL3 = 0x87;
-static const int PSC_ERR_EXTERNAL4 = 0x88;
+static const int PSC_ERR_EXTERNAL1 = 0x86;
+static const int PSC_ERR_EXTERNAL2 = 0x87;
+static const int PSC_ERR_EXTERNAL3 = 0x88;
+static const int PSC_ERR_EXTERNAL4 = 0x89;
 static const int PSC_ERR_INIT = -1;
 static const int PSC_ERR_RW = -2;
 

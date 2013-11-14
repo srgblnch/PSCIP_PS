@@ -1,0 +1,2 @@
+2.5.0
+ * changing interlock enumeration external 1 is now 0x86.

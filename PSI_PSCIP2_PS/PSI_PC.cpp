@@ -194,6 +194,8 @@ void PSI_PC::init_device()
         device = 0;
         fd = 0;
         numo_ErrorMsgs = 0;
+        time(&last_comm_error);
+        last_comm_error -= TIME_TO_NEXT_RECON;
 
         attr_Errors_read = 0;
         attr_I_read = 0;
@@ -1111,9 +1113,16 @@ void PSI_PC::update_state(void)
 
     string err_msg;
     Tango::DevState PSC_state;
+    time_t current_time;
     /******** PC control status ********/
 
     int devstate = 0;
+    time(&current_time);
+    if (difftime(current_time,last_comm_error) < TIME_TO_NEXT_RECON)
+    {
+      INFO_STREAM<< "Not yet ready for communication retry" << endl;
+      return;
+    }
     try
     {
         psc_read(channel, 0x0, PSC_DEVSTATE, &devstate);
@@ -1245,6 +1254,14 @@ void PSI_PC::update_state(void)
         else if (psc_err == PSC_ERR_EXTERNAL2)
         {
             msg = interlock2.c_str();
+        }
+        else if (psc_err == PSC_ERR_EXTERNAL3)
+        {
+            msg = interlock3.c_str();
+        }
+        else if (psc_err == PSC_ERR_EXTERNAL4)
+        {
+            msg = interlock4.c_str();
         }
         else
         {
@@ -1616,6 +1633,7 @@ void PSI_PC::psc_read_serial(pscip_t *pval)
 void PSI_PC::handle_comm_error_fiber(int err, pscip_t *val, const char * origin)
 {
     if (!err) return;
+    time(&last_comm_error);
     TangoSys_MemStream cmd_stream;
     cmd_stream << "Error when reading psc:"
                << " chan=0x" << setbase (16) << val->chan
@@ -2089,9 +2107,17 @@ Tango::DevString PSI_PC::interlock_status()
         DEBUG_STREAM << "PSI_PC::interlocks_status(): entering... !" << endl;
 
         string err_msg;
+        time_t current_time;
         /******** PC control status ********/
 
         int data;
+        time(&current_time);
+        if (difftime(current_time,last_comm_error) < TIME_TO_NEXT_RECON)
+        {
+          INFO_STREAM << "Not yet ready for communication retry" << endl;
+          strcpy(argout, "Interlocks not available");
+          return argout;
+        }
         try
         {
                 psc_read(channel,0x0, PSC_DIG_IN_MASK, &data);
@@ -2421,6 +2447,7 @@ void PSI_PC::update()
 {
     update_state();
 }
+
 
 
 
