@@ -864,50 +864,57 @@ Tango::DevString PSI_PC::command(Tango::DevString argin)
 //+------------------------------------------------------------------
 void PSI_PC::reset()
 {
-        DEBUG_STREAM << "PSI_PC::reset(): entering... !" << endl;
-        set_state(Tango::UNKNOWN);
-        push_change_event("State");
-        set_status("reset...");
-        push_change_event("Status");
+  DEBUG_STREAM << "PSI_PC::reset(): entering... !" << endl;
+  set_state(Tango::UNKNOWN);
+  push_change_event("State");
+  set_status("reset...");
+  push_change_event("Status");
 
-//reastablish connection
-        if(connectionType == FiberConnection)
-        {
-                init_fiber();
-        }
-        else if(connectionType == SerialConnection)
-        {
-                init_serial();
-        }
-        else
-        {
+  try
+  {
+    //reastablish connection
+    if(connectionType == FiberConnection)
+    {
+      init_fiber();
+    }
+    else if(connectionType == SerialConnection)
+    {
+      init_serial();
+    }
+    else
+    {
 
-                TangoSys_MemStream cmd_stream;
-                cmd_stream <<  "choose \n0 for fiber \n1 for serial connection \n, inputed parameter value: "<< connectionType << ends;
+      TangoSys_MemStream cmd_stream;
+      cmd_stream <<  "choose \n0 for fiber \n1 for serial connection \n, "
+                     "inputed parameter value: "<< connectionType << ends;
 
-                psc_throw_exception(
-                                                        "Unknown value of property ConnectionType, choose \n0 for fiber \n1 for serial connection ",                            //info string
-                                                        cmd_stream.str(),                               //describtion string
-                                                        "Psc::psc_init",                // name of the function in which exception occured
-                                                        CONNECTIONTYPE_PROPERTY_ERROR
-                                                        );
-        }
-
-
-//reset PSC
-        off();
-        //no problem in clearing error registers in OFF state!!!!!!!!!!
-/*
-        if(connectionType == FiberConnection)
-        {
-                reset_interlockss_in_IP();
-                usleep(communication_delay);
-        }
-*/
-        reset_interlocks();
-
-
-
+      psc_throw_exception(
+        "Unknown value of property ConnectionType, choose \n0 for fiber \n1 "
+        "for serial connection ",  //info string
+        cmd_stream.str(),  //describtion string
+        "Psc::psc_init",  // name of the function in which exception occur
+        CONNECTIONTYPE_PROPERTY_ERROR
+        );
+    }
+    //reset PSC
+    off();
+    //no problem in clearing error registers in OFF state!!!!!!!!!!
+  /*
+    if(connectionType == FiberConnection)
+    {
+            reset_interlockss_in_IP();
+            usleep(communication_delay);
+    }
+  */
+    reset_interlocks();
+  }
+  catch(...)
+  {
+    set_state(Tango::FAULT);
+    push_change_event("State");
+    set_status("cannot reset: communication fault");
+    push_change_event("Status");
+  }
 }
 
 //+------------------------------------------------------------------
@@ -921,28 +928,27 @@ void PSI_PC::reset()
 //+------------------------------------------------------------------
 void PSI_PC::clear_errors_in_IP()
 {
-        int err;
-        pscip_t val;
+  int err;
+  pscip_t val;
 
 
-        val.chan = channel;
-        if ((err = ioctl(fd, PSCIP_CLRCOUNTER, &val)))
-        {
-                TangoSys_MemStream  cmd_stream;
-                cmd_stream << "Error when communication with psc:";
-                cmd_stream << " chan=0x" << setbase (16) << ((long) (val.chan));
+  val.chan = channel;
+  if ((err = ioctl(fd, PSCIP_CLRCOUNTER, &val)))
+  {
+    TangoSys_MemStream  cmd_stream;
+    cmd_stream << "Error when communication with psc:";
+    cmd_stream << " chan=0x" << setbase (16) << ((long) (val.chan));
 
-                psc_throw_exception(
-                                                        "attempt to access IP and clear its errors failed",                          //info string
-                                                        cmd_stream.str(),                               //describtion string
-                                                        "Psc::reset_interlockss_in_IP",         // name of the function in which exception occured
-                                                        err  - PSCIP_IOCTL_MAGIC
-                                                        );
-        }
-
-
-
+    psc_throw_exception(
+      "attempt to access IP and clear its errors failed",  //info string
+      cmd_stream.str(),  //describtion string
+      "Psc::reset_interlockss_in_IP",  // name of the function in which exception occur
+      err  - PSCIP_IOCTL_MAGIC
+      );
+  }
 }
+
+
 //+------------------------------------------------------------------
 /**
  *	method:	PSI_PC::reset_interlocks
@@ -954,42 +960,45 @@ void PSI_PC::clear_errors_in_IP()
 //+------------------------------------------------------------------
 void PSI_PC::reset_interlocks()
 {
-        DEBUG_STREAM << "PSI_PC::reset_interlocks(): entering... !" << endl;
-        set_state(Tango::UNKNOWN);
-        push_change_event("State");
-        set_status("resetting interlocks...");
-        push_change_event("Status");
-        int data;
-        data = 0xffffffff;      //any writing clears disorder register
+  DEBUG_STREAM << "PSI_PC::reset_interlocks(): entering... !" << endl;
+  set_state(Tango::UNKNOWN);
+  push_change_event("State");
+  set_status("resetting interlocks...");
+  push_change_event("Status");
+  int data;
+  data = 0xffffffff;      //any writing clears disorder register
 
-        for (int i = 0; i < PSC_DS_ALBA_ERRMSG; i++)
-        {
-                ErrorsValue[i] = 0;
-        }
-        for(int i = 0; i < MAX_NUM_OF_DETECTED_ERRMSGS; i++) {
-                CORBA::string_free(attr_Errors_read[i]);
-                attr_Errors_read[i] = CORBA::string_dup("");
-        }
-        numo_ErrorMsgs = 0;
+  for (int i = 0; i < PSC_DS_ALBA_ERRMSG; i++)
+  {
+    ErrorsValue[i] = 0;
+  }
+  for(int i = 0; i < MAX_NUM_OF_DETECTED_ERRMSGS; i++) {
+    CORBA::string_free(attr_Errors_read[i]);
+    attr_Errors_read[i] = CORBA::string_dup("");
+  }
+  numo_ErrorMsgs = 0;
 
-        if(connectionType == FiberConnection)
-        {
-                clear_errors_in_IP();
-                usleep(communication_delay);
-        }
+  if(connectionType == FiberConnection)
+  {
+    clear_errors_in_IP();
+    usleep(communication_delay);
+  }
 
-        try
-        {
-                psc_write(channel, 0x80, PSC_ERR_MSG, data);
-        }
-        catch(Tango::DevFailed &e)
-        {
-                Tango::Except::re_throw_exception(e,
-                        (const char *)"Command failed",
-                        (const char *)"Error from psc",
-                        (const char *) "PSI_PC::reset_interlocks()", Tango::ERR);
-        }
-
+  try
+  {
+    psc_write(channel, 0x80, PSC_ERR_MSG, data);
+  }
+  catch(Tango::DevFailed &e)
+  {
+    set_state(Tango::FAULT);
+    push_change_event("State");
+    set_status("cannot reset interlocks: communication fault");
+    push_change_event("Status");
+    Tango::Except::re_throw_exception(e,
+      (const char *)"Command failed",
+      (const char *)"Error from psc",
+      (const char *) "PSI_PC::reset_interlocks()", Tango::ERR);
+  }
 }
 
 //+------------------------------------------------------------------
@@ -1006,35 +1015,34 @@ void PSI_PC::reset_interlocks()
 
 void PSI_PC::psc_read(int channel, char status, char address, int *data)
 {
-        pscip_t val;
-        val.chan = channel;
-        val.stat = status;
-        val.address = address;
-        val.data = *data;
+  pscip_t val;
+  val.chan = channel;
+  val.stat = status;
+  val.address = address;
+  val.data = *data;
 
-        if(connectionType == FiberConnection)
-        {
-                psc_read_fiber(&val);
-        }
-        else if(connectionType == SerialConnection)
-        {
-//              check_connection_to_PySerial();
-                psc_read_serial(&val);
-        }
-        else
-        {
-                TangoSys_MemStream cmd_stream;
-                cmd_stream <<  "choose \n0 for fiber \n1 for serial connection \n, inputed parameter value: "<< connectionType << ends;
+  if(connectionType == FiberConnection)
+  {
+    psc_read_fiber(&val);
+  }
+  else if(connectionType == SerialConnection)
+  {
+//    check_connection_to_PySerial();
+    psc_read_serial(&val);
+  }
+  else
+  {
+    TangoSys_MemStream cmd_stream;
+    cmd_stream <<  "choose \n0 for fiber \n1 for serial connection \n, inputed parameter value: "<< connectionType << ends;
 
-                psc_throw_exception(
-                                                        "Property connectionType set to wrong value",                           //info string
-                                                        cmd_stream.str(),                               //describtion string
-                                                        "Psc::psc_read",                // name of the function in which exception occured
-                                                        CONNECTIONTYPE_PROPERTY_ERROR
-                                                        );
-        }
-        *data = val.data ;
-
+    psc_throw_exception(
+      "Property connectionType set to wrong value",  //info string
+      cmd_stream.str(),  //describtion string
+      "Psc::psc_read",  // name of the function in which exception occur
+      CONNECTIONTYPE_PROPERTY_ERROR
+      );
+  }
+  *data = val.data ;
 }
 
 //+------------------------------------------------------------------
@@ -1050,50 +1058,42 @@ void PSI_PC::psc_read(int channel, char status, char address, int *data)
 
 void PSI_PC::psc_write(int channel, char status, char address, int data)
 {
-        //DEBUG_STREAM << "PSI_PC::psc_write(): entering... !" << endl;
-        pscip_t val;
-        val.chan = channel;
-        val.stat = status;
-        val.address = address;
-        val.data = data;
+  //DEBUG_STREAM << "PSI_PC::psc_write(): entering... !" << endl;
+  pscip_t val;
+  val.chan = channel;
+  val.stat = status;
+  val.address = address;
+  val.data = data;
 
-        if (connectionType == FiberConnection)
-        {
+  if (connectionType == FiberConnection)
+  {
+    psc_write_fiber(&val);
+  }
+  else if (connectionType == SerialConnection)
+  {
+//    check_connection_to_PySerial();
+    /***priority to RS232***/
+    pscip_t priority_val;
+    priority_val.stat = 0x80;
+    priority_val.address = 0x02;
+    priority_val.data = 0x01000000;
+    psc_write_serial(&priority_val);
+    usleep(communication_delay);
+    /*** serial write***/
+    psc_write_serial(&val);
+  }
+  else
+  {
+    TangoSys_MemStream cmd_stream;
+    cmd_stream <<  "choose \n0 for fiber \n1 for serial connection \n, inputed parameter value: "<< connectionType << ends;
 
-                psc_write_fiber(&val);
-
-        }
-        else if (connectionType == SerialConnection)
-        {
-//              check_connection_to_PySerial();
-
-         /***priority to RS232***/
-                pscip_t priority_val;
-                priority_val.stat = 0x80;
-                priority_val.address = 0x02;
-                priority_val.data = 0x01000000;
-                psc_write_serial(&priority_val);
-
-                usleep(communication_delay);
-
-        /*** serial write***/
-
-                psc_write_serial(&val);
-
-        }
-        else
-        {
-                TangoSys_MemStream cmd_stream;
-                cmd_stream <<  "choose \n0 for fiber \n1 for serial connection \n, inputed parameter value: "<< connectionType << ends;
-
-                psc_throw_exception(
-                                                        "Property connectionType set to wrong value",                           //info string
-                                                        cmd_stream.str(),                               //describtion string
-                                                        "Psc::psc_write",               // name of the function in which exception occured
-                                                        CONNECTIONTYPE_PROPERTY_ERROR
-                                                        );
-        }
-
+    psc_throw_exception(
+      "Property connectionType set to wrong value",  //info string
+      cmd_stream.str(),  //describtion string
+      "Psc::psc_write",  // name of the function in which exception occur
+      CONNECTIONTYPE_PROPERTY_ERROR
+      );
+  }
 }
 
 
@@ -1120,7 +1120,7 @@ void PSI_PC::update_state(void)
     time(&current_time);
     if (difftime(current_time,last_comm_error) < TIME_TO_NEXT_RECON)
     {
-      INFO_STREAM<< "Not yet ready for communication retry" << endl;
+      //INFO_STREAM<< "Not yet ready for communication retry" << endl;
       return;
     }
     try
@@ -2114,7 +2114,7 @@ Tango::DevString PSI_PC::interlock_status()
         time(&current_time);
         if (difftime(current_time,last_comm_error) < TIME_TO_NEXT_RECON)
         {
-          INFO_STREAM << "Not yet ready for communication retry" << endl;
+          //INFO_STREAM << "Not yet ready for communication retry" << endl;
           strcpy(argout, "Interlocks not available");
           return argout;
         }
