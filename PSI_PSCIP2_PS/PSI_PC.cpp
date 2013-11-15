@@ -1639,7 +1639,7 @@ void PSI_PC::handle_comm_error_fiber(int err, pscip_t *val, const char * origin)
                << " chan=0x" << setbase (16) << val->chan
                << " addr=0x" << setbase (16) << (long)val->address
                << " stat=0x" << setbase (16) << (long)val->stat;
-    ERROR_STREAM << cmd_stream.str() << endl;
+    //ERROR_STREAM << cmd_stream.str() << endl;
     psc_throw_exception("FO communication error",
         cmd_stream.str(), origin, err - PSCIP_IOCTL_MAGIC);
 }

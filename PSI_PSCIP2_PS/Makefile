@@ -24,9 +24,13 @@
 #
 
 CLASS      = PSI_PC
-MAJOR_VERS = 1
-MINOR_VERS = 0
-RELEASE    = Release_$(MAJOR_VERS)_$(MINOR_VERS)
+MAJOR_VERS = 2
+MINOR_VERS = 5
+MAINTENANCE_VERS = 0
+BUILD_VERS = 0
+RELEASE    = Release_$(MAJOR_VERS)_$(MINOR_VERS)_$(MAINTENANCE_VERS)_$(BUILD_VERS)
+
+PLATFORM = suse111
 
 #-----------------------------------------
 #	Set default home directories
@@ -60,13 +64,13 @@ VERS_OPT = -Wl,-soname,
 endif
 
 INCLUDE_DIRS =  -I$(TANGO_HOME)/include \
-					 -I/siciliarep/build/lib/omniORB/omniORB-4.1.3.suse111.32/include \
-					 -I.	\
+                -I/siciliarep/build/lib/omniORB/omniORB-4.1.3.suse111.32/include \
+                -I.	\
                 -I$(CPP_SERVERS)/include
 
-OBJS_DIR    = obj
-LIB_DIRS    = -L $(TANGO_HOME)/lib \
-				  -L/siciliarep/build/lib/omniORB/omniORB-4.1.3.suse111.32/lib
+OBJS_DIR     =  obj
+LIB_DIRS     =  -L $(TANGO_HOME)/lib \
+                -L/siciliarep/build/lib/omniORB/omniORB-4.1.3.suse111.32/lib
 
 TARGET_LIB = $(CPP_SERVERS)/lib/libtgclasses.a
 
@@ -76,28 +80,28 @@ TARGET_LIB = $(CPP_SERVERS)/lib/libtgclasses.a
 #-----------------------------------------
 ifdef _solaris
 CXXFLAGS =  $(DEBUG) -mt -D_PTHREADS $(INCLUDE_DIRS)
-LFLAGS =  $(DEBUG) $(LIB_DIRS)  		\
-				-ltango			\
-				-llog4tango		\
-				-lomniORB4 		\
-				-lomniDynamic4	\
-				-lomnithread	\
-				-lCOS4			\
-				-lpthread		\
-				-lposix4 -lsocket -lnsl 
+LFLAGS =  $(DEBUG) $(LIB_DIRS)    \
+          -ltango                 \
+          -llog4tango             \
+          -lomniORB4              \
+          -lomniDynamic4          \
+          -lomnithread            \
+          -lCOS4                  \
+          -lpthread               \
+          -lposix4 -lsocket -lnsl 
 endif
 
 ifdef linux
 CXXFLAGS =  $(DEBUG) -D_REENTRANT $(INCLUDE_DIRS)
-LFLAGS =  $(DEBUG) $(LIB_DIRS)  		\
-				-ltango			\
-				-llog4tango		\
-				-lomniORB4 		\
-				-lomniDynamic4	\
-				-lomnithread	\
-				-lCOS4			\
-				-ldl -lpthread \
-                                -lrt
+LFLAGS =  $(DEBUG) $(LIB_DIRS)    \
+          -ltango                 \
+          -llog4tango             \
+          -lomniORB4              \
+          -lomniDynamic4          \
+          -lomnithread            \
+          -lCOS4                  \
+          -ldl -lpthread          \
+          -lrt                    
 endif
 
 
@@ -107,25 +111,24 @@ endif
 #	Set  dependences
 #-----------------------------------------
 
-SVC_OBJS = $(OBJS_DIR)/main.o	\
-		$(OBJS_DIR)/ClassFactory.o	\
-		$(OBJS_DIR)/$(CLASS)Class.o	\
-		$(OBJS_DIR)/$(CLASS)StateMachine.o	\
-		$(OBJS_DIR)/$(CLASS).o \
-                $(OBJS_DIR)/NanoSeconds.o
+SVC_OBJS = $(OBJS_DIR)/main.o                 \
+           $(OBJS_DIR)/ClassFactory.o         \
+           $(OBJS_DIR)/$(CLASS)Class.o        \
+           $(OBJS_DIR)/$(CLASS)StateMachine.o \
+           $(OBJS_DIR)/$(CLASS).o             \
+           $(OBJS_DIR)/NanoSeconds.o
 
-SHLIB_OBJS = $(OBJS_DIR)/$(CLASS)Class.so.o	\
-		$(OBJS_DIR)/$(CLASS)StateMachine.so.o	\
-		$(OBJS_DIR)/$(CLASS).so.o
-
+SHLIB_OBJS = $(OBJS_DIR)/$(CLASS)Class.so.o        \
+             $(OBJS_DIR)/$(CLASS)StateMachine.so.o \
+             $(OBJS_DIR)/$(CLASS).so.o
 
 SVC_INC = $(CLASS)Class.h \
-		$(CLASS).h
+          $(CLASS).h
 
 
 $(OBJS_DIR)/%.o: %.cpp $(SVC_INC)
 	$(CC) $(CXXFLAGS) -c $< -o $(OBJS_DIR)/$*.o
-			
+
 $(OBJS_DIR)/%.so.o: %.cpp $(SVC_INC)
 	$(CC_SHLIB) $(CXXFLAGS) -c $< -o $(OBJS_DIR)/$*.so.o
 
@@ -134,24 +137,24 @@ $(OBJS_DIR)/%.so.o: %.cpp $(SVC_INC)
 #	 Make Entry
 #-----------------------------------------
 all: $(CLASS)
-	
-$(CLASS):	make_obj_dir make_bin_dir $(SVC_OBJS)
-	$(CC) $(SVC_OBJS) -o $(CLASS) $(LFLAGS)
-	@mv $(CLASS) bin/$(CLASS)
 
-shlib:	make_obj_dir make_shlib_dir $(SHLIB_OBJS)
+$(CLASS): make_obj_dir make_bin_dir $(SVC_OBJS)
+	$(CC) $(SVC_OBJS) -o $(CLASS) $(LFLAGS)
+	@mv $(CLASS) bin/$(PLATFORM)/$(CLASS)
+
+shlib: make_obj_dir make_shlib_dir $(SHLIB_OBJS)
 	$(AR_SL) -o \
-		shlib/$(CLASS).$(SL_EXT).$(MAJOR_VERS).$(MINOR_VERS) \
-		$(VERS_OPT)$(CLASS).$(SL_EXT).$(MAJOR_VERS) \
-		$(SHLIB_OBJS) $(LFLAGS)
-	@rm -f shlib/$(CLASS).$(SL_EXT)
-	@cd  shlib; \
-		ln -s $(CLASS).$(SL_EXT).$(MAJOR_VERS).$(MINOR_VERS) $(CLASS).$(SL_EXT)
+        shlib/$(PLATFORM)/$(CLASS).$(SL_EXT).$(MAJOR_VERS).$(MINOR_VERS) \
+        $(VERS_OPT)$(CLASS).$(SL_EXT).$(MAJOR_VERS) \
+        $(SHLIB_OBJS) $(LFLAGS)
+	@rm -f shlib/$(PLATFORM)/$(CLASS).$(SL_EXT)
+	@cd  shlib/$(PLATFORM); \
+        ln -s $(CLASS).$(SL_EXT).$(MAJOR_VERS).$(MINOR_VERS) $(CLASS).$(SL_EXT)
 
 clean:
 	rm -f $(OBJS_DIR)/*.o  \
 	$(OBJS_DIR)/*.so.o \
-	bin/$(CLASS) \
+	bin/$(PLATFORM)/$(CLASS) \
 	core
 
 make_obj_dir:
@@ -159,15 +162,17 @@ make_obj_dir:
 
 make_bin_dir:
 	@mkdir -p bin
+	@mkdir -p bin/$(PLATFORM)
+
 
 make_shlib_dir:
 	@mkdir -p shlib
-	
+
 #-----------------------------------------
 #	 Install binary file
 #-----------------------------------------
 install:
-	cp bin/$(CLASS)  $(TANGO_HOME)/bin
+	cp bin/$(PLATFORM)/$(CLASS) $(TANGO_HOME)/bin/$(PLATFORM)
 
 #-----------------------------------------
 #	 Update class library and header files
@@ -186,7 +191,7 @@ lib: clean
 #----------------------------------------------------
 tag:
 	@cvstag "$(CLASS)-$(RELEASE)"
-	@make   $(CLASS)
+	@make $(CLASS)
 	@make show_tag
 
 show_tag:
