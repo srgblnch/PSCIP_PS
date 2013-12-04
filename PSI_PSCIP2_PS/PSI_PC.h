@@ -984,8 +984,8 @@ protected :
         /** reads information from the hardware in order to update State and
           * Status */
         void update_state(void);
-        void psc_write(int channel, char status, char address, int data);       /**< General function for writing to PSC (regardless of the communicatino medium)   */
-        void psc_read(int channel, char status, char address, int *data);       /**<  General funciton for reading from PSC (regardless of the communicatio medium)  */
+        bool psc_write(int channel, char status, char address, int data);       /**< General function for writing to PSC (regardless of the communicatino medium)   */
+        bool psc_read(int channel, char status, char address, int *data);       /**<  General funciton for reading from PSC (regardless of the communicatio medium)  */
         void psc_read_serial(pscip_t *pval);                                                                    /**<  Reading using RS232  */
         void psc_write_serial(pscip_t *pval);                                                                   /**<  Writing using RS232  */
         void psc_read_fiber(pscip_t *pval);                                                                     /**<  Reading using fiber optic  */

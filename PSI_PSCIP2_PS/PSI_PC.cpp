@@ -289,7 +289,14 @@ void PSI_PC::init_device()
         int data;
         try
         {
-                psc_read(channel,0x0, PSC_MODEL_ID, &data);
+          if ( not psc_read(channel,0x0, PSC_MODEL_ID, &data) )
+          {
+            //if psc_read returns false, it means it is not readable
+            Tango::Except::throw_exception(
+                (const char *)"Read not allowed",
+                (const char *)"Error from psc",
+                (const char *) "PSI_PC::psc_read", Tango::ERR);
+          }
         }
         catch(Tango::DevFailed &e)
         {
@@ -479,21 +486,28 @@ void PSI_PC::read_ErrorCode(Tango::Attribute &attr)
 //-----------------------------------------------------------------------------
 void PSI_PC::read_V(Tango::Attribute &attr)
 {
-        DEBUG_STREAM << "PSI_PC::read_V(Tango::Attribute &attr) entering... "<< endl;
-        int data;
-        try
-        {
-                psc_read(channel,0x0, PSC_VOLTAGE, &data);
-        }
-        catch(Tango::DevFailed &e)
-        {
-                Tango::Except::re_throw_exception(e,
-                        (const char *)"Command failed",
-                        (const char *)"Error from psc",
-                        (const char *) "PSI_PC::read_Voltage()", Tango::ERR);
-        }
-        *attr_Voltage_read = reinterpret_cast<float &>(data);
-        attr.set_value(attr_Voltage_read);
+  DEBUG_STREAM << "PSI_PC::read_V(Tango::Attribute &attr) entering... "<< endl;
+  int data;
+  try
+  {
+    if ( not psc_read(channel,0x0, PSC_VOLTAGE, &data) )
+    {
+      //if psc_read returns false, it means it is not readable
+      Tango::Except::throw_exception(
+          (const char *)"Read not allowed",
+          (const char *)"Error from psc",
+          (const char *) "PSI_PC::psc_read", Tango::ERR);
+    }
+  }
+  catch(Tango::DevFailed &e)
+  {
+          Tango::Except::re_throw_exception(e,
+                  (const char *)"Command failed",
+                  (const char *)"Error from psc",
+                  (const char *) "PSI_PC::read_Voltage()", Tango::ERR);
+  }
+  *attr_Voltage_read = reinterpret_cast<float &>(data);
+  attr.set_value(attr_Voltage_read);
 }
 
 //+----------------------------------------------------------------------------
@@ -691,24 +705,31 @@ void PSI_PC::write_CurrentSetpoint(Tango::WAttribute &attr)
 //-----------------------------------------------------------------------------
 void PSI_PC::read_Voltage(Tango::Attribute &attr)
 {
-        int data;
-        try
-        {
-                psc_read(channel,0x0, PSC_VOLTAGE, &data);
-        }
-        catch(Tango::DevFailed &e)
-        {
-                Tango::Except::re_throw_exception(e,
-                        (const char *)"Command failed",
-                        (const char *)"Error from psc",
-                        (const char *) "PSI_PC::read_Voltage()", Tango::ERR);
-        }
+  int data;
+  try
+  {
+    if ( not psc_read(channel,0x0, PSC_VOLTAGE, &data) )
+    {
+      //if psc_read returns false, it means it is not readable
+      Tango::Except::throw_exception(
+          (const char *)"Read not allowed",
+          (const char *)"Error from psc",
+          (const char *) "PSI_PC::psc_read", Tango::ERR);
+    }
+  }
+  catch(Tango::DevFailed &e)
+  {
+          Tango::Except::re_throw_exception(e,
+                  (const char *)"Command failed",
+                  (const char *)"Error from psc",
+                  (const char *) "PSI_PC::read_Voltage()", Tango::ERR);
+  }
 /**
 COMMAND : now idea why it works and how - taken from electra DS, if you can offer something better, you are welcome.....:)
-        *attr_ScalingFactor_read = (double) *(float*)(&val.data);
+  *attr_ScalingFactor_read = (double) *(float*)(&val.data);
 */
-        *attr_Voltage_read = (double) *(float*)(&data);
-        attr.set_value(attr_Voltage_read);
+  *attr_Voltage_read = (double) *(float*)(&data);
+  attr.set_value(attr_Voltage_read);
 
 }
 
@@ -780,7 +801,14 @@ void PSI_PC::on()
         data = 1;
         try
         {
-                psc_write(channel, 0x80, PSC_PC_ONOFF, data);
+          if ( not psc_write(channel, 0x80, PSC_PC_ONOFF, data) )
+          {
+            //if psc_write returns false, it means it is not readable
+            Tango::Except::throw_exception(
+                (const char *)"Write not allowed",
+                (const char *)"Error from psc",
+                (const char *) "PSI_PC::psc_write", Tango::ERR);
+          }
         }
         catch(Tango::DevFailed &e)
         {
@@ -809,7 +837,14 @@ void PSI_PC::off()
 
         try
         {
-                psc_write(channel, 0x80, PSC_PC_ONOFF, data);
+          if ( not psc_write(channel, 0x80, PSC_PC_ONOFF, data) )
+          {
+            //if psc_write returns false, it means it is not readable
+            Tango::Except::throw_exception(
+                (const char *)"Write not allowed",
+                (const char *)"Error from psc",
+                (const char *) "PSI_PC::psc_write", Tango::ERR);
+          }
         }
         catch(Tango::DevFailed &e)
         {
@@ -986,7 +1021,14 @@ void PSI_PC::reset_interlocks()
 
   try
   {
-    psc_write(channel, 0x80, PSC_ERR_MSG, data);
+    if ( not psc_write(channel, 0x80, PSC_ERR_MSG, data) )
+    {
+      //if psc_write returns false, it means it is not readable
+      Tango::Except::throw_exception(
+          (const char *)"Write not allowed",
+          (const char *)"Error from psc",
+          (const char *) "PSI_PC::psc_write", Tango::ERR);
+    }
   }
   catch(Tango::DevFailed &e)
   {
@@ -1013,14 +1055,21 @@ void PSI_PC::reset_interlocks()
  */
 //+------------------------------------------------------------------
 
-void PSI_PC::psc_read(int channel, char status, char address, int *data)
+bool PSI_PC::psc_read(int channel, char status, char address, int *data)
 {
   pscip_t val;
   val.chan = channel;
   val.stat = status;
   val.address = address;
   val.data = *data;
+  time_t current_time;
 
+  time(&current_time);
+  if (difftime(current_time,last_comm_error) < TIME_TO_NEXT_RECON)
+  {
+    //INFO_STREAM<< "Not yet ready for communication retry" << endl;
+    return false;
+  }
   if(connectionType == FiberConnection)
   {
     psc_read_fiber(&val);
@@ -1043,6 +1092,7 @@ void PSI_PC::psc_read(int channel, char status, char address, int *data)
       );
   }
   *data = val.data ;
+  return true;
 }
 
 //+------------------------------------------------------------------
@@ -1056,7 +1106,7 @@ void PSI_PC::psc_read(int channel, char status, char address, int *data)
 //+------------------------------------------------------------------
 
 
-void PSI_PC::psc_write(int channel, char status, char address, int data)
+bool PSI_PC::psc_write(int channel, char status, char address, int data)
 {
   //DEBUG_STREAM << "PSI_PC::psc_write(): entering... !" << endl;
   pscip_t val;
@@ -1064,6 +1114,14 @@ void PSI_PC::psc_write(int channel, char status, char address, int data)
   val.stat = status;
   val.address = address;
   val.data = data;
+  time_t current_time;
+
+  time(&current_time);
+  if (difftime(current_time,last_comm_error) < TIME_TO_NEXT_RECON)
+  {
+    //INFO_STREAM<< "Not yet ready for communication retry" << endl;
+    return false;
+  }
 
   if (connectionType == FiberConnection)
   {
@@ -1094,6 +1152,7 @@ void PSI_PC::psc_write(int channel, char status, char address, int data)
       CONNECTIONTYPE_PROPERTY_ERROR
       );
   }
+  return true;
 }
 
 
@@ -1113,28 +1172,25 @@ void PSI_PC::update_state(void)
 
     string err_msg;
     Tango::DevState PSC_state;
-    time_t current_time;
     /******** PC control status ********/
 
     int devstate = 0;
-    time(&current_time);
-    if (difftime(current_time,last_comm_error) < TIME_TO_NEXT_RECON)
-    {
-      //INFO_STREAM<< "Not yet ready for communication retry" << endl;
-      return;
-    }
     try
     {
-        psc_read(channel, 0x0, PSC_DEVSTATE, &devstate);
+        if ( not psc_read(channel, 0x0, PSC_DEVSTATE, &devstate) )
+        {
+          //if psc_read returns false, it means it is not readable
+          return;
+        }
     }
     catch(Tango::DevFailed &e)
     {
         INFO_STREAM<< "reading device state failed" << endl;
-        set_state(Tango::FAULT);
-        push_change_event("State");
-        s_status << "communication fault " << endl;
-        set_status(s_status.str());
-        push_change_event("Status");
+//        set_state(Tango::FAULT);
+//        push_change_event("State");
+//        s_status << "communication fault " << endl;
+//        set_status(s_status.str());
+//        push_change_event("Status");
         return;
         // Tango::Except::re_throw_exception(e,
                 // (const char *)"Reading PSC failed",
@@ -1198,7 +1254,11 @@ void PSI_PC::update_state(void)
     // checks for errors and other interlocks
 #if 0
     int psc_digin = 0;
-    psc_read(channel,0x0, PSC_DIG_IN, &psc_digin);
+    if ( not psc_read(channel,0x0, PSC_DIG_IN, &psc_digin) )
+    {
+      //if psc_read returns false, it means it is not readable
+      return;
+    }
     if (psc_digin & PSC_INTERLOCK_BITS == PSC_INTERLOCK_BITS)
     {
         PSC_state = Tango::ALARM;
@@ -1224,7 +1284,11 @@ void PSI_PC::update_state(void)
     int psc_err = 0;
     try
     {
-        psc_read(channel, 0x0, PSC_ERR_MSG, &psc_err);
+        if ( not psc_read(channel, 0x0, PSC_ERR_MSG, &psc_err) )
+          {
+            //if psc_read returns false, it means it is not readable
+            return;
+          }
         /* takes into account only last byte */
         psc_err &= 0xff;
         ErrorsValue[ERR_PSI_PSC] = psc_err;
@@ -1335,7 +1399,14 @@ COMMAND : now idea why it works and how - taken from electra DS, if you can offe
 
         try
         {
-                psc_write(channel, 0x80, PSC_CURSET, data);
+          if ( not psc_write(channel, 0x80, PSC_CURSET, data) )
+          {
+            //if psc_read returns false, it means it is not readable
+            Tango::Except::throw_exception(
+                (const char *)"Write not allowed",
+                (const char *)"Error from psc",
+                (const char *) "PSI_PC::psc_write", Tango::ERR);
+          }
         }
         catch(Tango::DevFailed &e)
         {
@@ -1413,7 +1484,14 @@ void PSI_PC::init_fiber(void)
         int data;
         try
         {
-                psc_read(channel,0x0, PSC_MODEL_ID, &data);
+          if ( not psc_read(channel,0x0, PSC_MODEL_ID, &data) )
+          {
+            //if psc_read returns false, it means it is not readable
+            Tango::Except::throw_exception(
+                (const char *)"Read not allowed",
+                (const char *)"Error from psc",
+                (const char *) "PSI_PC::psc_read", Tango::ERR);
+          }
         }
         catch(Tango::DevFailed &e)
         {
@@ -1640,6 +1718,13 @@ void PSI_PC::handle_comm_error_fiber(int err, pscip_t *val, const char * origin)
                << " addr=0x" << setbase (16) << (long)val->address
                << " stat=0x" << setbase (16) << (long)val->stat;
     //ERROR_STREAM << cmd_stream.str() << endl;
+    const char * alba_errmsg = psc_get_communication_alba_errmsg(err - PSCIP_IOCTL_MAGIC);
+    std::stringstream s_status;     //message with the state read from the device register
+    set_state(Tango::FAULT);
+    push_change_event("State");
+    s_status << "communication fault: " << alba_errmsg << endl;
+    set_status(s_status.str());
+    push_change_event("Status");
     psc_throw_exception("FO communication error",
         cmd_stream.str(), origin, err - PSCIP_IOCTL_MAGIC);
 }
@@ -1745,22 +1830,29 @@ Tango::ConstDevString PSI_PC::dev_status()
 //+------------------------------------------------------------------
 double PSI_PC::readCurrentSetpointFromDevice()
 {
-        int data;
-        double return_value;
+  int data;
+  double return_value;
 
-        try
-        {
-                psc_read(channel,0x0, PSC_CURREF, &data);
-        }
-        catch(Tango::DevFailed &e)
-        {
-                Tango::Except::re_throw_exception(e,
-                        (const char *)"Command failed",
-                        (const char *)"Error from psc",
-                        (const char *) "PSI_PC::readCurrentSetpointFromDevice()", Tango::ERR);
-        }
+  try
+  {
+    if ( not psc_read(channel,0x0, PSC_CURREF, &data) )
+    {
+      //if psc_read returns false, it means it is not readable
+      Tango::Except::throw_exception(
+          (const char *)"Read not allowed",
+          (const char *)"Error from psc",
+          (const char *) "PSI_PC::psc_read", Tango::ERR);
+    }
+  }
+  catch(Tango::DevFailed &e)
+  {
+    Tango::Except::re_throw_exception(e,
+            (const char *)"Command failed",
+            (const char *)"Error from psc",
+            (const char *) "PSI_PC::readCurrentSetpointFromDevice()", Tango::ERR);
+  }
 
-        return reinterpret_cast<float&>(data);;
+  return reinterpret_cast<float&>(data);;
 }
 //+------------------------------------------------------------------
 /**
@@ -1976,27 +2068,34 @@ void PSI_PC::psc_throw_exception(
 //+------------------------------------------------------------------
 double PSI_PC::readCurrent()
 {
-        int data;
-        double value;
+  int data;
+  double value;
 
-        try
-        {
-                psc_read(channel,0x0, PSC_CURRENT, &data);
-        }
-        catch(Tango::DevFailed &e)
-        {
-                Tango::Except::re_throw_exception(e,
-                        (const char *)"Command failed",
-                        (const char *)"Error from psc",
-                        (const char *) "PSI_PC::read_Current", Tango::ERR);
-        }
+  try
+  {
+    if ( not psc_read(channel,0x0, PSC_CURRENT, &data) )
+    {
+      //if psc_read returns false, it means it is not readable
+      Tango::Except::throw_exception(
+          (const char *)"Read not allowed",
+          (const char *)"Error from psc",
+          (const char *) "PSI_PC::psc_read", Tango::ERR);
+    }
+  }
+  catch(Tango::DevFailed &e)
+  {
+    Tango::Except::re_throw_exception(e,
+            (const char *)"Command failed",
+            (const char *)"Error from psc",
+            (const char *) "PSI_PC::read_Current", Tango::ERR);
+  }
 /**
 COMMAND : now idea why it works and how - taken from electra DS, if you can offer something better, you are welcome.....:)
-        *attr_ScalingFactor_read = (double) *(float*)(&val.data);
+  *attr_ScalingFactor_read = (double) *(float*)(&val.data);
 */
-        value = reinterpret_cast<float&>(data);
+  value = reinterpret_cast<float&>(data);
 
-        return value;
+  return value;
 }
 
 
@@ -2022,7 +2121,14 @@ void PSI_PC::disable_interlocks()
                 const int data = 0xE070;
                 try
                 {
-                        psc_write(channel, 0x80, PSC_DIG_IN_MASK, data);
+                  if ( not psc_write(channel, 0x80, PSC_DIG_IN_MASK, data) )
+                  {
+                    //if psc_write returns false, it means it is not readable
+                    Tango::Except::throw_exception(
+                        (const char *)"Write not allowed",
+                        (const char *)"Error from psc",
+                        (const char *) "PSI_PC::psc_write", Tango::ERR);
+                  }
                 }
                 catch(Tango::DevFailed &e)
                 {
@@ -2062,7 +2168,14 @@ void PSI_PC::enable_interlocks()
                 const int data = 0xF877;
                 try
                 {
-                        psc_write(channel, 0x80, PSC_DIG_IN_MASK, data);
+                  if ( not psc_write(channel, 0x80, PSC_DIG_IN_MASK, data) )
+                  {
+                    //if psc_write returns false, it means it is not readable
+                    Tango::Except::throw_exception(
+                        (const char *)"Write not allowed",
+                        (const char *)"Error from psc",
+                        (const char *) "PSI_PC::psc_write", Tango::ERR);
+                  }
                 }
                 catch(Tango::DevFailed &e)
                 {
@@ -2097,53 +2210,60 @@ void PSI_PC::enable_interlocks()
 //+------------------------------------------------------------------
 Tango::DevString PSI_PC::interlock_status()
 {
-        //      POGO has generated a method core with argout allocation.
-        //      If you would like to use a static reference without copying,
-        //      See "TANGO Device Server Programmer's Manual"
-        //              (chapter : Writing a TANGO DS / Exchanging data)
-        //------------------------------------------------------------
-        Tango::DevString        argout  = new char[25];
+  //      POGO has generated a method core with argout allocation.
+  //      If you would like to use a static reference without copying,
+  //      See "TANGO Device Server Programmer's Manual"
+  //              (chapter : Writing a TANGO DS / Exchanging data)
+  //------------------------------------------------------------
+  Tango::DevString        argout  = new char[25];
 
-        DEBUG_STREAM << "PSI_PC::interlocks_status(): entering... !" << endl;
+  DEBUG_STREAM << "PSI_PC::interlocks_status(): entering... !" << endl;
 
-        string err_msg;
-        time_t current_time;
-        /******** PC control status ********/
+  string err_msg;
+  time_t current_time;
+  /******** PC control status ********/
 
-        int data;
-        time(&current_time);
-        if (difftime(current_time,last_comm_error) < TIME_TO_NEXT_RECON)
-        {
-          //INFO_STREAM << "Not yet ready for communication retry" << endl;
-          strcpy(argout, "Interlocks not available");
-          return argout;
-        }
-        try
-        {
-                psc_read(channel,0x0, PSC_DIG_IN_MASK, &data);
+  int data;
+  time(&current_time);
+  if (difftime(current_time,last_comm_error) < TIME_TO_NEXT_RECON)
+  {
+    //INFO_STREAM << "Not yet ready for communication retry" << endl;
+    strcpy(argout, "Interlocks not available");
+    return argout;
+  }
+  try
+  {
+    if ( not psc_read(channel,0x0, PSC_DIG_IN_MASK, &data) )
+    {
+      //if psc_read returns false, it means it is not readable
+      Tango::Except::throw_exception(
+          (const char *)"Read not allowed",
+          (const char *)"Error from psc",
+          (const char *) "PSI_PC::psc_read", Tango::ERR);
+    }
 
-        }
-        catch(Tango::DevFailed &e)
-        {
-                 Tango::Except::re_throw_exception(e,
-                         (const char *)"Reading PSC failed",
-                         (const char *)"Error from psc",
-                         (const char *)"Psc::interlocks_status()", Tango::ERR);
-        }
+  }
+  catch(Tango::DevFailed &e)
+  {
+    Tango::Except::re_throw_exception(e,
+            (const char *)"Reading PSC failed",
+            (const char *)"Error from psc",
+            (const char *)"Psc::interlocks_status()", Tango::ERR);
+  }
 
-        if ((data & 0xFFFF) == 0xE070)
-        {
-                strcpy(argout, "Interlocks disabled");
-        }
-        else if ((data & 0xFFFF) == 0xF877)
-        {
-                strcpy(argout, "Interlocks enabled");
-        }
-        else
-        {
-                strcpy(argout, "Interlocks customized");
-        }
-        return argout;
+  if ((data & 0xFFFF) == 0xE070)
+  {
+    strcpy(argout, "Interlocks disabled");
+  }
+  else if ((data & 0xFFFF) == 0xF877)
+  {
+    strcpy(argout, "Interlocks enabled");
+  }
+  else
+  {
+    strcpy(argout, "Interlocks customized");
+  }
+  return argout;
 }
 
 
@@ -2236,7 +2356,14 @@ Tango::DevString PSI_PC::read__psc_register(Tango::DevString argin)
         int data;
         try
         {
-                psc_read(channel,0x0, address, &data);
+          if ( not psc_read(channel,0x0, address, &data) )
+          {
+            //if psc_read returns false, it means it is not readable
+            Tango::Except::throw_exception(
+                (const char *)"Read not allowed",
+                (const char *)"Error from psc",
+                (const char *) "PSI_PC::psc_read", Tango::ERR);
+          }
         }
         catch(Tango::DevFailed &e)
         {
@@ -2312,7 +2439,14 @@ void PSI_PC::do_software_waveform()
                         const int32_t data = reinterpret_cast<const int32_t&>(ftmp);
 
                         try {
-                                psc_write(channel, 0x80, PSC_CURSET, data);
+                          if ( not psc_write(channel, 0x80, PSC_CURSET, data) )
+                          {
+                            //if psc_write returns false, it means it is not readable
+                            Tango::Except::throw_exception(
+                                (const char *)"Write not allowed",
+                                (const char *)"Error from psc",
+                                (const char *) "PSI_PC::psc_write", Tango::ERR);
+                          }
                         }
                         catch(Tango::DevFailed &e)
                         {
