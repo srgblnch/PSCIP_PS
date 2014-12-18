@@ -275,6 +275,11 @@ int k_pscip_rdstatistics(pscip_stats_t *,int , pscip_Dev);
 int k_pscip_reset(int, pscip_Dev);
 int k_pscip_clear_err_counter(pscip_t *val, int id_pscip, pscip_Dev dev);
 int k_pscip_dump_all_registers( pscip_t *val, int id_pscip, pscip_Dev dev);
+#ifdef __FOFB__
+int k_pscip_wrhiprio_unchecked(pscip_t *,int , pscip_Dev);
+int k_pscip_write_unchecked(pscip_t *,int , pscip_Dev);
+int k_pscip_read_unchecked(pscip_t *,int , pscip_Dev);
+#endif /* __FOFB__ */
 /* Interfacing IP */
 void IP_read_byte(void *address,  uint8_t *val);
 void IP_read_word(void *address, uint16_t *val);

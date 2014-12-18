@@ -1071,7 +1071,7 @@ int k_irq_enable(pscip_Dev dev)
 int k_irq_disable(pscip_Dev dev)
 {
 	#ifdef __DEBUG__
-	printk(KERN_ALERT "\t\t DEBUG_K: k_irq_disable() - beginningn");	
+	printk(KERN_ALERT "\t\t DEBUG_K: k_irq_disable() - beginning\n");	
 	#endif
 	
 	if(dev->IPnumber == 0)
@@ -1285,5 +1285,147 @@ int k_pscip_read_test(pscip_t *val, int id_pscip, pscip_Dev dev)
 } 
 /* end k_pscip_read() */
 
+#ifdef __FOFB__
+
+/**	Execute high priority PS-current setting without checking that no error ocurred
+
+	This is necessary for the FOFB algorithm, since it must be writting at 10 KHz rate in all power supplies, making it impossible to wait for interruption to be served and reading status registers.
+	The function will remember the last val->address written and will not write it again in case they match: this allows to save one PCI write, which is very convenient when writting at 10KHz rate.
+	WARNING!!!! Remembering the last address written is very nice, but may lead to some problems, e.g. if you reboot the controller the address inside it will probably be 0, but the address the driver is keeping is not 0. This particular case can be solved by initially writting a 0 to the address in the user program, which will force a later first address register write
+	
+	@param *val	- structure containing information about the channel/link we are using
+	@param id_pscip	- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used
+	@param dev		- device structure contaning informatin about the device (IP)
+	
+ */
+int k_pscip_wrhiprio_unchecked(pscip_t *val, int id_pscip, pscip_Dev dev)
+{
+	static uint16_t status[PSCIP_MAX_DEV][PSCIP_MAX_CHAN];
+	uint16_t word;
+
+	#ifdef __DEBUG__
+	printk(KERN_ALERT "\t\t DEBUG_K (chan %d): k_pscip_wrhiprio_unchecked() - beginning \n", val->chan);
+	#endif
+
+	if ((id_pscip >= 0) && (id_pscip < num_pscip))
+		dev = &pscip_devices[id_pscip];
+
+	#ifdef __DEBUG__
+	printk(KERN_ALERT "\t\t DEBUG_K pscip_number: %d\n", dev->pscip_number);
+	#endif
+
+	/* write status and address only if it changed from previous value (saving one PCI write) */
+	word = (val->stat << 8) | val->address;
+	if (word != status[dev->pscip_number][val->chan]) {
+		#ifdef __DEBUG__
+		printk(KERN_ALERT "\t\t DEBUG_K k_pscip_wrhiprio_unchecked() - status changed (old - new) 0x%X 0x%X\n", status[dev->pscip_number][val->chan], word);
+		#endif
+		IP_write_word(dev->pIP_IOspace[val->chan]+PSCIP_HPRIOWRITE_REG,word);
+		status[dev->pscip_number][val->chan] = word;
+	}
+
+	//write data register 
+	word = (val->data >> 16) & 0xffff;
+	IP_write_word(dev->pIP_IOspace[val->chan]+PSCIP_HPRIOWRITE_DATA, word);
+	word = val->data & 0xffff;
+	IP_write_word(dev->pIP_IOspace[val->chan]+PSCIP_HPRIOWRITE_DATA +0x02, word);
+
+	#ifdef __DEBUG__
+	printk(KERN_ALERT "\t\t DEBUG_K (chan %d): k_pscip_wrhiprio_unchecked() - end \n", val->chan);
+	#endif
+
+	return 0;
+}
+/* end k_pscip_wrhiprio_unchecked() */
+
+
+/**	Execute writing action.
+	The function writes given data (2 words) to given address in the PS, the information is passed with a given status.
+
+	This is necessary for the FOFB algorithm, since it must be writting at 10 KHz rate in all power supplies, making it impossible to wait for interruption to be served and reading status registers.
+
+	
+ 	@param *val	- structure containing information about the channel/link we are using
+	@param id_pscip	- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used
+	@param dev		- device structure contaning informatin about the device (IP)
+ */
+int k_pscip_write_unchecked(pscip_t *val, int id_pscip, pscip_Dev dev) 
+{
+	uint16_t word;
+
+	#ifdef __DEBUG__
+	printk(KERN_ALERT "\t\t DEBUG_K (chan %d): k_pscip_write_unchecked() - beginning \n",val->chan);
+	#endif
+
+	if ((id_pscip >= 0) && (id_pscip < num_pscip))
+		dev = &pscip_devices[id_pscip];
+
+	/* write status register */
+	word = (val->stat << 8) | val->address;
+	IP_write_word(dev->pIP_IOspace[val->chan]+PSCIP_WRITE_REG,word);
+
+	/* write data register */
+	word = (val->data >> 16) & 0xffff;
+	IP_write_word(dev->pIP_IOspace[val->chan]+PSCIP_WRITE_DATA, word);
+	word = val->data & 0xffff;
+	IP_write_word(dev->pIP_IOspace[val->chan]+PSCIP_WRITE_DATA +0x02, word);
+
+	#ifdef __DEBUG__
+	printk(KERN_ALERT "\t\t DEBUG_K (chan %d): k_pscip_write_unchecked() - end \n", val->chan);
+	#endif
+
+	return 0;
+}
+/* end k_pscip_write_unchecked() */
+
+
+/**	Execute reading action without checking correct communication.
+	This is meant to be used by the FOFB algorithm, in which a proper checking cannot be performed if we want to meet the high writing rate requirements.
+	Function reads data (2 words) from a given address in PS
+	
+	@param *val	- structure containing information about the channel/link we are using
+	@param id_pscip	- number of the device ( IP ) we are using, if negative value, the device passed by third argument is used
+	@param dev		- device structure contaning informatin about the device (IP)
+ */
+int k_pscip_read_unchecked(pscip_t *val, int id_pscip, pscip_Dev dev) 
+{
+
+	uint32_t tmp_data = 0;
+	uint16_t word;
+
+	#ifdef __DEBUG__
+	printk(KERN_ALERT "\t\t DEBUG_K (chan %d): k_pscip_read_unchecked() - beginning \n",val->chan);
+	#endif
+
+	if ((id_pscip >= 0) && (id_pscip < num_pscip))
+	{
+		dev = &pscip_devices[id_pscip];
+	}
+
+	// set status and address register 
+	word = (val->stat << 8) | val->address;
+	IP_write_word(dev->pIP_IOspace[val->chan]+PSCIP_READ_REG,word);
+
+	// write some value just to trigger the packet to be sent
+	IP_write_word(dev->pIP_IOspace[val->chan]+PSCIP_READ_DATA + 0x02, 0);
+
+	IP_read_word(dev->pIP_IOspace[val->chan] + PSCIP_READ_DATA, &word);
+	tmp_data = (word & 0xffff) << 16;
+	IP_read_word(dev->pIP_IOspace[val->chan] + PSCIP_READ_DATA + 0x02, &word);
+	tmp_data += (word  & 0xffff);
+
+	val->data = tmp_data;
+
+	// update statistics
+	dev->stats[val->chan].rx++;
+
+	#ifdef __DEBUG__
+	printk(KERN_ALERT "\t\t DEBUG_K (chan %d): k_pscip_read_unchecked() - end \n",val->chan);	
+	#endif
+	return 0;
+} 
+/* end k_pscip_read_unchecked() */
+
+#endif /* __FOFB__ */
 
 /* EOF */

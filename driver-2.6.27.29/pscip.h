@@ -157,7 +157,13 @@ typedef struct {
 //#define PSCIP_VMEADDR      _IOR  (PSCIP_IOCTL_MAGIC, 9, unsigned long) /* get pscip vmeaddr */
 #define PSCIP_PCIADDR      _IOR  (PSCIP_IOCTL_MAGIC, 9, unsigned long) /* get pscip vmeaddr */
 #define PSCIP_RDTEST         _IOWR (PSCIP_IOCTL_MAGIC, 12, pscip_t) /* read(test version) */
-
+#ifdef __FOFB__
+#define PSCIP_WRHIPRIO_UNCHECKED    _IOWR (PSCIP_IOCTL_MAGIC, 13, pscip_t)
+#define PSCIP_WRITE_UNCHECKED       _IOWR (PSCIP_IOCTL_MAGIC, 14, pscip_t)
+#define PSCIP_READ_UNCHECKED        _IOWR (PSCIP_IOCTL_MAGIC, 15, pscip_t)
+#define PSCIP_ENABLE_INTERRUPTIONS  _IOWR (PSCIP_IOCTL_MAGIC, 16, pscip_t)
+#define PSCIP_DISABLE_INTERRUPTIONS _IOWR (PSCIP_IOCTL_MAGIC, 17, pscip_t)
+#endif
 
 #define PSCIP_RESET        _IO  (PSCIP_IOCTL_MAGIC, 17)           /* reset IP module */
 

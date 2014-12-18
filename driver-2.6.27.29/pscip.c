@@ -761,6 +761,146 @@ static struct proc_dir_entry  *proc_model_dir;		/**< Structure defining entry in
 			#endif	
 			
 			break;		
+
+#ifdef __FOFB__
+		//Set high priority ps-current with no checking
+		case PSCIP_WRHIPRIO_UNCHECKED :
+
+			#ifdef __DEBUG__
+			printk(KERN_ALERT "DEBUG_M: --\t Writing High Priority UNCHECKED - beginning\t--\n");
+			#endif
+
+			if (copy_from_user (&val, (void *) arg, sizeof (pscip_t))) 
+			{
+				up(&dev->sem);
+				return (-EFAULT);
+			}
+
+			if ((ret = pscip_check_input_data(val)) < 0)
+			{
+				up(&dev->sem);
+				return (-ret);
+			}
+
+			if ((ret = k_pscip_wrhiprio_unchecked(&val, id_pscip, dev)) < 0) {
+				up(&dev->sem);
+				return (-ret);
+			}
+
+			#ifdef __DEBUG__
+			printk(KERN_ALERT "DEBUG_M: --\t Writing High Priority UNCHECKED - finished\t--\n");
+			#endif
+			break;
+
+		// Write with no checking
+		case PSCIP_WRITE_UNCHECKED :
+			#ifdef __DEBUG__
+			printk(KERN_ALERT "DEBUG_M: --\t Writing UNCHECKED - beginning \t--\n");
+			#endif
+			#ifdef __W_R_TIME__
+			do_gettimeofday(&w_r_time_1);
+			#endif
+
+			if (copy_from_user (&val, (void *) arg, sizeof (pscip_t)))
+			{
+				up(&dev->sem);
+				return (-EFAULT);
+			}
+
+			if ((ret = pscip_check_input_data(val)) < 0)
+			{
+				up(&dev->sem);
+				return (-ret);
+			}
+
+			if ((ret = k_pscip_write_unchecked(&val, id_pscip, dev)) < 0)
+			{
+				 up(&dev->sem);
+				 return (-ret);
+			}
+			#ifdef __W_R_TIME__
+			do_gettimeofday(&w_r_time_2);
+			printk(KERN_ALERT "TIME: time of writing to PSC UNCHECKED: %ld [usec]\n", (long)(w_r_time_2.tv_usec - w_r_time_1.tv_usec));
+			#endif
+			#ifdef __DEBUG__
+			printk(KERN_ALERT "DEBUG_M: --\t Writing UNCHECKED - finished \t--\n");
+			#endif
+			break;
+
+		// Read without checking
+		case PSCIP_READ_UNCHECKED:
+			#ifdef __DEBUG__
+			printk(KERN_ALERT "DEBUG_M: --\t Reading unchecked - beginning \t--\n");
+			#endif
+			#ifdef __W_R_TIME__
+			do_gettimeofday(&w_r_time_1);
+			#endif
+
+			if (copy_from_user (&val, (void *) arg, sizeof (pscip_t)))
+			{
+				up(&dev->sem);
+				return (-EFAULT);
+			}
+
+			if ((ret = pscip_check_input_data(val)) < 0)
+			{
+				up(&dev->sem);
+				return (-ret);
+			}
+
+			if ((ret = k_pscip_read_unchecked(&val, id_pscip, dev)) < 0) 
+			{
+				up(&dev->sem);
+				return (-ret);
+			}
+
+			//copy entire I/O for link 1 memory to user space
+			if (copy_to_user ((void*) arg, &val, sizeof (pscip_t)))
+			{
+				up(&dev->sem);
+				return (-EFAULT);
+			}
+			#ifdef __W_R_TIME__
+			do_gettimeofday(&w_r_time_2);
+			printk(KERN_ALERT "TIME: time of reading from PSC: %ld [usec]\n", (long)(w_r_time_2.tv_usec - w_r_time_1.tv_usec));
+			#endif
+			#ifdef __DEBUG__
+			printk(KERN_ALERT "DEBUG_M: --\t Reading unchecked - finished \t--\n");
+			#endif
+			break;
+
+		// Enable interruptions
+		case PSCIP_ENABLE_INTERRUPTIONS :
+			#ifdef __DEBUG__
+			printk(KERN_ALERT "DEBUG_M: --\t Enabling interruptions - beginning \t--\n");
+			#endif
+			//hardware interrupt enabling
+			ret = k_irq_enable(dev);
+			if (ret) {
+				printk(KERN_ALERT "ERROR: --\t ERROR ENABLING IRQ: 0x%X\n", ret);
+				free_irq(dev->irq, (void *) dev);
+			}
+			#ifdef __DEBUG__
+			printk(KERN_ALERT "DEBUG_M: --\t Enabling interruptions - finished \t--\n");
+			#endif
+			break;
+
+		// Disable interruptions
+		case PSCIP_DISABLE_INTERRUPTIONS :
+			//hardware interrupt disabling
+			#ifdef __DEBUG__
+			printk(KERN_ALERT "DEBUG_M: --\t Disabling interruptions - beginning \t--\n");
+			#endif
+			ret = k_irq_disable(dev);
+			if (ret) {
+				printk(KERN_ALERT "ERROR: --\t ERROR DISABLING IRQ: 0x%X\n", ret);
+			}
+			#ifdef __DEBUG__
+			printk(KERN_ALERT "DEBUG_M: --\t Disabling interruptions - finished \t--\n");
+			#endif
+			break;
+
+#endif /* __FOFB__*/
 	
 		default:	
 			up(&dev->sem);

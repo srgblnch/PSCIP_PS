@@ -1,6 +1,9 @@
 #
 # PSCIP Makefile
 #
+
+EXTRA_CFLAGS = -D__FOFB__
+
 ifeq ($(KERNELRELEASE),)
 
     # Assume the source tree is where the running kernel was built
