@@ -1,6 +1,7 @@
 #!/bin/bash
 
-DRIVER_DIR=$SICILIA/local/FOFB/trunk/pscip
+KERNEL=`uname -r`
+DRIVER_DIR=$SICILIA/drivers/$KERNEL/pscip
 
 module="pscip"
 device="pscip"
