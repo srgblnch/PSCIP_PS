@@ -2,6 +2,12 @@
 
 . alba_blissrc
 
+#Do not start device server if FOFB is running
+if [ "$(pidof fofb)" ] ; then
+    >&2 echo "FOFB is controlling the PSI_PC. Use Disarm command of FOFB device server to kill FOFB and start PSI_PC server"
+    exit
+fi
+
 if [[ $# -eq 1 ]] ; then
     echo "Setting logs to minimum"
     VERBOSE='-v2'
